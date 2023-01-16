@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PROYECTO-BKD</string>
+    <string name="nombre">Nombre.</string>
+    <string name="jugadas">Partidas jugadas</string>
+    <string name="ganadas">Partidas ganadas</string>
+    <string name="max_puntuacion">Máxima puntuacion</string>
 </resources>
