@@ -4,4 +4,5 @@
     <string name="jugadas">Partidas jugadas</string>
     <string name="ganadas">Partidas ganadas</string>
     <string name="max_puntuacion">Máxima puntuacion</string>
+    <string name="cero">0</string>
 </resources>
