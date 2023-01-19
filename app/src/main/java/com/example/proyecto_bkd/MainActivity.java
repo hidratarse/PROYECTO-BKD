@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "LOL");
         bLogin=findViewById(R.id.bLogin);
 
         bLogin.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Partida.class);
                 intent.putExtra(texto, "Hola");
                 startActivity(intent);
+                finish();
             }
         });
 
