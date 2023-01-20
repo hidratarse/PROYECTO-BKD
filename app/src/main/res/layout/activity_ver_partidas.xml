@@ -145,13 +145,13 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/imgPergamino"
                     android:layout_width="410dp"
                     android:layout_height="568dp"
                     app:srcCompat="@drawable/pergamino" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/recyclerPartidas"
                     android:layout_width="409dp"
                     android:layout_height="559dp">
 

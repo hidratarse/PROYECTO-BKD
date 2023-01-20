@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.ViewHolder> {
     private ArrayList<ResumenPartidas> datos;
@@ -30,7 +31,7 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
      * (custom ViewHolder).
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView fecha;
+        private final TextView fechaPart;
         private final TextView jug1;
         private final TextView jug2;
         private final TextView jug3;
@@ -45,7 +46,7 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
             super(view);
             // Define click listener for the ViewHolder's View
 
-            fecha = (TextView) view.findViewById(R.id.tFecha);
+            fechaPart = (TextView) view.findViewById(R.id.tFecha);
             jug1 = (TextView) view.findViewById(R.id.tJugador1);
             jug2 = (TextView) view.findViewById(R.id.tJugador2);
             jug3 = (TextView) view.findViewById(R.id.tJugador3);
@@ -57,9 +58,32 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
             view.setOnClickListener(this);
         }
 
-        public void setInfo(String nombre, int precio_val) {
-            fecha.setText(nombre);
-            precio.setText(String.valueOf(precio_val));
+        public void setInfo(String fecha, String j1, String j2, int pt1, int pt2) {
+            fechaPart.setText(fecha);
+            jug1.setText(j1);
+            jug3.setText(j2);
+            ptos1.setText(pt1+"");
+            ptos3.setText(pt2+"");
+        }
+        public void setInfo(String fecha, String j1, String j2, String j3, int pt1, int pt2, int pt3) {
+            fechaPart.setText(fecha);
+            jug1.setText(j1);
+            jug2.setText(j2);
+            jug3.setText(j3);
+            ptos1.setText(pt1+"");
+            ptos2.setText(pt2+"");
+            ptos3.setText(pt3+"");
+        }
+        public void setInfo(String fecha, String j1, String j2, String j3, String j4, int pt1, int pt2, int pt3, int pt4) {
+            fechaPart.setText(fecha);
+            jug1.setText(j1);
+            jug2.setText(j2);
+            jug3.setText(j3);
+            jug4.setText(j4);
+            ptos1.setText(pt1);
+            ptos2.setText(pt2);
+            ptos3.setText(pt3);
+            ptos4.setText(pt4);
         }
 
         @Override
@@ -87,7 +111,7 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.lista_partidas, viewGroup, false);
 
-        return new VerPartidasAdapter().ViewHolder(view);
+        return new VerPartidasAdapter.ViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -97,7 +121,14 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         ResumenPartidas p = datos.get(position);
-        viewHolder.setInfo(p.getNombre(),p.getPrecio());
+        if(p.getJ3()==null){
+            viewHolder.setInfo(p.getFecha(),p.getJ1(),p.getJ2(),p.getPto1(),p.getPto2());
+        }else if(p.getJ4()==null){
+            viewHolder.setInfo(p.getFecha(),p.getJ1(),p.getJ2(),p.getJ3(),p.getPto1(),p.getPto2(),p.getPto3());
+        }else{
+            viewHolder.setInfo(p.getFecha(),p.getJ1(),p.getJ2(),p.getJ3(),p.getJ4(),p.getPto1(),p.getPto2(),p.getPto3(),p.getPto4());
+        }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -106,7 +137,7 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         return datos.size();
     }
 
-    public void add(ArrayList<VerPartidasAdapter> dataSet){
+    public void add(ArrayList<ResumenPartidas> dataSet){
         datos.addAll(dataSet);
         notifyDataSetChanged();
     }
