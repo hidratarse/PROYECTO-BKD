@@ -8,6 +8,7 @@
     android:background="@drawable/muropiedra">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycled_perfiles"
         android:layout_width="388dp"
         android:layout_height="509dp"
         app:layout_constraintBottom_toBottomOf="parent"
