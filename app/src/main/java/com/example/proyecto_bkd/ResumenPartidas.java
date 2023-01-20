@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ResumenPartidas {
-    private Date fecha;
-    private String j1,j2,j3,j4;
+    private String fecha,j1,j2,j3,j4;
     private int pto1,pto2,pto3,pto4;
 
-    public ResumenPartidas(Date fecha, String j1, String j2, int pto1, int pto2){
+    public ResumenPartidas(String fecha, String j1, String j2, int pto1, int pto2){
         this.fecha=fecha;
         this.j1=j1;
         this.j2=j2;
         this.pto1=pto1;
         this.pto2=pto2;
     }
-    public ResumenPartidas(Date fecha, String j1, String j2, String j3, int pto1, int pto2,int pto3){
+    public ResumenPartidas(String fecha, String j1, String j2, String j3, int pto1, int pto2,int pto3){
         this.fecha=fecha;
         this.j1=j1;
         this.j2=j2;
@@ -24,7 +23,7 @@ public class ResumenPartidas {
         this.pto2=pto2;
         this.pto3=pto3;
     }
-    public ResumenPartidas(Date fecha, String j1, String j2,String j3,String j4, int pto1, int pto2,int pto3,int pto4){
+    public ResumenPartidas(String fecha, String j1, String j2,String j3,String j4, int pto1, int pto2,int pto3,int pto4){
         this.fecha=fecha;
         this.j1=j1;
         this.j2=j2;
@@ -36,11 +35,11 @@ public class ResumenPartidas {
         this.pto4=pto4;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -110,7 +109,8 @@ public class ResumenPartidas {
 
     public static ArrayList<ResumenPartidas> generador(){
         ArrayList<ResumenPartidas> resumen = new ArrayList<ResumenPartidas>();
-
+        resumen.add(new ResumenPartidas("31-12-2022","Jorge","Miguel Angel",48,60));
+        resumen.add(new ResumenPartidas("10-01-2023","Iñaki","Ana","Dario",99,126,115));
         return resumen;
     }
 }

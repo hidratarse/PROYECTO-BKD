@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 public class Partida extends AppCompatActivity {
@@ -14,6 +15,7 @@ public class Partida extends AppCompatActivity {
     public static final int CODIGO_REVERSO=4;
     public static final String MSG = "texto";
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    TextView verPartida, newGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,8 @@ public class Partida extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
+        verPartida=findViewById(R.id.tVerPartidas);
+        newGame=findViewById(R.id.tNewGame);
         /*
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +50,15 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Partida.this, Perfil_Detalle.class);
+                intent.putExtra(MSG, "Hola");
+                startActivity(intent);
+                finish();
+            }
+        });
+        verPartida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Partida.this, VerPartidas.class);
                 intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
