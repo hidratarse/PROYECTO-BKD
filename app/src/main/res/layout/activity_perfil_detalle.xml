@@ -21,7 +21,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="160dp"
-        android:layout_height="158dp"
+        android:layout_height="160dp"
         android:backgroundTint="#FBF7F7"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
-            android:gravity="center_vertical"
             android:text="@string/cero"
             android:textSize="34sp" />
     </LinearLayout>
@@ -105,7 +104,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
-            android:gravity="center_vertical"
             android:text="@string/cero"
             android:textSize="34sp" />
     </LinearLayout>
@@ -137,9 +135,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
-            android:gravity="center_vertical"
             android:text="@string/cero"
-            android:textSize="38sp" />
+            android:textSize="34sp" />
     </LinearLayout>
 
     <Button
