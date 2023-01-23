@@ -35,6 +35,8 @@ public class activity_perfiles extends AppCompatActivity {
 
         adaptador = new Perfiles_adapter(perfiles);
 
+        Log.d(TAG, String.valueOf(adaptador.getItemCount()));
+
         recyclerView.setAdapter(adaptador);
     }
 }

@@ -1,8 +1,12 @@
 package com.example.proyecto_bkd.perfiles;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,27 +26,21 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
         add(dataSet);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private final ImageView imagen;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView imagen_perfil;
         private final TextView nombre;
+        private final ImageButton imagen_madera;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imagen = itemView.findViewById(R.id.id_foto_perfil);
+            imagen_perfil = itemView.findViewById(R.id.id_foto_perfil);
             nombre = itemView.findViewById(R.id.id_perfiles_nombre);
+            imagen_madera = itemView.findViewById(R.id.id_imagen_madera);
+
         }
 
         public TextView getNombre() {
             return nombre;
-        }
-
-        public ImageView getImagen() {
-            return imagen;
-        }
-
-        @Override
-        public void onClick(View view) {
-
         }
     }
 
@@ -56,12 +54,14 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Perfil p = datos.get(position);
+        String nombre = p.getNombre();
+        Log.d(TAG,nombre);
         holder.getNombre().setText(p.getNombre());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return datos.size();
     }
 
     private void add(ArrayList<Perfil> dataSet) {
