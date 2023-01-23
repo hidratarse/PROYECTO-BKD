@@ -19,7 +19,7 @@ public class activity_perfiles extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new GridLayoutManager());
+       /* recyclerView.setLayoutManager(new GridLayoutManager());*/
 
     }
 }
