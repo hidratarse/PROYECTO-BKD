@@ -64,6 +64,10 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
             jug3.setText(j2);
             ptos1.setText(pt1+"");
             ptos3.setText(pt2+"");
+            jug2.setVisibility(View.GONE);
+            jug4.setVisibility(View.GONE);
+            ptos2.setVisibility(View.GONE);
+            ptos4.setVisibility(View.GONE);
         }
         public void setInfo(String fecha, String j1, String j2, String j3, int pt1, int pt2, int pt3) {
             fechaPart.setText(fecha);

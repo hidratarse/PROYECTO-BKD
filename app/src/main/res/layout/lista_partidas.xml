@@ -20,8 +20,10 @@
             android:id="@+id/tFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="30-09-1988"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:fontFamily="@font/enchanted_land"
+            android:textSize="20sp"/>
+        />
 
     </LinearLayout>
 
@@ -42,13 +44,16 @@
                 android:id="@+id/tJugador1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre 1" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tJugador2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre 2" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp"/>
+            />
 
         </LinearLayout>
 
@@ -62,13 +67,17 @@
                 android:id="@+id/tPuntos1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Puntos 1" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp"/>
+            />
 
             <TextView
                 android:id="@+id/tPuntos2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Puntos 2" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp"/>
+            />
         </LinearLayout>
 
         <LinearLayout
@@ -81,19 +90,23 @@
                 android:id="@+id/tJugador3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre 3" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp"/>
+            />
 
             <TextView
                 android:id="@+id/tJugador4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre 4" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp" />
+            />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -101,13 +114,17 @@
                 android:id="@+id/tPuntos3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Puntos 3" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp" />
+            />
 
             <TextView
                 android:id="@+id/tPuntos4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Puntos 4" />
+                android:fontFamily="@font/enchanted_land"
+                android:textSize="20sp" />
+            />
         </LinearLayout>
 
     </LinearLayout>
