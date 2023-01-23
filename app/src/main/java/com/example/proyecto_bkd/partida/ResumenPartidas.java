@@ -1,7 +1,6 @@
-package com.example.proyecto_bkd;
+package com.example.proyecto_bkd.partida;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ResumenPartidas {
     private String fecha,j1,j2,j3,j4;

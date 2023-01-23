@@ -1,19 +1,15 @@
 package com.example.proyecto_bkd;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.proyecto_bkd.partida.Partida;
+
+public class Login extends AppCompatActivity {
 
     private static final String TAG = "";
     Button bLogin;
@@ -21,14 +17,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         bLogin=findViewById(R.id.bLogin);
 
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Partida.class);
+                Intent intent = new Intent(Login.this, Partida.class);
                 intent.putExtra(texto, "Hola");
                 startActivity(intent);
                 finish();
