@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd;
+package com.example.proyecto_bkd.partida;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +7,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyecto_bkd.R;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.ViewHolder> {
     private ArrayList<ResumenPartidas> datos;

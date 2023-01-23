@@ -1,8 +1,10 @@
-package com.example.proyecto_bkd;
+package com.example.proyecto_bkd.partida;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.proyecto_bkd.R;
 
 public class DetallePartida extends AppCompatActivity {
 

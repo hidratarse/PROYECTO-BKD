@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd;
+package com.example.proyecto_bkd.partida;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.proyecto_bkd.Perfil_Detalle;
+import com.example.proyecto_bkd.R;
 
 
 public class Partida extends AppCompatActivity {

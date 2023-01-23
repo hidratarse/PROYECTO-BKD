@@ -13,10 +13,10 @@
         android:theme="@style/Theme.PROYECTOBKD"
         tools:targetApi="31">
         <activity
-            android:name=".DetallePartida"
+            android:name=".partida.DetallePartida"
             android:exported="false" />
         <activity
-            android:name=".VerPartidas"
+            android:name=".partida.VerPartidas"
             android:exported="false" />
         <activity
             android:name=".activity_perfiles"
@@ -26,7 +26,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Partida"
+            android:name=".partida.Partida"
             android:exported="false" />
         <activity
             android:name=".Perfil_Detalle"
@@ -36,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
