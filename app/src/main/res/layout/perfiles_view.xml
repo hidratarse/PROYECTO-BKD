@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/id_foto_perfil"
         android:layout_width="160dp"
         android:layout_height="160dp"
         app:srcCompat="@drawable/escudo2" />
@@ -30,7 +30,7 @@
             app:srcCompat="@drawable/textscroll" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/id_perfiles_nombre"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:fontFamily="@font/enchanted_land"
@@ -39,8 +39,10 @@
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
