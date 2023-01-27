@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Perfil_Detalle;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.activity_perfiles;
+import com.example.proyecto_bkd.perfiles.activity_perfiles;
 
 
 public class Partida extends AppCompatActivity {
