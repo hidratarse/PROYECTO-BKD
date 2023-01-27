@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PROYECTO-BKD</string>
     <string name="nombre">Nombre.</string>
+    <string name="nombre2">Nombre</string>
     <string name="jugadas">Partidas jugadas</string>
     <string name="ganadas">Partidas ganadas</string>
     <string name="max_puntuacion">Máxima puntuacion</string>
@@ -8,4 +9,17 @@
     <string name="Partidas">Partidas</string>
     <string name="Perfiles">Perfiles</string>
     <string name="Ranking">Ranking</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="Olvidado">¿Has olvidado la contraseña?</string>
+    <string name="Entrar">Entrar</string>
+    <string name="Registrarse">Registrarse</string>
+    <string name="titulo">Bunny Kingdom</string>
+    <string name="Color">Color</string>
+    <string name="Puntos">Puntos</string>
+    <string name="Puesto">Puesto</string>
+    <string name="NuevaPartida">Nueva Partida</string>
+    <string name="VerPartidas">Ver Partidas</string>
+    <string name="Salir">Salir</string>
+
 </resources>
