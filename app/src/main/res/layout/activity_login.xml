@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Bunny Kingdom"
+        android:text="@string/titulo"
         android:textColor="#FF5722"
         android:textSize="70sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -37,16 +37,32 @@
         android:id="@+id/bLogin"
         android:layout_width="159dp"
         android:layout_height="54dp"
-        android:backgroundTint="#BA5222"
+        android:backgroundTint="#E35311"
         android:fontFamily="@font/enchanted_land"
-        android:text="Entrar"
+        android:text="@string/Entrar"
         android:textSize="30sp"
+        app:cornerRadius="10dp"
         app:iconTint="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.565" />
+
+    <Button
+        android:id="@+id/bRegistarse"
+        android:layout_width="217dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#E35311"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Registrarse"
+        android:textSize="25sp"
+        app:cornerRadius="10dp"
+        app:iconTint="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bLogin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -73,7 +89,7 @@
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
-        android:hint="Usuario"
+        android:hint="@string/Usuario"
         android:inputType="textPersonName"
         android:singleLine="false"
         android:textColor="#ED5C2E"
@@ -94,6 +110,16 @@
         app:layout_constraintTop_toBottomOf="@+id/eUser"
         app:srcCompat="@drawable/shape_black" />
 
+    <ImageView
+        android:id="@+id/fOlvidar"
+        android:layout_width="220dp"
+        android:layout_height="29dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bLogin"
+        app:srcCompat="@drawable/shape_black" />
+
     <EditText
         android:id="@+id/ePass"
         android:layout_width="wrap_content"
@@ -101,14 +127,27 @@
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
-        android:hint="Contraseña"
+        android:hint="@string/Contraseña"
+        android:inputType="textPassword"
         android:singleLine="false"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
-        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eUser" />
+
+    <TextView
+        android:id="@+id/tOlvidar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:shadowRadius="@dimen/cardview_default_radius"
+        android:text="@string/Olvidado"
+        android:textColor="#FF5722"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
