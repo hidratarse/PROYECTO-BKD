@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Perfil_Detalle;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.activity_perfiles;
 
 
 public class Partida extends AppCompatActivity {
@@ -52,7 +53,7 @@ public class Partida extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, Perfil_Detalle.class);
+                Intent intent = new Intent(Partida.this, activity_perfiles.class);
                 intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
