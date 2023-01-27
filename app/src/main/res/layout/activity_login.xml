@@ -7,17 +7,17 @@
     tools:context=".Login">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iPuerta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/login" />
+        app:srcCompat="@drawable/porton" />
 
     <TextView
         android:id="@+id/textView"
@@ -27,19 +27,19 @@
         android:text="Bunny Kingdom"
         android:textColor="#FF5722"
         android:textSize="70sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintTop_toTopOf="@+id/iPuerta" />
 
     <Button
         android:id="@+id/bLogin"
-        android:layout_width="150dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#00FFFFFF"
+        android:layout_width="159dp"
+        android:layout_height="54dp"
+        android:backgroundTint="#BA5222"
         android:fontFamily="@font/enchanted_land"
+        android:text="Entrar"
         android:textSize="30sp"
         app:iconTint="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,5 +47,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.565" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <ImageView
+        android:id="@+id/fUser"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        app:layout_constraintBottom_toTopOf="@+id/bLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:srcCompat="@drawable/shape_black" />
+
+    <EditText
+        android:id="@+id/eUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        android:singleLine="false"
+        android:textColor="#ED5C2E"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/bLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <ImageView
+        android:id="@+id/fPass"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        app:layout_constraintBottom_toTopOf="@+id/bLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eUser"
+        app:srcCompat="@drawable/shape_black" />
+
+    <EditText
+        android:id="@+id/ePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
+        android:hint="Contraseña"
+        android:singleLine="false"
+        android:textColor="#ED5C2E"
+        android:textSize="30sp"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/bLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/pergamino" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iPuerta"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:backgroundTint="#FBF7F7"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/iPuerta" />
 
     <LinearLayout
         android:id="@+id/linearLayout16"
