@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/muropiedra"
 
-    tools:context=".Perfil_Detalle">
+    tools:context=".perfiles.Perfiles_adapter$Perfil_Detalle">
 
     <ImageView
         android:id="@+id/imageView2"

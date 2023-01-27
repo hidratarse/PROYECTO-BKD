@@ -9,13 +9,18 @@ public class Perfil {
     };
 
     private String nombre;
+
+    public int puntuacionGeneral;
+
     //Aquí irían fotos
 
-    public Perfil(String nombre){
+    public Perfil(String nombre, int puntuacionGeneral){
         this.nombre = nombre;
     }
 
     public Perfil() {}
+
+
 
     public String getNombre() {
         return nombre;
@@ -25,10 +30,20 @@ public class Perfil {
         this.nombre = nombre;
     }
 
+    public int getPuntuacionGeneral() {
+        return puntuacionGeneral;
+    }
+
+    public void setPuntuacionGeneral(int puntuacionGeneral) {
+        this.puntuacionGeneral = puntuacionGeneral;
+    }
+
     public static Perfil[] generarPerfiles(){
         Perfil [] listaPerfiles= new Perfil[perfiles_genericos.length];
+        int dummyPoints = 1000;
         for (int i = 0; i < perfiles_genericos.length; i++) {
-            listaPerfiles[i] = new Perfil(perfiles_genericos[i]);
+            listaPerfiles[i] = new Perfil(perfiles_genericos[i],dummyPoints);
+            dummyPoints-=25;
         }
         return  listaPerfiles;
     }

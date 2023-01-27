@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.proyecto_bkd.Perfil_Detalle;
+import com.example.proyecto_bkd.perfiles.Perfil_Detalle;
 import com.example.proyecto_bkd.R;
 
 public class VerPartidas extends AppCompatActivity {
