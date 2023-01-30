@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.proyecto_bkd.perfiles.Perfil_Detalle;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.ranking.activity_ranking2;
 
 public class VerPartidas extends AppCompatActivity {
     public static final String MSG = "texto";
@@ -25,17 +26,17 @@ public class VerPartidas extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
-        /*
+
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VerPartidas.this, Ranking.class);
+                Intent intent = new Intent(VerPartidas.this, activity_ranking2.class);
                 intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
         });
-        */
+
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
