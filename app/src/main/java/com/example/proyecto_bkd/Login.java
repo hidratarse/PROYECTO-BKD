@@ -24,7 +24,7 @@ public class Login extends AppCompatActivity {
 
         bLogin=findViewById(R.id.bLogin);
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        mediaPlayer.create(this,R.raw.musicaprueba);
+        //mediaPlayer.create(this,R.raw.musicaprueba);
         //mediaPlayer.start();
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +35,5 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }
