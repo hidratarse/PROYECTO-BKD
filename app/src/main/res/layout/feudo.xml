@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lContenedor"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:id="@+id/lContjug"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="89dp"
+                android:layout_height="87dp"
+                android:foregroundGravity="center"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/castillo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="51dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tTorres"
+                android:layout_width="51dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/enchanted_land"
+                android:text="Torres"
+                android:textSize="18sp" />
+            />
+
+            <TextView
+                android:id="@+id/tNumTorres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/enchanted_land"
+                android:gravity="center"
+                android:textSize="20sp" />
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tRecursos"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/enchanted_land"
+                android:gravity="center_horizontal"
+                android:text="Recursos"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgFondoMadera"
+                        android:layout_width="match_parent"
+                        android:layout_height="101dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/bordemadera" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imgCobre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="43dp"
+                                android:layout_weight="1"
+                                android:padding="1dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/cobre" />
+
+                            <ImageView
+                                android:id="@+id/imgPerla"
+                                android:layout_width="36dp"
+                                android:layout_height="43dp"
+                                android:layout_weight="1"
+                                android:padding="1dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/perla" />
+
+                            <ImageView
+                                android:id="@+id/imgPlata"
+                                android:layout_width="wrap_content"
+                                android:layout_height="43dp"
+                                android:layout_weight="1"
+                                android:padding="1dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/plata" />
+
+                            <ImageView
+                                android:id="@+id/imgDiamante"
+                                android:layout_width="35dp"
+                                android:layout_height="43dp"
+                                android:layout_weight="1"
+                                android:padding="1dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/diamante" />
+
+                            <ImageView
+                                android:id="@+id/imgOro"
+                                android:layout_width="38dp"
+                                android:layout_height="43dp"
+                                android:layout_weight="1"
+                                android:padding="1dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/oro" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/imgMadera"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
+                                android:padding="2dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/madera" />
+
+                            <ImageView
+                                android:id="@+id/imgPez"
+                                android:layout_width="39dp"
+                                android:layout_height="44dp"
+                                android:padding="2dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/pescado" />
+
+                            <ImageView
+                                android:id="@+id/imgZanahoria"
+                                android:layout_width="39dp"
+                                android:layout_height="45dp"
+                                android:layout_weight="1"
+                                android:padding="2dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/zanahoria" />
+
+                            <ImageView
+                                android:id="@+id/imgTriple"
+                                android:layout_width="42dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:padding="2dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/tripe" />
+
+                            <ImageView
+                                android:id="@+id/imgPolvo"
+                                android:layout_width="38dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:padding="2dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/polvozanahoria" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout><![CDATA[
+
+
+
+
+            />
+
+            />
+
+
+
+        ]]>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
