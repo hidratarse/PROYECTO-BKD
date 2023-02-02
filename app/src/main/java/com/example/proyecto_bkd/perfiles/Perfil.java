@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Perfil {
 
     private static String [] perfiles_genericos = {
+            "Jorge", "Miguel Ángel", "Darío"," Kayler", "Brandon",
             "Jorge", "Miguel Ángel", "Darío"," Kayler", "Brandon"
     };
 
@@ -16,6 +17,7 @@ public class Perfil {
 
     public Perfil(String nombre, int puntuacionGeneral){
         this.nombre = nombre;
+        this.puntuacionGeneral = puntuacionGeneral;
     }
 
     public Perfil() {}
