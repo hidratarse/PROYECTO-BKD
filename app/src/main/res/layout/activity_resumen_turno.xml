@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".resumenturno.ResumenTurno">
+    tools:context=".resumenturno.activity_ResumenTurno">
 
     <ImageView
         android:id="@+id/imgBiblioteca"
@@ -143,7 +143,7 @@
         app:srcCompat="@drawable/pergamino" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/id_rv_resumenTurnos"
         android:layout_width="287dp"
         android:layout_height="382dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -204,7 +204,7 @@
         android:fontFamily="@font/enchanted_land"
         android:text="Turno X"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/id_rv_resumenTurnos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
