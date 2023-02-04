@@ -16,14 +16,14 @@ public class Login extends AppCompatActivity {
     private static final String TAG = "";
     Button bLogin;
     static String texto=".";
-    MediaPlayer mediaPlayer;
+    //MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         bLogin=findViewById(R.id.bLogin);
-        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        //this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         //mediaPlayer.create(this,R.raw.musicaprueba);
         //mediaPlayer.start();
         bLogin.setOnClickListener(new View.OnClickListener() {
