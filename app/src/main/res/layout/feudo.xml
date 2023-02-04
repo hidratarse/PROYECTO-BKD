@@ -107,28 +107,28 @@
                                 android:id="@+id/imgMadera"
                                 android:layout_width="38dp"
                                 android:layout_height="46dp"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/madera" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconotronco" />
 
                             <ImageView
                                 android:id="@+id/imgPez"
-                                android:layout_width="39dp"
-                                android:layout_height="44dp"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/pescado" />
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconopescado" />
 
                             <ImageView
                                 android:id="@+id/imgZanahoria"
-                                android:layout_width="39dp"
-                                android:layout_height="45dp"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/zanahoria" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconozanahoria" />
 
                             <ImageView
                                 android:id="@+id/imgTriple"
-                                android:layout_width="42dp"
-                                android:layout_height="44dp"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
                                 android:scaleType="center"
                                 app:srcCompat="@drawable/tripe" />
@@ -136,10 +136,10 @@
                             <ImageView
                                 android:id="@+id/imgPolvo"
                                 android:layout_width="38dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/polvozanahoria" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconopolvo" />
 
                         </LinearLayout>
 
@@ -152,43 +152,43 @@
 
                             <ImageView
                                 android:id="@+id/imgCobre"
-                                android:layout_width="wrap_content"
-                                android:layout_height="43dp"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/cobre" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconocobre" />
 
                             <ImageView
                                 android:id="@+id/imgPerla"
-                                android:layout_width="36dp"
-                                android:layout_height="43dp"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
                                 android:scaleType="center"
                                 app:srcCompat="@drawable/perla" />
 
                             <ImageView
                                 android:id="@+id/imgPlata"
-                                android:layout_width="wrap_content"
-                                android:layout_height="43dp"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/plata" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/ioconoplata" />
 
                             <ImageView
                                 android:id="@+id/imgDiamante"
-                                android:layout_width="35dp"
-                                android:layout_height="43dp"
+                                android:layout_width="38dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/diamante" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconodiamante" />
 
                             <ImageView
                                 android:id="@+id/imgOro"
                                 android:layout_width="38dp"
-                                android:layout_height="43dp"
+                                android:layout_height="46dp"
                                 android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/oro" />
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/iconooro" />
                         </LinearLayout>
 
                     </LinearLayout>
