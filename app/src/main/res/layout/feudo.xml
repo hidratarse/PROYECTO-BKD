@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lContenedor"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="2dp">
@@ -10,29 +10,30 @@
     <LinearLayout
         android:id="@+id/lContjug"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="75dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="89dp"
-                android:layout_height="87dp"
+                android:layout_width="57dp"
+                android:layout_height="68dp"
                 android:foregroundGravity="center"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 app:srcCompat="@drawable/castillo" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="57dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_vertical"
             android:padding="10dp">
 
             <TextView
@@ -41,14 +42,10 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/enchanted_land"
                 android:text="Torres"
-                android:textSize="20sp" />
+                android:textSize="20sp" /><![CDATA[
             />
 
-            <TextView
-                android:id="@+id/tRelleno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp" />
+            ]]>
 
             <TextView
                 android:id="@+id/tNumTorres"
@@ -64,151 +61,144 @@
         <LinearLayout
             android:layout_width="245dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:gravity="center_horizontal|left"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/tRecursos"
-                android:layout_width="231dp"
+                android:id="@+id/txtPuntos"
+                android:layout_width="74dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/enchanted_land"
-                android:gravity="center_horizontal"
-                android:text="Recursos"
+                android:gravity="center"
+                android:text="\t\tPuntos"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imgFondoMadera"
-                        android:layout_width="match_parent"
-                        android:layout_height="105dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/bordemadera" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="3dp">
-
-                            <ImageView
-                                android:id="@+id/imgMadera"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconotronco" />
-
-                            <ImageView
-                                android:id="@+id/imgPez"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconopescado" />
-
-                            <ImageView
-                                android:id="@+id/imgZanahoria"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconozanahoria" />
-
-                            <ImageView
-                                android:id="@+id/imgTriple"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/tripe" />
-
-                            <ImageView
-                                android:id="@+id/imgPolvo"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconopolvo" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:padding="5dp">
-
-                            <ImageView
-                                android:id="@+id/imgCobre"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconocobre" />
-
-                            <ImageView
-                                android:id="@+id/imgPerla"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/perla" />
-
-                            <ImageView
-                                android:id="@+id/imgPlata"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/ioconoplata" />
-
-                            <ImageView
-                                android:id="@+id/imgDiamante"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconodiamante" />
-
-                            <ImageView
-                                android:id="@+id/imgOro"
-                                android:layout_width="38dp"
-                                android:layout_height="46dp"
-                                android:layout_weight="1"
-                                android:scaleType="centerInside"
-                                app:srcCompat="@drawable/iconooro" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </LinearLayout>
-            <![CDATA[
-
-
-
-
-            />
-
-            />
-
-
-
-        ]]>
+            <TextView
+                android:id="@+id/txtPuntuacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/enchanted_land"
+                android:gravity="center"
+                android:text="10"
+                android:textSize="20sp" />
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LtxtRecursos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tRecursos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/enchanted_land"
+            android:gravity="center_horizontal"
+            android:text="Recursos"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearRecursos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgMadera"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconotronco" />
+
+        <ImageView
+            android:id="@+id/imgZanahoria"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconozanahoria" />
+
+        <ImageView
+            android:id="@+id/imgPez"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconopescado" />
+
+        <ImageView
+            android:id="@+id/imgSeta"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconoseta" />
+
+        <ImageView
+            android:id="@+id/imgPolvo"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconopolvo" />
+
+        <ImageView
+            android:id="@+id/imgPerla"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/pearl" />
+
+        <ImageView
+            android:id="@+id/imgDiamante"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconodiamante" />
+
+        <ImageView
+            android:id="@+id/imgOro"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconooro" />
+
+        <ImageView
+            android:id="@+id/imgPlata"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ioconoplata" />
+
+        <ImageView
+            android:id="@+id/imgCobre"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/copper" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lineaNegra"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="#C8F36F46"
+            android:text="TextView"
+            android:textSize="1dp" />
 
     </LinearLayout>
 

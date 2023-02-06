@@ -10,6 +10,7 @@
         android:id="@+id/iPuerta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/Fondo"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/porton" />
+        app:srcCompat="@drawable/porton"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -31,7 +33,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iPuerta" />
+        app:layout_constraintTop_toTopOf="@+id/iPuerta"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/bLogin"
@@ -47,7 +50,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.565"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/bRegistarse"
@@ -62,7 +66,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/bLogin"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -76,16 +81,19 @@
         android:layout_width="352dp"
         android:layout_height="61dp"
         android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:srcCompat="@drawable/shape_black" />
+        app:srcCompat="@drawable/shape_black"
+        tools:ignore="ImageContrastCheck" />
 
     <EditText
         android:id="@+id/eUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
@@ -97,13 +105,15 @@
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/fPass"
         android:layout_width="352dp"
         android:layout_height="61dp"
         android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,11 +125,12 @@
         android:layout_width="220dp"
         android:layout_height="29dp"
         android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bLogin"
-        app:srcCompat="@drawable/shape_black" />
-
+        app:srcCompat="@drawable/shape_black"
+        tools:ignore="ImageContrastCheck" />
     <EditText
         android:id="@+id/ePass"
         android:layout_width="wrap_content"
@@ -135,7 +146,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eUser" />
+        app:layout_constraintTop_toBottomOf="@+id/eUser"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/tOlvidar"
@@ -148,6 +160,8 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/bLogin"
+        tools:ignore="TextContrastCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
