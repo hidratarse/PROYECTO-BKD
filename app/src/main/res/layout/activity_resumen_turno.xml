@@ -147,7 +147,6 @@
         android:layout_width="287dp"
         android:layout_height="382dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -156,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="251dp" />
+        app:layout_constraintGuide_end="497dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -170,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="35dp" />
+        app:layout_constraintGuide_begin="48dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
