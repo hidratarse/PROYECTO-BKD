@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".perfiles.activity_perfiles"
-    android:background="@drawable/muropiedra">
+    android:background="@drawable/muro3">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycled_perfiles"

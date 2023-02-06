@@ -7,11 +7,26 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/id_foto_perfil"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        app:srcCompat="@drawable/escudo2" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="121dp"
+            android:layout_height="126dp"
+            tools:layout_editor_absoluteX="23dp"
+            tools:layout_editor_absoluteY="17dp"
+            tools:srcCompat="@tools:sample/avatars"
+            />
+
+        <ImageView
+            android:id="@+id/id_foto_perfil"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/escudo_sinfondo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
