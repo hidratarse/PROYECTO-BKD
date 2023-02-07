@@ -13,5 +13,121 @@
         android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
+    <LinearLayout
+        android:id="@+id/LinEstandartes"
+        android:layout_width="406dp"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/framePartidas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPartidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Partidas"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FramePerfiles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPerfiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPerfiles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPerfiles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Perfiles"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FrameRanking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtRanking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tRanking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Ranking"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

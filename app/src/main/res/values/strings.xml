@@ -11,7 +11,7 @@
     <string name="Ranking">Ranking</string>
     <string name="Usuario">Usuario</string>
     <string name="Contraseña">Contraseña</string>
-    <string name="Olvidado">Has olvidado la contrasena?</string>
+    <string name="Olvidado">¿Has olvidado la contraseña?</string>
     <string name="Entrar">Entrar</string>
     <string name="Registrarse">Registrarse</string>
     <string name="titulo">Bunny Kingdom</string>
@@ -23,5 +23,7 @@
     <string name="Salir">Salir</string>
     <string name="Sombreado">Sombreado</string>
     <string name="Fondo">Fondo</string>
+    <string name="AddFeudo">Añadir\nfeudo</string>
+    <string name="TerminarTurno">Terminar\nturno</string>
 
 </resources>

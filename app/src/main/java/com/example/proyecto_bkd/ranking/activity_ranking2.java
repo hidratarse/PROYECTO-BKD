@@ -15,13 +15,13 @@ import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.partida.VerPartidas;
 import com.example.proyecto_bkd.perfiles.Perfil;
 import com.example.proyecto_bkd.perfiles.Perfil_Detalle;
+import com.example.proyecto_bkd.perfiles.activity_perfiles;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class activity_ranking2 extends AppCompatActivity {
 
-    public static final String MSG = "texto";
     private RecyclerView recyclerView;
     private Ranking2_adapter adapter;
     private ArrayList<Perfil> perfiles;
@@ -32,7 +32,7 @@ public class activity_ranking2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking2);
-        /*
+
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
@@ -41,7 +41,6 @@ public class activity_ranking2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_ranking2.this, activity_ranking2.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -51,7 +50,6 @@ public class activity_ranking2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_ranking2.this, Partida.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -59,13 +57,12 @@ public class activity_ranking2 extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ranking2.this, Perfil_Detalle.class);
-                intent.putExtra(MSG, "Hola");
+                Intent intent = new Intent(activity_ranking2.this, activity_perfiles.class);
                 startActivity(intent);
                 finish();
             }
         });
-        */
+
         recyclerView = findViewById(R.id.id_recycler_ranking2);
 
         recyclerView.setHasFixedSize(true);

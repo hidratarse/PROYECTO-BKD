@@ -150,18 +150,15 @@
         android:autofillHints="" />
 
     <TextView
-        android:id="@+id/tOlvidar"
+        android:id="@+id/tOlividado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:shadowRadius="@dimen/cardview_default_radius"
         android:text="@string/Olvidado"
         android:textColor="#FF5722"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bLogin"
-        tools:ignore="TextContrastCheck" />
-
+        app:layout_constraintTop_toBottomOf="@+id/bLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

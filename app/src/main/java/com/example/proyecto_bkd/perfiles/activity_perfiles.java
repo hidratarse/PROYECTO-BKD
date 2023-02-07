@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class activity_perfiles extends AppCompatActivity {
-    public static final String MSG = "texto";
     private RecyclerView recyclerView;
     private Perfiles_adapter adaptador;
     private ArrayList<Perfil> perfiles;
@@ -40,7 +39,6 @@ public class activity_perfiles extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_perfiles.this, activity_ranking2.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -50,7 +48,6 @@ public class activity_perfiles extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_perfiles.this, Partida.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -58,8 +55,7 @@ public class activity_perfiles extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_perfiles.this, Perfil_Detalle.class);
-                intent.putExtra(MSG, "Hola");
+                Intent intent = new Intent(activity_perfiles.this, activity_perfiles.class);
                 startActivity(intent);
                 finish();
             }
