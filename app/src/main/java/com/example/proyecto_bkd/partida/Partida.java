@@ -11,15 +11,13 @@ import android.widget.TextView;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
+import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
+import com.example.proyecto_bkd.resumenturno.activity_ResumenTurno;
 
 
 public class Partida extends AppCompatActivity {
-    public static final int CODIGO_LOGIN =2;
-    public static final int CODIGO_VUELTA_TEXTO = 3;
-    public static final int CODIGO_REVERSO=4;
-    public static final String MSG = "texto";
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-    TextView verPartida, newGame;
+    TextView verPartida, newGame, salir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +28,12 @@ public class Partida extends AppCompatActivity {
         bImgRanking=findViewById(R.id.bImgRanking);
         verPartida=findViewById(R.id.tVerPartidas);
         newGame=findViewById(R.id.tNewGame);
+        salir=findViewById(R.id.tSalir);
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Partida.this, activity_ranking2.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -45,7 +43,6 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Partida.this, Partida.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -54,7 +51,6 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Partida.this, activity_perfiles.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
                 finish();
             }
@@ -63,8 +59,22 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Partida.this, VerPartidas.class);
-                intent.putExtra(MSG, "Hola");
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        newGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Partida.this, activity_ResumenTurno.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });

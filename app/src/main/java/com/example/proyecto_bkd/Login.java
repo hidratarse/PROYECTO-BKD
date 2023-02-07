@@ -17,7 +17,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        /*
+
         bLogin=findViewById(R.id.bLogin);
         bLogin.setOnClickListener(new OnClickListener() {
             @Override
@@ -27,6 +27,6 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-         */
+
     }
 }

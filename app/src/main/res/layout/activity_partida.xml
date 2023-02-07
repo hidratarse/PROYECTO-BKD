@@ -21,14 +21,58 @@
         android:id="@+id/imgSenal"
         android:layout_width="235dp"
         android:layout_height="381dp"
+        android:contentDescription="@string/Fondo"
         app:layout_constraintBottom_toBottomOf="@+id/imgBosque"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.597"
-        app:srcCompat="@drawable/senal"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/senal" />
+
+    <TextView
+        android:id="@+id/tNewGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="false"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/NuevaPartida"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.353" />
+
+    <TextView
+        android:id="@+id/tVerPartidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/VerPartidas"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgBosque"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgBosque" />
+
+    <TextView
+        android:id="@+id/tSalir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Salir"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgBosque"
+        app:layout_constraintVertical_bias="0.638" />
 
     <LinearLayout
         android:id="@+id/LinEstandartes"
@@ -49,6 +93,7 @@
                 android:id="@+id/bImgPartidas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/estandarte" />
 
@@ -83,6 +128,7 @@
                 android:id="@+id/bImgPerfiles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/estandarte" />
 
@@ -118,6 +164,7 @@
                 android:id="@+id/bImgRanking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/estandarte" />
 
@@ -144,44 +191,17 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tNewGame"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/NuevaPartida"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="242dp" />
 
-    <TextView
-        android:id="@+id/tVerPartidas"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/VerPartidas"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imgBosque"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgBosque" />
-
-    <TextView
-        android:id="@+id/tSalir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/Salir"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgBosque"
-        app:layout_constraintVertical_bias="0.638" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="333dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ContraintTotal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".resumenturno.activity_ResumenTurno">
@@ -36,6 +37,7 @@
                 android:id="@+id/bImgPartidas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/estandarte" />
 
@@ -70,6 +72,7 @@
                 android:id="@+id/bImgPerfiles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/estandarte" />
 
@@ -105,6 +108,7 @@
                 android:id="@+id/bImgRanking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/estandarte" />
 
@@ -169,7 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="48dp" />
+        app:layout_constraintGuide_begin="41dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -177,24 +181,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="364dp" />
-
-    <Button
-        android:id="@+id/bAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Añadir \nfeudo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-    <Button
-        android:id="@+id/bTerminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Terminar \nturno"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/tTurno"
@@ -207,5 +193,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
+
+    <ImageButton
+        android:id="@+id/bAdd"
+        android:layout_width="90dp"
+        android:layout_height="72dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:srcCompat="@drawable/sello2" />
+
+    <TextView
+        android:id="@+id/tAddFeudp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/AddFeudo"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <ImageButton
+        android:id="@+id/bTerminar"
+        android:layout_width="74dp"
+        android:layout_height="76dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:srcCompat="@drawable/sello1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="621dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="18dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
