@@ -144,6 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/pergamino" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -159,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="497dp" />
+        app:layout_constraintGuide_percent="0.3255814" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -187,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Turno X"
+        android:text="Turno X - Jugador XXXXX"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/id_rv_resumenTurnos"
         app:layout_constraintEnd_toEndOf="parent"
@@ -196,37 +197,55 @@
 
     <ImageButton
         android:id="@+id/bAdd"
-        android:layout_width="90dp"
-        android:layout_height="72dp"
+        android:layout_width="121dp"
+        android:layout_height="94dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@drawable/sello2" />
-
-    <TextView
-        android:id="@+id/tAddFeudp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/AddFeudo"
-        android:textAlignment="center"
-        android:textColor="#FFEB3B"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:srcCompat="@drawable/sello2" />
 
     <ImageButton
         android:id="@+id/bTerminar"
-        android:layout_width="74dp"
-        android:layout_height="76dp"
+        android:layout_width="117dp"
+        android:layout_height="100dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
         app:srcCompat="@drawable/sello1" />
+
+    <TextView
+        android:id="@+id/tAddFeudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/AddFeudo"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bAdd"
+        app:layout_constraintEnd_toEndOf="@+id/bAdd"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/bAdd" />
+
+    <TextView
+        android:id="@+id/tFinTurno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/TerminarTurno"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bTerminar"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/bTerminar"
+        app:layout_constraintTop_toTopOf="@+id/bTerminar" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
