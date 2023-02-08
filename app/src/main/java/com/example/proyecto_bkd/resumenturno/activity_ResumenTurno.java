@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
@@ -20,7 +21,9 @@ public class activity_ResumenTurno extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Formulario> formularios;
     ResumenTurnoAdapter adapter;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bTerminar;
+    TextView tFinTurno;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,17 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
+        bAdd=findViewById(R.id.bAdd);
+        tFinTurno=findViewById(R.id.tFinTurno);
+
+        tFinTurno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
