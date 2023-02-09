@@ -29,7 +29,7 @@ public class ResumenPartidas {
         this.j3=j3;
         this.j4=j4;
         this.pto1=pto1;
-        this.pto1=pto1;
+        this.pto2=pto2;
         this.pto3=pto3;
         this.pto4=pto4;
     }
@@ -108,8 +108,9 @@ public class ResumenPartidas {
 
     public static ArrayList<ResumenPartidas> generador(){
         ArrayList<ResumenPartidas> resumen = new ArrayList<ResumenPartidas>();
-        resumen.add(new ResumenPartidas("31-12-2022","Jorge","Miguel Angel",48,60));
+        resumen.add(new ResumenPartidas("31-12-2022","Jorge","Miguel Angel",148,150));
         resumen.add(new ResumenPartidas("10-01-2023","Iñaki","Ana","Dario",99,126,115));
+        resumen.add(new ResumenPartidas("23-02-2023","Kayler","Lara","Daniel","Robert",200,236,215,255));
         return resumen;
     }
 }

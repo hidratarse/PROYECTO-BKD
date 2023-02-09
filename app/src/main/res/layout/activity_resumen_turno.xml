@@ -188,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Turno X - Jugador XXXXX"
+        android:text="Turno 1 -Miguel Ángel"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/id_rv_resumenTurnos"
         app:layout_constraintEnd_toEndOf="parent"
