@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/iPuerta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/Fondo"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/porton"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="Registrar Usuario"
+        android:textColor="#FF5722"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iPuerta"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/bRegistarse"
+        android:layout_width="217dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#E35311"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Registrarse"
+        android:textSize="25sp"
+        app:cornerRadius="10dp"
+        app:iconTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteY="625dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <ImageView
+        android:id="@+id/fUser"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/shape_black"
+        tools:ignore="ImageContrastCheck"
+        tools:layout_editor_absoluteY="211dp" />
+
+    <EditText
+        android:id="@+id/eUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
+        android:hint="@string/Usuario"
+        android:inputType="textPersonName"
+        android:singleLine="false"
+        android:textColor="#ED5C2E"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteY="211dp" />
+
+    <ImageView
+        android:id="@+id/fPass"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/shape_black"
+        tools:layout_editor_absoluteY="305dp" />
+
+    <ImageView
+        android:id="@+id/fPass3"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/shape_black"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <ImageView
+        android:id="@+id/fPass2"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/shape_black"
+        tools:layout_editor_absoluteY="490dp" />
+
+    <EditText
+        android:id="@+id/ePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textPassword"
+        android:singleLine="false"
+        android:textColor="#ED5C2E"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="305dp" />
+
+    <EditText
+        android:id="@+id/ePass3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
+        android:hint="@string/Contraseña"
+        android:inputType="textPassword"
+        android:singleLine="false"
+        android:textColor="#ED5C2E"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <EditText
+        android:id="@+id/ePass2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
+        android:hint="Repite Contraseña"
+        android:inputType="textPassword"
+        android:singleLine="false"
+        android:textColor="#ED5C2E"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="490dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="684dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

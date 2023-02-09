@@ -13,19 +13,20 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="121dp"
-            android:layout_height="126dp"
-            tools:layout_editor_absoluteX="23dp"
-            tools:layout_editor_absoluteY="17dp"
-            tools:srcCompat="@tools:sample/avatars"
-            />
+            android:layout_width="108dp"
+            android:layout_height="119dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="23dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
             android:id="@+id/id_foto_perfil"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_width="161dp"
+            android:layout_height="144dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/escudo_sinfondo" />
+            app:srcCompat="@drawable/frame"
+            tools:layout_editor_absoluteY="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
