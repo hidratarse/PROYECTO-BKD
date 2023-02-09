@@ -48,10 +48,25 @@
         app:cornerRadius="10dp"
         app:iconTint="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck"
-        tools:layout_editor_absoluteY="625dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline19"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/bCancelar"
+        android:layout_width="173dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#E35311"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Cancelar"
+        android:textSize="25sp"
+        app:cornerRadius="10dp"
+        app:iconTint="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/iPuerta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bRegistarse"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -66,12 +81,13 @@
         android:layout_height="61dp"
         android:alpha="@dimen/material_emphasis_disabled"
         android:contentDescription="@string/Sombreado"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.593"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
         app:srcCompat="@drawable/shape_black"
-        tools:ignore="ImageContrastCheck"
-        tools:layout_editor_absoluteY="211dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <EditText
         android:id="@+id/eUser"
@@ -86,11 +102,25 @@
         android:singleLine="false"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.606"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck"
-        tools:layout_editor_absoluteY="211dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/fEmail"
+        android:layout_width="352dp"
+        android:layout_height="61dp"
+        android:alpha="@dimen/material_emphasis_disabled"
+        android:contentDescription="@string/Sombreado"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        app:srcCompat="@drawable/shape_black" />
 
     <ImageView
         android:id="@+id/fPass"
@@ -98,23 +128,12 @@
         android:layout_height="61dp"
         android:alpha="@dimen/material_emphasis_disabled"
         android:contentDescription="@string/Sombreado"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shape_black"
-        tools:layout_editor_absoluteY="305dp" />
-
-    <ImageView
-        android:id="@+id/fPass3"
-        android:layout_width="352dp"
-        android:layout_height="61dp"
-        android:alpha="@dimen/material_emphasis_disabled"
-        android:contentDescription="@string/Sombreado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shape_black"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline13"
+        app:srcCompat="@drawable/shape_black" />
 
     <ImageView
         android:id="@+id/fPass2"
@@ -122,29 +141,31 @@
         android:layout_height="61dp"
         android:alpha="@dimen/material_emphasis_disabled"
         android:contentDescription="@string/Sombreado"
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shape_black"
-        tools:layout_editor_absoluteY="490dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline14"
+        app:srcCompat="@drawable/shape_black" />
 
     <EditText
-        android:id="@+id/ePass"
+        android:id="@+id/eEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
-        android:hint="Email"
+        android:hint="@string/Email"
         android:inputType="textPassword"
         android:singleLine="false"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="305dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
     <EditText
         android:id="@+id/ePass3"
@@ -159,10 +180,11 @@
         android:singleLine="false"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <EditText
         android:id="@+id/ePass2"
@@ -172,22 +194,50 @@
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
-        android:hint="Repite Contraseña"
+        android:hint="@string/RepPass"
         android:inputType="textPassword"
         android:singleLine="false"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="490dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
-    <Button
-        android:id="@+id/button5"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="684dp" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26402187" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3885089" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5102599" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.62106705" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,5 +28,7 @@
     <string name="Añadir">Añadir</string>
     <string name="Cancelar">Cancelar</string>
     <string name="Cerrar">Cerrar</string>
+    <string name="Email">Email</string>
+    <string name="RepPass">Repite Contraseña</string>
 
 </resources>
