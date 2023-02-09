@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".resumenturno.NuevoFeudo">
+
+    <ImageView
+        android:id="@+id/imgFondo"
+        android:layout_width="414dp"
+        android:layout_height="732dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/biblioteca" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pergamino" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="105dp"
+        android:layout_height="144dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toTopOf="@+id/guideline15"
+        app:srcCompat="@drawable/tower" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="162dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="368dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="64dp" />
+
+    <LinearLayout
+        android:id="@+id/LinearRecursos"
+        android:layout_width="280dp"
+        android:layout_height="130dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgMadera"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:padding="5dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconotronco" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgZanahoria"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconozanahoria" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgPez"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconopescado" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgPolvo"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconopolvo" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgSeta"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconoseta" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgCobre"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/copper" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgDiamante"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconodiamante" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgPlata"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ioconoplata" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgOro"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/iconooro" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  " />
+
+            <ImageView
+                android:id="@+id/imgPerla"
+                android:layout_width="38dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/pearl" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imgMas"
+        android:layout_width="86dp"
+        android:layout_height="80dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
+        app:layout_constraintTop_toTopOf="@+id/guideline15"
+        app:srcCompat="@drawable/mas" />
+
+    <ImageButton
+        android:id="@+id/imgMenos"
+        android:layout_width="87dp"
+        android:layout_height="83dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/guideline15"
+        app:srcCompat="@drawable/menos" />
+
+    <TextView
+        android:id="@+id/tNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="0"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/imgMas"
+        app:layout_constraintStart_toEndOf="@+id/imgMenos"
+        app:layout_constraintTop_toTopOf="@+id/guideline15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="373dp" />
+
+    <ImageButton
+        android:id="@+id/imgConfirmar"
+        android:layout_width="151dp"
+        android:layout_height="102dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
+        app:layout_constraintTop_toBottomOf="@+id/LinearRecursos"
+        app:srcCompat="@drawable/sello1" />
+
+    <ImageButton
+        android:id="@+id/imgConfirmar2"
+        android:layout_width="151dp"
+        android:layout_height="102dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toBottomOf="@+id/LinearRecursos"
+        app:srcCompat="@drawable/sello1" />
+
+    <TextView
+        android:id="@+id/tCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Cancelar"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgConfirmar2"
+        app:layout_constraintEnd_toEndOf="@+id/imgConfirmar2"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toTopOf="@+id/imgConfirmar2" />
+
+    <TextView
+        android:id="@+id/tAnadir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Añadir"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgConfirmar"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
+        app:layout_constraintStart_toStartOf="@+id/imgConfirmar"
+        app:layout_constraintTop_toTopOf="@+id/imgConfirmar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

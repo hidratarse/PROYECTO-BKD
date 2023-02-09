@@ -25,5 +25,8 @@
     <string name="Fondo">Fondo</string>
     <string name="AddFeudo">Añadir\nfeudo</string>
     <string name="TerminarTurno">Terminar\nturno</string>
+    <string name="Añadir">Añadir</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Cerrar">Cerrar</string>
 
 </resources>

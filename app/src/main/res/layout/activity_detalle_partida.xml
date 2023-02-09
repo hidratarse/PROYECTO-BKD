@@ -27,6 +27,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pergamino" />
 
+    <ImageButton
+        android:id="@+id/imgCerrar"
+        android:layout_width="151dp"
+        android:layout_height="102dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/h8"
+        app:srcCompat="@drawable/sello1" />
+
+    <TextView
+        android:id="@+id/tCerrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Cerrar"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCerrar"
+        app:layout_constraintEnd_toEndOf="@+id/imgCerrar"
+        app:layout_constraintStart_toStartOf="@+id/imgCerrar"
+        app:layout_constraintTop_toTopOf="@+id/imgCerrar" />
+
     <TextView
         android:id="@+id/tFechaP"
         android:layout_width="wrap_content"
@@ -37,17 +61,7 @@
         app:layout_constraintBottom_toTopOf="@+id/h2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/h1" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="184dp"
-        android:layout_height="155dp"
-        app:layout_constraintBottom_toTopOf="@+id/h8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/h7"
-        tools:srcCompat="@drawable/tablero" />
+        app:layout_constraintTop_toTopOf="@+id/iPergamino" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h7"
@@ -68,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="154dp" />
+        app:layout_constraintGuide_begin="165dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h3"
@@ -381,5 +395,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="195dp" />
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="190dp"
+        android:layout_height="142dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/h7"
+        app:srcCompat="@drawable/tablero" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -129,20 +129,20 @@
             app:srcCompat="@drawable/iconopescado" />
 
         <ImageView
-            android:id="@+id/imgSeta"
-            android:layout_width="38dp"
-            android:layout_height="46dp"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/iconoseta" />
-
-        <ImageView
             android:id="@+id/imgPolvo"
             android:layout_width="38dp"
             android:layout_height="46dp"
             android:layout_weight="1"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/iconopolvo" />
+
+        <ImageView
+            android:id="@+id/imgSeta"
+            android:layout_width="38dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iconoseta" />
 
         <ImageView
             android:id="@+id/imgPerla"
