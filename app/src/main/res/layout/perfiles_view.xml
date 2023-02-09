@@ -37,6 +37,7 @@
             android:id="@+id/id_imagen_madera"
             android:layout_width="160dp"
             android:layout_height="90dp"
+            android:backgroundTint="#00FFFFFF"
             android:contentDescription="@string/nombre"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.proyecto_bkd.perfiles.Perfil_Detalle;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.perfiles.activity_perfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 
 public class VerPartidas extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class VerPartidas extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VerPartidas.this, Perfil_Detalle.class);
+                Intent intent = new Intent(VerPartidas.this, activity_perfiles.class);
                 startActivity(intent);
                 finish();
             }
