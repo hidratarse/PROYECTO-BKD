@@ -13,12 +13,19 @@
         android:theme="@style/Theme.PROYECTOBKD"
         tools:targetApi="31">
         <activity
-<<<<<<< Updated upstream
-            android:name=".RegistroMain"
-=======
-            android:name=".NuevoFeudo"
->>>>>>> Stashed changes
-            android:exported="false" />
+            android:name=".registrarusuario.RegistroMain"
+        android:exported="true">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+        </activity>
+        <activity
+            android:name=".resumenturno.NuevoFeudo"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".resumenturno.activity_ResumenTurno"
             android:exported="true">
@@ -46,12 +53,6 @@
         <activity
             android:name=".perfiles.activity_perfiles"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -69,15 +70,11 @@
         <activity
             android:name=".Login"
             android:exported="true">
-<<<<<<< Updated upstream
-=======
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
->>>>>>> Stashed changes
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

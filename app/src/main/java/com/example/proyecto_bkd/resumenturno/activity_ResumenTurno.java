@@ -21,8 +21,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Formulario> formularios;
     ResumenTurnoAdapter adapter;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bTerminar;
-    TextView tFinTurno;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
+    TextView tFinTurno,tAddFeudo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,20 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bImgRanking=findViewById(R.id.bImgRanking);
         bAdd=findViewById(R.id.bAdd);
         tFinTurno=findViewById(R.id.tFinTurno);
+        tAddFeudo=findViewById(R.id.tAddFeudo);
 
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        tAddFeudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity_ResumenTurno.this, NuevoFeudo.class);
                 startActivity(intent);
                 finish();
             }

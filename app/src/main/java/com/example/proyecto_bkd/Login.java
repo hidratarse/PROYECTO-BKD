@@ -10,10 +10,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.proyecto_bkd.partida.Partida;
+import com.example.proyecto_bkd.registrarusuario.RegistroMain;
 
 public class Login extends AppCompatActivity {
     MediaPlayer mp, puerta;
-    Button bLogin;
+    Button bLogin,bRegistrarse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
         mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
         bLogin=findViewById(R.id.bLogin);
+        bRegistrarse=findViewById(R.id.bRegistarse);
         mp.setLooping(true);
         mp.start();
 
@@ -30,6 +32,14 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 puerta.start();
                 Intent intent = new Intent(Login.this, Partida.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        bRegistrarse.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, RegistroMain.class);
                 startActivity(intent);
                 finish();
             }

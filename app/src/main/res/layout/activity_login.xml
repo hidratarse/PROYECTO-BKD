@@ -109,7 +109,7 @@
         tools:ignore="TextContrastCheck" />
 
     <ImageView
-        android:id="@+id/fPass"
+        android:id="@+id/fEmail"
         android:layout_width="352dp"
         android:layout_height="61dp"
         android:alpha="@dimen/material_emphasis_disabled"
@@ -132,7 +132,7 @@
         app:srcCompat="@drawable/shape_black"
         tools:ignore="ImageContrastCheck" />
     <EditText
-        android:id="@+id/ePass"
+        android:id="@+id/eEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
