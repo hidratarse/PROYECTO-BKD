@@ -62,7 +62,9 @@ public class VerPartidas extends AppCompatActivity {
         adap.setClickListener(new VerPartidasAdapter.ItemClickListener() {
             @Override
             public void onClick(View view, int position, ResumenPartidas resumen) {
-                Toast.makeText(VerPartidas.this,"Pulsado "+position +resumen.getJ1()+" "+resumen.getJ2(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(VerPartidas.this, DetallePartida.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
