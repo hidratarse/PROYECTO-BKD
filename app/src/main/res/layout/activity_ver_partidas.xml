@@ -39,6 +39,7 @@
                     android:id="@+id/bImgPartidas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:backgroundTint="#00FFFFFF"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/estandarte" />
 
@@ -46,6 +47,8 @@
                     android:id="@+id/LinTxtPartidas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#00FFFFFF"
+                    android:backgroundTint="#00FFFFFF"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -73,6 +76,7 @@
                     android:id="@+id/bImgPerfiles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#00FFFFFF"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/estandarte" />
 
@@ -108,6 +112,7 @@
                     android:id="@+id/bImgRanking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#00FFFFFF"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/estandarte" />
 

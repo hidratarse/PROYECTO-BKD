@@ -22,6 +22,7 @@ public class Login extends AppCompatActivity {
         mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
         bLogin=findViewById(R.id.bLogin);
+        mp.setLooping(true);
         mp.start();
 
         bLogin.setOnClickListener(new OnClickListener() {

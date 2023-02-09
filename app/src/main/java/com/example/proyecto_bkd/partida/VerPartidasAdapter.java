@@ -85,10 +85,10 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
             jug2.setText(j2);
             jug3.setText(j3);
             jug4.setText(j4);
-            ptos1.setText(pt1);
-            ptos2.setText(pt2);
-            ptos3.setText(pt3);
-            ptos4.setText(pt4);
+            ptos1.setText(pt1+"");
+            ptos2.setText(pt2+"");
+            ptos3.setText(pt3+"");
+            ptos4.setText(pt4+"");
         }
 
         @Override
