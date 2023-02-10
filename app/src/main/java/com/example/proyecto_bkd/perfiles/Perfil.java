@@ -1,8 +1,9 @@
 package com.example.proyecto_bkd.perfiles;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Perfil {
+public class Perfil implements Serializable {
 
     private static String [] perfiles_genericos = {
             "Jorge", "Miguel Ángel", "Darío"," Kayler", "Brandon",

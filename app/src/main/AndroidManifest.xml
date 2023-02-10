@@ -61,7 +61,7 @@
             android:name=".partida.Partida"
             android:exported="false" />
         <activity
-            android:name=".perfiles.Perfil_Detalle"
+            android:name=".perfiles.ActivityPerfil_Detalle"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

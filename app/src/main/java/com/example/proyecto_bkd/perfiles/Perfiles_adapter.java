@@ -18,15 +18,20 @@ import com.example.proyecto_bkd.R;
 import java.util.ArrayList;
 
 public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.ViewHolder> {
-
     private ArrayList<Perfil> datos;
-
+    public interface ItemClickListener{
+        void onClick(View view, Perfil perfil);
+    }
+    private ItemClickListener clickListener;
+    public void setClickListener(ItemClickListener itemClickListener){
+        this.clickListener=itemClickListener;
+    }
     public Perfiles_adapter(ArrayList<Perfil> dataSet){
         datos = new ArrayList<>();
         add(dataSet);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final ImageView imagen_marco,imagen_perfil;
         private final TextView nombre;
         private final ImageButton imagen_madera;
@@ -37,10 +42,18 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
             nombre = itemView.findViewById(R.id.id_perfiles_nombre);
             imagen_madera = itemView.findViewById(R.id.id_imagen_madera);
             imagen_perfil=itemView.findViewById(R.id.imgProfile);
+            itemView.setOnClickListener(this);
         }
 
         public TextView getNombre() {
             return nombre;
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (clickListener != null) {
+                clickListener.onClick(view, datos.get(getAdapterPosition()));
+            }
         }
     }
 

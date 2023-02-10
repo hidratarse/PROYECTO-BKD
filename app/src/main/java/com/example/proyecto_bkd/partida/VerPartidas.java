@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.example.proyecto_bkd.perfiles.Perfil_Detalle;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
