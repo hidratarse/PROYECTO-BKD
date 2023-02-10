@@ -165,7 +165,7 @@
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:inputType="textPersonName"
-        android:text="@string/nombre"
+        android:text="Miguel Ángel"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -202,7 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
-            android:text="@string/cero"
+            android:text="5"
             android:textSize="34sp" />
     </LinearLayout>
 
@@ -233,7 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
-            android:text="@string/cero"
+            android:text="2"
             android:textSize="34sp" />
     </LinearLayout>
 
@@ -263,7 +263,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
-            android:text="@string/cero"
+            android:text="125"
             android:textSize="34sp" />
     </LinearLayout>
 

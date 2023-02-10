@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/perfiles_view"
-    android:layout_width="150dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,8 +39,8 @@
 
         <ImageButton
             android:id="@+id/id_imagen_madera"
-            android:layout_width="145dp"
-            android:layout_height="76dp"
+            android:layout_width="153dp"
+            android:layout_height="58dp"
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="@string/nombre"
             android:scaleType="centerCrop"
@@ -51,19 +52,17 @@
 
         <TextView
             android:id="@+id/id_perfiles_nombre"
-            android:layout_width="148dp"
-            android:layout_height="77dp"
+            android:layout_width="128dp"
+            android:layout_height="47dp"
             android:backgroundTint="#00FFFFFF"
             android:fontFamily="@font/enchanted_land"
             android:gravity="center"
             android:text="@string/nombre"
-            android:textSize="34sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/id_imagen_madera"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="@+id/id_imagen_madera"
+            app:layout_constraintStart_toStartOf="@+id/id_imagen_madera"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

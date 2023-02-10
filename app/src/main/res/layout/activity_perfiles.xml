@@ -11,8 +11,6 @@
         android:id="@+id/recycled_perfiles"
         android:layout_width="388dp"
         android:layout_height="509dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
 
