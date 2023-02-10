@@ -1,7 +1,6 @@
 package com.example.proyecto_bkd.ranking;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,9 +11,7 @@ import android.widget.ImageButton;
 
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
-import com.example.proyecto_bkd.partida.VerPartidas;
 import com.example.proyecto_bkd.perfiles.Perfil;
-import com.example.proyecto_bkd.perfiles.Perfil_Detalle;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
 
 import java.util.ArrayList;

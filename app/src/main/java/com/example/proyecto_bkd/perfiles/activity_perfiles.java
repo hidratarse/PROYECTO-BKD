@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
@@ -72,5 +73,12 @@ public class activity_perfiles extends AppCompatActivity {
         Log.d(TAG, String.valueOf(adaptador.getItemCount()));
 
         recyclerView.setAdapter(adaptador);
+
+        adaptador.setClickListener((view, perfil) -> {
+            Toast.makeText(activity_perfiles.this,"Pulsado "+ perfil.getNombre(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ActivityPerfil_Detalle.class);
+            intent.putExtra("PERFIL",perfil);
+            startActivity(intent);
+        });
     }
 }
