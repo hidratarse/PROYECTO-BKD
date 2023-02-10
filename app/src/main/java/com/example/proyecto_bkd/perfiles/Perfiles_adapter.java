@@ -56,7 +56,7 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
         Perfil p = datos.get(position);
         String nombre = p.getNombre();
         if(position==0) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo1);
+            holder.imagen_perfil.setImageResource(R.drawable.conejo11);
         }
         if(position==1) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo2);
@@ -83,7 +83,7 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
             holder.imagen_perfil.setImageResource(R.drawable.conejo10);
         }
         if(position==9) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo10);
+            holder.imagen_perfil.setImageResource(R.drawable.conejo1);
         }
         Log.d(TAG,nombre);
         holder.getNombre().setText(p.getNombre());
