@@ -27,16 +27,16 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView imagen_perfil;
+        private final ImageView imagen_marco,imagen_perfil;
         private final TextView nombre;
         private final ImageButton imagen_madera;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imagen_perfil = itemView.findViewById(R.id.id_foto_perfil);
+            imagen_marco = itemView.findViewById(R.id.id_marco);
             nombre = itemView.findViewById(R.id.id_perfiles_nombre);
             imagen_madera = itemView.findViewById(R.id.id_imagen_madera);
-
+            imagen_perfil=itemView.findViewById(R.id.imgProfile);
         }
 
         public TextView getNombre() {
@@ -55,6 +55,36 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Perfil p = datos.get(position);
         String nombre = p.getNombre();
+        if(nombre=="Jorge") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo1);
+        }
+        if(nombre=="Kayler") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo1);
+        }
+        if(nombre=="Miguel Ángel") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo3);
+        }
+        if(nombre=="Darío") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo4);
+        }
+        if(nombre=="Brandon") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo5);
+        }
+        if(nombre=="Lara") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo6);
+        }
+        if(nombre=="Robert") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo7);
+        }
+        if(nombre=="Ana") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo8);
+        }
+        if(nombre=="Stefi") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo10);
+        }
+        if(nombre=="Cheng") {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo10);
+        }
         Log.d(TAG,nombre);
         holder.getNombre().setText(p.getNombre());
     }

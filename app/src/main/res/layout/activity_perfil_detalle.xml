@@ -7,44 +7,173 @@
     android:background="@drawable/muropiedra5"
 
     tools:context=".perfiles.Perfiles_adapter$Perfil_Detalle">
+    <LinearLayout
+        android:id="@+id/LinEstandartes"
+        android:layout_width="406dp"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/framePartidas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPartidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Partidas"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FramePerfiles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPerfiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPerfiles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPerfiles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Perfiles"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FrameRanking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtRanking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tRanking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Ranking"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="386dp"
-        android:layout_height="774dp"
+        android:id="@+id/imgPergam"
+        android:layout_width="412dp"
+        android:layout_height="563dp"
+        android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
         app:srcCompat="@drawable/pergamino" />
 
     <ImageView
-        android:id="@+id/iPuerta"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:id="@+id/imgPerfil"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/conejo6"
+        app:layout_constraintBottom_toBottomOf="@+id/iMarco"
+        app:layout_constraintEnd_toEndOf="@+id/iMarco"
+        app:layout_constraintStart_toStartOf="@+id/iMarco"
+        app:layout_constraintTop_toTopOf="@+id/guideline21" />
+
+    <ImageView
+        android:id="@+id/iMarco"
+        android:layout_width="173dp"
+        android:layout_height="165dp"
         android:backgroundTint="#FBF7F7"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/tNom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline21"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/escudo2" />
+        app:srcCompat="@drawable/frame" />
 
     <TextView
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="225dp"
-        android:layout_height="70dp"
+        android:id="@+id/tNom"
+        android:layout_width="222dp"
+        android:layout_height="48dp"
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:inputType="textPersonName"
         android:text="@string/nombre"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iPuerta" />
+        app:layout_constraintTop_toBottomOf="@+id/iMarco" />
 
     <LinearLayout
         android:id="@+id/linearLayout16"
@@ -55,10 +184,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+        app:layout_constraintTop_toBottomOf="@+id/tNom">
 
         <TextView
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/tPartidasJugadas"
             android:layout_width="215dp"
             android:layout_height="match_parent"
             android:ems="10"
@@ -69,7 +198,7 @@
             android:textSize="34sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/NumPartidasJugadas"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
@@ -89,7 +218,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
         <TextView
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/tPartidasGanadas"
             android:layout_width="215dp"
             android:layout_height="match_parent"
             android:ems="10"
@@ -100,7 +229,7 @@
             android:textSize="34sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/NumPartidasGanadas"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
@@ -113,14 +242,13 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout17">
 
         <TextView
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/tMaxPuntuacion"
             android:layout_width="215dp"
             android:layout_height="match_parent"
             android:ems="10"
@@ -131,7 +259,7 @@
             android:textSize="34sp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/NumMaxPuntuacion"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
@@ -139,28 +267,57 @@
             android:textSize="34sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button2"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout18" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="235dp" />
 
-    <Button
-        android:id="@+id/button"
+    <ImageButton
+        android:id="@+id/imgSello"
+        android:layout_width="156dp"
+        android:layout_height="107dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sello2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imgSello2"
+        android:layout_width="156dp"
+        android:layout_height="107dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sello2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tCancela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout18"
-        app:layout_constraintVertical_bias="0.0" />
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Cancelar"
+        android:textColor="#FFC107"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSello"
+        app:layout_constraintEnd_toEndOf="@+id/imgSello"
+        app:layout_constraintStart_toStartOf="@+id/imgSello"
+        app:layout_constraintTop_toTopOf="@+id/imgSello" />
+
+    <TextView
+        android:id="@+id/tModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Modificar"
+        android:textColor="#FFC107"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSello2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imgSello2"
+        app:layout_constraintTop_toTopOf="@+id/imgSello2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
