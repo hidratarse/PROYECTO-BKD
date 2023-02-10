@@ -55,34 +55,34 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Perfil p = datos.get(position);
         String nombre = p.getNombre();
-        if(nombre=="Jorge") {
+        if(position==0) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo1);
         }
-        if(nombre=="Kayler") {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo1);
+        if(position==1) {
+            holder.imagen_perfil.setImageResource(R.drawable.conejo2);
         }
-        if(nombre=="Miguel Ángel") {
+        if(position==2) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo3);
         }
-        if(nombre=="Darío") {
+        if(position==3) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo4);
         }
-        if(nombre=="Brandon") {
+        if(position==4) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo5);
         }
-        if(nombre=="Lara") {
+        if(position==5) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo6);
         }
-        if(nombre=="Robert") {
+        if(position==6) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo7);
         }
-        if(nombre=="Ana") {
+        if(position==7) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo8);
         }
-        if(nombre=="Stefi") {
+        if(position==8) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo10);
         }
-        if(nombre=="Cheng") {
+        if(position==9) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo10);
         }
         Log.d(TAG,nombre);
