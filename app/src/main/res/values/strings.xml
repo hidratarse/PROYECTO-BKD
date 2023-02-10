@@ -30,5 +30,6 @@
     <string name="Cerrar">Cerrar</string>
     <string name="Email">Email</string>
     <string name="RepPass">Repite Contraseña</string>
+    <string name="Modificar">Modificar</string>
 
 </resources>

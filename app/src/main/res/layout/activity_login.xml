@@ -7,7 +7,7 @@
     tools:context=".Login">
 
     <ImageView
-        android:id="@+id/iPuerta"
+        android:id="@+id/iMarco"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/Fondo"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iPuerta"
+        app:layout_constraintTop_toTopOf="@+id/iMarco"
         tools:ignore="TextContrastCheck" />
 
     <Button

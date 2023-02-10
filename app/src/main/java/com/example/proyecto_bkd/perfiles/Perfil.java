@@ -6,7 +6,7 @@ public class Perfil {
 
     private static String [] perfiles_genericos = {
             "Jorge", "Miguel Ángel", "Darío"," Kayler", "Brandon",
-            "Jorge", "Miguel Ángel", "Darío"," Kayler", "Brandon"
+            "Lara", "Robert", "Ana"," Stefi", "Cheng"
     };
 
     private String nombre;

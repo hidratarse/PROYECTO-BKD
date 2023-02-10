@@ -45,7 +45,7 @@
         android:clickable="true"
         android:fontFamily="@font/enchanted_land"
         android:text="@string/Cerrar"
-        android:textColor="#FF5722"
+        android:textColor="#FFC107"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgCerrar"
         app:layout_constraintEnd_toEndOf="@+id/imgCerrar"
