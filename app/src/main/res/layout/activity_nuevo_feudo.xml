@@ -76,6 +76,7 @@
                 android:layout_width="38dp"
                 android:layout_height="46dp"
                 android:layout_weight="1"
+
                 android:clickable="true"
                 android:padding="5dp"
                 android:scaleType="centerInside"
