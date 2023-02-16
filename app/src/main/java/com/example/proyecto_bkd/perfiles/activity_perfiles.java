@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyecto_bkd.R;
@@ -35,6 +36,8 @@ public class activity_perfiles extends AppCompatActivity {
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
         recyclerView = findViewById(R.id.recycled_perfiles);
+
+
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
