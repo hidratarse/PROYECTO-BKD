@@ -23,7 +23,7 @@
             android:layout_weight="0"
             android:alpha="@dimen/material_emphasis_disabled"
             android:backgroundTint="#E2000000"
-            app:srcCompat="@drawable/shape_black" />
+            app:srcCompat="@drawable/fondo_ranking" />
 
         <LinearLayout
             android:id="@+id/lineaGeneral"
@@ -43,7 +43,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:visibility="gone"
-                    app:srcCompat="@drawable/crown" />
+                    app:srcCompat="@drawable/crownoro" />
 
                 <TextView
                     android:id="@+id/id_posicion_ranking2"

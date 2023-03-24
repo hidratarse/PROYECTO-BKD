@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145572510956",
+    "project_id": "bunny-kingdom-deluxe",
+    "storage_bucket": "bunny-kingdom-deluxe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145572510956:android:fc8c99e48bd569653bb9c9",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_bkd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145572510956-iet8jg6nqemicp7peia6h96ag4md3j1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXsVO2q-iuSBRJtNgZpMTKQTRJ6d0QlgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145572510956-iet8jg6nqemicp7peia6h96ag4md3j1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

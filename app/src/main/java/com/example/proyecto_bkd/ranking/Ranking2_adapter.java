@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,10 +56,23 @@ public class Ranking2_adapter extends RecyclerView.Adapter<Ranking2_adapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (position == 0 | position == 1 | position == 2) {
+        if (position < 3) {
             holder.getPrimero().setVisibility(View.VISIBLE);
             holder.getPosicion().setVisibility(View.GONE);
         }
+        switch (position) {
+            case 0:
+                holder.getPrimero().setImageResource(R.drawable.crownoro);
+                break;
+            case 1:
+                holder.getPrimero().setImageResource(R.drawable.crownplata2);
+                break;
+            case 2 :
+                holder.getPrimero().setImageResource(R.drawable.crownbronce2);
+                break;
+
+        }
+
         Perfil p =datos.get(position);
         String nombre = p.getNombre();
         int puntuacion = p.getPuntuacionGeneral();
