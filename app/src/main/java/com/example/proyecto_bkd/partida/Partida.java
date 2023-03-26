@@ -3,11 +3,14 @@ package com.example.proyecto_bkd.partida;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
@@ -18,7 +21,8 @@ import com.example.proyecto_bkd.resumenturno.activity_ResumenTurno;
 public class Partida extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     TextView verPartida, newGame, salir;
-
+    Switch sMPartida;
+    MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,18 @@ public class Partida extends AppCompatActivity {
         verPartida=findViewById(R.id.tVerPartidas);
         newGame=findViewById(R.id.tNewGame);
         salir=findViewById(R.id.tSalir);
+        sMPartida= findViewById(R.id.sMPartida);
+
+        sMPartida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMPartida.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
