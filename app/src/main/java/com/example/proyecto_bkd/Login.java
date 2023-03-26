@@ -21,10 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
-    public MediaPlayer mp, puerta;
+    public static MediaPlayer mp, puerta;
     Button bLogin,bRegistrarse;
-    Switch sMusic;
+    Switch sMLogin;
     FirebaseFirestore fs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        sMusic = findViewById(R.id.sMusic);
+        sMLogin = findViewById(R.id.sMLogin);
 
         mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
@@ -51,10 +52,10 @@ public class Login extends AppCompatActivity {
         mp.setLooping(true);
         mp.start();
 
-        sMusic.setOnClickListener(new OnClickListener() {
+        sMLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sMusic.isChecked()){
+                if(sMLogin.isChecked()){
                     mp.start();
                 }else {
                     mp.pause();
@@ -80,7 +81,5 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }
