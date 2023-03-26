@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.partida.VerPartidas;
@@ -27,6 +29,7 @@ public class activity_perfiles extends AppCompatActivity {
     private Perfiles_adapter adaptador;
     private ArrayList<Perfil> perfiles;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    Switch sMPerfiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,18 @@ public class activity_perfiles extends AppCompatActivity {
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
         recyclerView = findViewById(R.id.recycled_perfiles);
+        sMPerfiles= findViewById(R.id.sMPerfiles);
 
-
+        sMPerfiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMPerfiles.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override

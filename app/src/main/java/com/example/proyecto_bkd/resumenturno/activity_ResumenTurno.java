@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
@@ -23,7 +25,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
     ResumenTurnoAdapter adapter;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
     TextView tFinTurno,tAddFeudo;
-
+    Switch sMResumenTurno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,22 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bAdd=findViewById(R.id.bAdd);
         tFinTurno=findViewById(R.id.tFinTurno);
         tAddFeudo=findViewById(R.id.tAddFeudo);
+
+
+
+
+        sMResumenTurno= findViewById(R.id.sMResumenTurno);
+
+        sMResumenTurno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMResumenTurno.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
 
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override

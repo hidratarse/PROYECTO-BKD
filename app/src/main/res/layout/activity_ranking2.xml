@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ranking.activity_ranking2"
-    android:background="@drawable/sala_trono">
+    android:background="@drawable/sala_trono"
+    tools:context=".ranking.activity_ranking2">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/id_recycler_ranking2"
-        android:layout_width="321dp"
-        android:layout_height="500dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="329dp"
+        android:layout_height="440dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
+
     <LinearLayout
         android:id="@+id/LinEstandartes"
         android:layout_width="406dp"
@@ -130,4 +130,79 @@
 
         </FrameLayout>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/bMaxPuntuacion"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
+        android:background="@drawable/circulo"
+        android:backgroundTint="#E35311"
+        android:fontFamily="@font/enchanted_land"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/carrot"
+        android:text="@string/Registrarse"
+        android:textSize="25sp"
+        app:cornerRadius="50dp"
+        app:iconTint="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+        app:layout_constraintEnd_toStartOf="@+id/bWin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_recycler_ranking2"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/bWin"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
+        android:background="@drawable/circulo"
+        android:backgroundTint="#E35311"
+        android:fontFamily="@font/enchanted_land"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/trophey"
+        android:text="@string/Registrarse"
+        android:textSize="25sp"
+        app:cornerRadius="10dp"
+        app:iconTint="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bMaxPuntuacion"
+        app:layout_constraintTop_toBottomOf="@+id/id_recycler_ranking2"
+        tools:ignore="TextContrastCheck" />
+
+    <Switch
+        android:id="@+id/sMRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FF5722"
+        android:checked="true"
+        android:fontFamily="@font/enchanted_land"
+        android:showText="false"
+        android:splitTrack="false"
+        android:text="@string/Musica"
+        android:textColor="#FF5722"
+        android:textColorHighlight="#FF5722"
+        android:textColorLink="#FF5722"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="@+id/guideline24"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="18dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

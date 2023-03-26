@@ -15,14 +15,14 @@ import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
+import com.example.proyecto_bkd.resumenturno.SeleccionPerfiles;
 import com.example.proyecto_bkd.resumenturno.activity_ResumenTurno;
 
 
 public class Partida extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-    TextView verPartida, newGame, salir;
+    TextView verPartida, newGame, salir, cerrarSesion;
     Switch sMPartida;
-    MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class Partida extends AppCompatActivity {
         newGame=findViewById(R.id.tNewGame);
         salir=findViewById(R.id.tSalir);
         sMPartida= findViewById(R.id.sMPartida);
+        cerrarSesion = findViewById(R.id.tCerrarSesion);
 
         sMPartida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +84,7 @@ public class Partida extends AppCompatActivity {
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, activity_ResumenTurno.class);
+                Intent intent = new Intent(Partida.this, SeleccionPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -91,6 +92,14 @@ public class Partida extends AppCompatActivity {
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
+            }
+        });
+        cerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Partida.this, Login.class);
+                startActivity(intent);
                 finish();
             }
         });

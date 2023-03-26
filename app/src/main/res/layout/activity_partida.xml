@@ -30,6 +30,25 @@
         app:layout_constraintVertical_bias="0.597"
         app:srcCompat="@drawable/senal" />
 
+    <ImageView
+        android:id="@+id/imgCerrarSesion"
+        android:layout_width="131dp"
+        android:layout_height="232dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/cerrarsesion" />
+
+    <TextView
+        android:id="@+id/tCerrarSesion"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/CerrarSesion"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline28"
+        app:layout_constraintEnd_toStartOf="@+id/guideline30" />
+
     <TextView
         android:id="@+id/tNewGame"
         android:layout_width="wrap_content"
@@ -190,6 +209,7 @@
         </FrameLayout>
 
     </LinearLayout>
+
     <Switch
         android:id="@+id/sMPartida"
         android:layout_width="wrap_content"
@@ -199,13 +219,29 @@
         android:fontFamily="@font/enchanted_land"
         android:showText="false"
         android:splitTrack="false"
-        android:text="Musica"
-        android:textColor="@color/naranja"
+        android:text="@string/Musica"
+        android:textColor="#FF5722"
         android:textColorHighlight="#FF5722"
         android:textColorLink="#FF5722"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="@+id/guideline24"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="18dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -220,4 +256,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="333dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="545dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="648dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="373dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
