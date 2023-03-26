@@ -161,4 +161,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bLogin" />
 
+    <Switch
+        android:id="@+id/sMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FF5722"
+        android:checked="true"
+        android:fontFamily="@font/enchanted_land"
+        android:showText="false"
+        android:splitTrack="false"
+        android:text="Musica"
+        android:textColor="@color/naranja"
+        android:textColorHighlight="#FF5722"
+        android:textColorLink="#FF5722"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

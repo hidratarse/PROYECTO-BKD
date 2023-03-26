@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Switch;
 
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.registrarusuario.RegistroMain;
@@ -20,9 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
-    MediaPlayer mp, puerta;
+    public MediaPlayer mp, puerta;
     Button bLogin,bRegistrarse;
-
+    Switch sMusic;
     FirebaseFirestore fs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        sMusic = findViewById(R.id.sMusic);
 
         mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
@@ -48,6 +50,18 @@ public class Login extends AppCompatActivity {
         bRegistrarse=findViewById(R.id.bRegistarse);
         mp.setLooping(true);
         mp.start();
+
+        sMusic.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMusic.isChecked()){
+                    mp.start();
+                }else {
+                    mp.pause();
+
+                }
+            }
+        });
 
         bLogin.setOnClickListener(new OnClickListener() {
             @Override
@@ -66,5 +80,7 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 }

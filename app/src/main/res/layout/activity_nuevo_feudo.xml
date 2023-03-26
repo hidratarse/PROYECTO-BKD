@@ -57,6 +57,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="64dp" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="29dp" />
+
     <LinearLayout
         android:id="@+id/LinearRecursos"
         android:layout_width="280dp"
@@ -282,13 +289,13 @@
         app:srcCompat="@drawable/sello1" />
 
     <ImageButton
-        android:id="@+id/imgConfirmar2"
+        android:id="@+id/imgCancelar"
         android:layout_width="151dp"
         android:layout_height="102dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintStart_toStartOf="@+id/guideline23"
         app:layout_constraintTop_toBottomOf="@+id/LinearRecursos"
         app:srcCompat="@drawable/sello1" />
 
@@ -300,10 +307,10 @@
         android:text="@string/Cancelar"
         android:textColor="#FFC107"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgConfirmar2"
-        app:layout_constraintEnd_toEndOf="@+id/imgConfirmar2"
-        app:layout_constraintStart_toStartOf="@+id/guideline17"
-        app:layout_constraintTop_toTopOf="@+id/imgConfirmar2" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgCancelar"
+        app:layout_constraintEnd_toEndOf="@+id/imgCancelar"
+        app:layout_constraintStart_toStartOf="@+id/guideline23"
+        app:layout_constraintTop_toTopOf="@+id/imgCancelar" />
 
     <TextView
         android:id="@+id/tAnadir"

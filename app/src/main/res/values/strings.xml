@@ -31,5 +31,8 @@
     <string name="Email">Email</string>
     <string name="RepPass">Repite Contraseña</string>
     <string name="Modificar">Modificar</string>
+    <string name="Eliminar">Eliminar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

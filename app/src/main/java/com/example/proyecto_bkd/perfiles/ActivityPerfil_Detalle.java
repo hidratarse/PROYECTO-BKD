@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.proyecto_bkd.R;
@@ -16,9 +18,10 @@ import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 
 public class ActivityPerfil_Detalle extends AppCompatActivity {
-    TextView nombre;
+    EditText nombre;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     TextView tCancela, tModificar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +29,10 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
-        nombre = findViewById(R.id.tNom);
+        nombre = findViewById(R.id.eNombre);
         tCancela=findViewById(R.id.tCancela);
         tModificar=findViewById(R.id.tModificar);
+
 
         tModificar.setOnClickListener(new View.OnClickListener() {
             @Override

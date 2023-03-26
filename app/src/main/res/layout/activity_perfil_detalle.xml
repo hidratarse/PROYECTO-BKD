@@ -151,29 +151,26 @@
         android:layout_width="173dp"
         android:layout_height="165dp"
         android:backgroundTint="#FBF7F7"
-        app:layout_constraintBottom_toTopOf="@+id/tNom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline21"
         app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/frame" />
 
-    <TextView
-        android:id="@+id/tNom"
-        android:layout_width="222dp"
-        android:layout_height="48dp"
+    <EditText
+        android:id="@+id/eNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:inputType="textPersonName"
-        android:text="Miguel Ángel"
+        android:text="Miguel Angel"
         android:textAlignment="center"
-        android:textColor="#000000"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iMarco" />
+        app:layout_constraintTop_toBottomOf="@+id/imgPerfil" />
 
     <LinearLayout
         android:id="@+id/linearLayout16"
@@ -184,7 +181,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tNom">
+        app:layout_constraintTop_toBottomOf="@+id/eNombre">
 
         <TextView
             android:id="@+id/tPartidasJugadas"
@@ -294,6 +291,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageButton
+        android:id="@+id/imgSello3"
+        android:layout_width="156dp"
+        android:layout_height="107dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sello2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tModificar"
+        app:layout_constraintStart_toEndOf="@+id/tCancela" />
+
     <TextView
         android:id="@+id/tCancela"
         android:layout_width="wrap_content"
@@ -307,6 +315,20 @@
         app:layout_constraintEnd_toEndOf="@+id/imgSello"
         app:layout_constraintStart_toStartOf="@+id/imgSello"
         app:layout_constraintTop_toTopOf="@+id/imgSello" />
+
+    <TextView
+        android:id="@+id/tBorrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Eliminar"
+        android:textColor="#FFC107"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgSello3"
+        app:layout_constraintStart_toStartOf="@+id/imgSello3"
+        app:layout_constraintTop_toTopOf="@+id/imgSello3" />
 
     <TextView
         android:id="@+id/tModificar"
