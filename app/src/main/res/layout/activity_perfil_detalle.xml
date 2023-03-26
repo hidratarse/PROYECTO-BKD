@@ -344,4 +344,37 @@
         app:layout_constraintStart_toStartOf="@+id/imgSello2"
         app:layout_constraintTop_toTopOf="@+id/imgSello2" />
 
+    <Switch
+        android:id="@+id/sMPerfilDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FF5722"
+        android:checked="true"
+        android:fontFamily="@font/enchanted_land"
+        android:showText="false"
+        android:splitTrack="false"
+        android:text="@string/Musica"
+        android:textColor="#FF5722"
+        android:textColorHighlight="#FF5722"
+        android:textColorLink="#FF5722"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
+        app:layout_constraintTop_toTopOf="@+id/guideline24"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="18dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

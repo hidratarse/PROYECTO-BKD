@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Switch;
 
+import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.activity_perfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
@@ -18,6 +20,8 @@ public class VerPartidas extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     RecyclerView rcv;
     VerPartidasAdapter adap;
+    Switch sMVerPartida;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,18 @@ public class VerPartidas extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
+        sMVerPartida= findViewById(R.id.sMVerPartida);
+
+        sMVerPartida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMVerPartida.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override

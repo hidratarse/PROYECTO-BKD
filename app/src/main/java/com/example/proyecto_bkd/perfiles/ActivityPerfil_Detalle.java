@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
@@ -21,6 +22,8 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
     EditText nombre;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     TextView tCancela, tModificar;
+    Switch sMPerfilDetalle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,19 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         nombre = findViewById(R.id.eNombre);
         tCancela=findViewById(R.id.tCancela);
         tModificar=findViewById(R.id.tModificar);
+
+        sMPerfilDetalle= findViewById(R.id.sMPerfilDetalle);
+
+        sMPerfilDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMPerfilDetalle.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
 
 
         tModificar.setOnClickListener(new View.OnClickListener() {

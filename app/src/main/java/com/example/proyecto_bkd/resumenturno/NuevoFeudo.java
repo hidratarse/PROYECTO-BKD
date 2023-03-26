@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.DetallePartida;
 import com.example.proyecto_bkd.partida.VerPartidas;
@@ -22,7 +24,7 @@ public class NuevoFeudo extends AppCompatActivity{
     ImageButton mas, menos;
     TextView torres, tCancelar, tAnadir;
     ImageView madera,pez,zanahoria,polvo,seta,plata,oro,cobre,diamante,perla;
-
+    Switch sMNuevoFeudo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,18 @@ public class NuevoFeudo extends AppCompatActivity{
         cobre=findViewById(R.id.imgCobre);
         diamante=findViewById(R.id.imgDiamante);
         perla=findViewById(R.id.imgPerla);
+        sMNuevoFeudo = findViewById(R.id.sMNuevoFeudo);
+
+        sMNuevoFeudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMNuevoFeudo.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
 
         madera.setOnClickListener(new View.OnClickListener() {
             boolean select=false;
