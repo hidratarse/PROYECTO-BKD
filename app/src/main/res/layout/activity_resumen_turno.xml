@@ -184,15 +184,61 @@
         app:layout_constraintGuide_begin="364dp" />
 
     <TextView
+        android:id="@+id/tNumTurno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="X"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/tNomJugador"
+        app:layout_constraintStart_toEndOf="@+id/tTurno"
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
+
+    <TextView
         android:id="@+id/tTurno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Turno 1 -Miguel Ángel"
+        android:text="Turno:"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/id_rv_resumenTurnos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
+
+    <TextView
+        android:id="@+id/tNomJugador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="Miguel angel"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/tFinTurno"
+        app:layout_constraintStart_toEndOf="@+id/tAddFeudo"
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
+
+    <TextView
+        android:id="@+id/tPuntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="Puntos:"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/tPuntosRonda"
+        app:layout_constraintStart_toEndOf="@+id/tNomJugador"
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
+
+    <TextView
+        android:id="@+id/tPuntosRonda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="100"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
     <ImageButton
