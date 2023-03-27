@@ -90,7 +90,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <EditText
-        android:id="@+id/eUser"
+        android:id="@+id/regUsu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -149,7 +149,7 @@
         app:srcCompat="@drawable/shape_black" />
 
     <EditText
-        android:id="@+id/eEmail"
+        android:id="@+id/regEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -157,7 +157,7 @@
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
         android:hint="@string/Email"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:singleLine="false"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
@@ -168,7 +168,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
     <EditText
-        android:id="@+id/ePass3"
+        android:id="@+id/regPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -187,7 +187,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <EditText
-        android:id="@+id/ePass2"
+        android:id="@+id/regPass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""

@@ -1,26 +1,48 @@
 package com.example.proyecto_bkd.registrarusuario;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistroMain extends AppCompatActivity {
     Button bRegistrarse, bCancelar;
+    EditText usu, email,pass, pass2;
     Switch sMRegistro;
+    FirebaseFirestore fs;
+    FirebaseAuth mAuth;
+
+    private final String MENSAJE_PASS = "COMPLETA LOS DATOS";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_registro_main);
         bCancelar=findViewById(R.id.bCancelar);
         bRegistrarse=findViewById(R.id.bRegistarse);
         sMRegistro= findViewById(R.id.sMRegistro);
+        usu = findViewById(R.id.regUsu);
+        email = findViewById(R.id.regEmail);
+        pass = findViewById(R.id.regPass);
+        pass2 = findViewById(R.id.regPass2);
 
         sMRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,9 +58,16 @@ public class RegistroMain extends AppCompatActivity {
         bRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistroMain.this, Login.class);
-                startActivity(intent);
-                finish();
+                String user = usu.getText().toString().trim();
+                String emailUsu = email.getText().toString().trim();
+                String passUsu = pass.getText().toString().trim();
+                String passRepe = pass2.getText().toString();
+
+                if ((passUsu.equals(passRepe)) && !user.isEmpty() && !emailUsu.isEmpty() && !passUsu.isEmpty()  ) {
+                    registerUser(emailUsu, passUsu);
+                }else {
+                    Toast.makeText(RegistroMain.this, MENSAJE_PASS, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -52,4 +81,22 @@ public class RegistroMain extends AppCompatActivity {
         });
 
     }
+
+    private void registerUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // El registro fue exitoso
+                        Toast.makeText(RegistroMain.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegistroMain.this, Login.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // Si el registro falla, se mostrará un mensaje de error al usuario
+                        String errorMsg = "Error al registrar el usuario: " + task.getException().getLocalizedMessage();
+                        Toast.makeText(RegistroMain.this, errorMsg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }

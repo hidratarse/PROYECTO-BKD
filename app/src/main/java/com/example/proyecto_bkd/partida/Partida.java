@@ -17,7 +17,8 @@ import com.example.proyecto_bkd.ranking.activity_ranking2;
 import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.resumenturno.SeleccionPerfiles;
 import com.example.proyecto_bkd.resumenturno.activity_ResumenTurno;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Partida extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
@@ -35,6 +36,16 @@ public class Partida extends AppCompatActivity {
         salir=findViewById(R.id.tSalir);
         sMPartida= findViewById(R.id.sMPartida);
         cerrarSesion = findViewById(R.id.tCerrarSesion);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String email = currentUser.getEmail();
+            String uid = currentUser.getUid();
+            // aquí podemos acceder a la infor del usuario, podemos usar su mail para relacionarlo a los perfiles y las partidas
+        } else {
+            // El usuario no está autenticado, debes enviarlo a la actividad de inicio de sesión
+        }
+
 
         sMPartida.setOnClickListener(new View.OnClickListener() {
             @Override
