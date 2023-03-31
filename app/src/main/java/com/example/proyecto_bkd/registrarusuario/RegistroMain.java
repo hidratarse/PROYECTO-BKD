@@ -79,7 +79,18 @@ public class RegistroMain extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Login.mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Login.mp.start();
     }
 
     private void registerUser(String email, String password) {

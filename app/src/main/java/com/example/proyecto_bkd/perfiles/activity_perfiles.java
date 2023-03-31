@@ -97,4 +97,16 @@ public class activity_perfiles extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Login.mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Login.mp.start();
+    }
 }

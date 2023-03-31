@@ -98,4 +98,16 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
 
         nombre.setText(perfil.getNombre());
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Login.mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Login.mp.start();
+    }
 }

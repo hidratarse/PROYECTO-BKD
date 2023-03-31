@@ -88,4 +88,16 @@ public class activity_ranking2 extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Login.mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Login.mp.start();
+    }
 }
