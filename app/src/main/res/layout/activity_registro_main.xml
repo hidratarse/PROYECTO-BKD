@@ -123,7 +123,7 @@
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
         android:hint="@string/Email"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:backgroundTint="#00FFFFFF"
         android:singleLine="false"
         android:textColor="#ED5C2E"

@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class RegistroMain extends AppCompatActivity {
     Button bRegistrarse, bCancelar;
-    EditText usu, email,pass, pass2;
+    EditText email,pass, pass2;
     Switch sMRegistro;
     FirebaseFirestore fs;
     FirebaseAuth mAuth;
@@ -39,7 +39,6 @@ public class RegistroMain extends AppCompatActivity {
         bCancelar=findViewById(R.id.bCancelar);
         bRegistrarse=findViewById(R.id.bRegistarse);
         sMRegistro= findViewById(R.id.sMRegistro);
-        usu = findViewById(R.id.regUsu);
         email = findViewById(R.id.regEmail);
         pass = findViewById(R.id.regPass);
         pass2 = findViewById(R.id.regPass2);
@@ -58,12 +57,11 @@ public class RegistroMain extends AppCompatActivity {
         bRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = usu.getText().toString().trim();
                 String emailUsu = email.getText().toString().trim();
                 String passUsu = pass.getText().toString().trim();
                 String passRepe = pass2.getText().toString();
 
-                if ((passUsu.equals(passRepe)) && !user.isEmpty() && !emailUsu.isEmpty() && !passUsu.isEmpty()  ) {
+                if ((passUsu.equals(passRepe)) && !emailUsu.isEmpty() && !passUsu.isEmpty()  ) {
                     registerUser(emailUsu, passUsu);
                 }else {
                     Toast.makeText(RegistroMain.this, MENSAJE_PASS, Toast.LENGTH_SHORT).show();
