@@ -224,4 +224,16 @@ public class NuevoFeudo extends AppCompatActivity{
             }
         });
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Login.mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Login.mp.start();
+    }
 }

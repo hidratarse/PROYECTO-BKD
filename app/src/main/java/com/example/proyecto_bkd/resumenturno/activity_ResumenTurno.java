@@ -108,6 +108,17 @@ public class activity_ResumenTurno extends AppCompatActivity {
         adapter = new ResumenTurnoAdapter(formularios);
 
         recyclerView.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Login.mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Login.mp.start();
     }
 }

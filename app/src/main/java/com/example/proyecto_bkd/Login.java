@@ -44,14 +44,15 @@ public class Login extends AppCompatActivity {
         });
 
         sMLogin = findViewById(R.id.sMLogin);
-
         mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
         bLogin=findViewById(R.id.bLogin);
         bRegistrarse=findViewById(R.id.bRegistarse);
-        mp.setLooping(true);
-        mp.start();
 
+        if(!mp.isPlaying()){
+            mp.setLooping(true);
+            mp.start();
+        }
         sMLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,5 +82,17 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mp.start();
     }
 }
