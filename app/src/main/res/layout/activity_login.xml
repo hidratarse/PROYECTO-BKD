@@ -90,7 +90,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <EditText
-        android:id="@+id/eUser"
+        android:id="@+id/logUsu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -117,7 +117,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eUser"
+        app:layout_constraintTop_toBottomOf="@+id/logUsu"
         app:srcCompat="@drawable/shape_black" />
 
     <ImageView
@@ -131,10 +131,12 @@
         app:layout_constraintTop_toBottomOf="@+id/bLogin"
         app:srcCompat="@drawable/shape_black"
         tools:ignore="ImageContrastCheck" />
+
     <EditText
-        android:id="@+id/eEmail"
+        android:id="@+id/logPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
         android:gravity="center"
@@ -146,8 +148,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eUser"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/logUsu" />
 
     <TextView
         android:id="@+id/tOlividado"
