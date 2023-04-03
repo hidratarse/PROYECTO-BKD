@@ -54,7 +54,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".perfiles.activity_perfiles"
+            android:name=".perfiles.actividades.ActivityPerfiles"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -64,7 +64,7 @@
             android:name=".partida.Partida"
             android:exported="false" />
         <activity
-            android:name=".perfiles.ActivityPerfil_Detalle"
+            android:name=".perfiles.actividades.ActivityDetallePerfil"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

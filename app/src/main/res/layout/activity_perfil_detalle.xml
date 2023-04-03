@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/muropiedra5"
 
-    tools:context=".perfiles.Perfiles_adapter$Perfil_Detalle">
+    tools:context=".perfiles.PerfilesAdapter$Perfil_Detalle">
     <LinearLayout
         android:id="@+id/LinEstandartes"
         android:layout_width="406dp"

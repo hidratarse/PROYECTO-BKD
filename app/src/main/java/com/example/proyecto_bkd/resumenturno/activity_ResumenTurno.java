@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
-import com.example.proyecto_bkd.perfiles.activity_perfiles;
+import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ResumenTurno.this, activity_perfiles.class);
+                Intent intent = new Intent(activity_ResumenTurno.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }

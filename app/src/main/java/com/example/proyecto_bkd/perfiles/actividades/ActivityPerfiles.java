@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.perfiles;
+package com.example.proyecto_bkd.perfiles.actividades;
 
 import static android.content.ContentValues.TAG;
 
@@ -12,21 +12,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
-import com.example.proyecto_bkd.partida.VerPartidas;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
+import com.example.proyecto_bkd.perfiles.PerfilesAdapter;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class activity_perfiles extends AppCompatActivity {
+public class ActivityPerfiles extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private Perfiles_adapter adaptador;
+    private PerfilesAdapter adaptador;
     private ArrayList<Perfil> perfiles;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     Switch sMPerfiles;
@@ -55,7 +55,7 @@ public class activity_perfiles extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_perfiles.this, activity_ranking2.class);
+                Intent intent = new Intent(ActivityPerfiles.this, activity_ranking2.class);
                 startActivity(intent);
                 finish();
             }
@@ -64,7 +64,7 @@ public class activity_perfiles extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_perfiles.this, Partida.class);
+                Intent intent = new Intent(ActivityPerfiles.this, Partida.class);
                 startActivity(intent);
                 finish();
             }
@@ -72,7 +72,7 @@ public class activity_perfiles extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_perfiles.this, activity_perfiles.class);
+                Intent intent = new Intent(ActivityPerfiles.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -84,15 +84,15 @@ public class activity_perfiles extends AppCompatActivity {
 
         perfiles = new ArrayList<>(Arrays.asList(new Perfil().generarPerfiles()));
 
-        adaptador = new Perfiles_adapter(perfiles);
+        adaptador = new PerfilesAdapter(perfiles);
 
         Log.d(TAG, String.valueOf(adaptador.getItemCount()));
 
         recyclerView.setAdapter(adaptador);
 
         adaptador.setClickListener((view, perfil) -> {
-            Toast.makeText(activity_perfiles.this,"Pulsado "+ perfil.getNombre(), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ActivityPerfil_Detalle.class);
+            Toast.makeText(ActivityPerfiles.this,"Pulsado "+ perfil.getEmail(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ActivityDetallePerfil.class);
             intent.putExtra("PERFIL",perfil);
             startActivity(intent);
         });

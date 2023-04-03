@@ -1,12 +1,9 @@
-package com.example.proyecto_bkd.perfiles;
-
-import static android.content.ContentValues.TAG;
+package com.example.proyecto_bkd.perfiles.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,9 +13,10 @@ import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 
-public class ActivityPerfil_Detalle extends AppCompatActivity {
+public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     TextView tCancela, tModificar;
@@ -53,7 +51,7 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         tModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfil_Detalle.this, activity_perfiles.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -62,7 +60,7 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         tCancela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfil_Detalle.this, activity_perfiles.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -71,7 +69,7 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfil_Detalle.this, activity_ranking2.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, activity_ranking2.class);
                 startActivity(intent);
                 finish();
             }
@@ -80,7 +78,7 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfil_Detalle.this, Partida.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, Partida.class);
                 startActivity(intent);
                 finish();
             }
@@ -88,7 +86,7 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfil_Detalle.this, activity_perfiles.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -96,7 +94,7 @@ public class ActivityPerfil_Detalle extends AppCompatActivity {
 
         Perfil perfil = (Perfil) getIntent().getSerializableExtra("PERFIL");
 
-        nombre.setText(perfil.getNombre());
+        nombre.setText(perfil.getEmail());
     }
 
     @Override
