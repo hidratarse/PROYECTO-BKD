@@ -82,10 +82,6 @@ public class activity_ranking2 extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        perfiles = new ArrayList<>(Arrays.asList(new Perfil().generarPerfiles()));
-
-        adapter = new Ranking2_adapter(perfiles);
-
         recyclerView.setAdapter(adapter);
     }
 

@@ -16,17 +16,17 @@ public class Perfil implements Serializable {
 
     private int maxPuntuacion;
 
-    private int partidasGanadas_;
+    private int partidasGanadas;
 
     public Perfil() {
     }
 
-    public Perfil(String email, String nombre, int partidasJugadas, int maxPuntuacion, int partidasGanadas_) {
+    public Perfil(String email, String nombre, int partidasJugadas, int maxPuntuacion, int partidasGanadas) {
         this.email = email;
         this.nombre = nombre;
         this.partidasJugadas = partidasJugadas;
         this.maxPuntuacion = maxPuntuacion;
-        this.partidasGanadas_ = partidasGanadas_;
+        this.partidasGanadas = partidasGanadas;
     }
 
     public String getId() {
@@ -48,8 +48,8 @@ public class Perfil implements Serializable {
         return maxPuntuacion;
     }
 
-    public int getPartidasGanadas_() {
-        return partidasGanadas_;
+    public int getPartidasGanadas() {
+        return partidasGanadas;
     }
 
     public void setId(String id) {
@@ -72,7 +72,7 @@ public class Perfil implements Serializable {
         this.maxPuntuacion = maxPuntuacion;
     }
 
-    public void setPartidasGanadas_(int partidasGanadas_) {
-        this.partidasGanadas_ = partidasGanadas_;
+    public void setPartidasGanadas(int partidasGanadas) {
+        this.partidasGanadas = partidasGanadas;
     }
 }

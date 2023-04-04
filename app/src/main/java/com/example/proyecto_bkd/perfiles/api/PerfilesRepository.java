@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PerfilesRepository {
+    private static PerfilesRepository instance;
     private static final String NOMBRE_COLECCION = "perfiles";
     private final CollectionReference coleccion;
     private MutableLiveData<List<Perfil>> listaPerfilesLivedata;
@@ -20,6 +21,14 @@ public class PerfilesRepository {
         listaPerfilesLivedata = new MutableLiveData<>();
         perfilLiveData = new MutableLiveData<>();
         coleccion = FirebaseFirestore.getInstance().collection(NOMBRE_COLECCION);
+    }
+
+    //singleton
+    public static PerfilesRepository getInstance() {
+        if (instance == null) {
+            instance = new PerfilesRepository();
+        }
+        return instance;
     }
 
     public void getPerfilesPorDueño(String email) {
@@ -36,6 +45,7 @@ public class PerfilesRepository {
         });
     }
 
+    //recupera solo un perfil con el id
     public void getPerfil(String idPerfil) {
         coleccion.document(idPerfil).get().addOnSuccessListener(documentSnapshot -> {
             Perfil perfil = documentSnapshot.toObject(Perfil.class);

@@ -74,9 +74,9 @@ public class Ranking2_adapter extends RecyclerView.Adapter<Ranking2_adapter.View
 
         Perfil p =datos.get(position);
         String nombre = p.getEmail();
-        int puntuacion = p.getPuntuacionGeneral();
+        //int puntuacion = p.getPuntuacionGeneral();
         holder.getNombre().setText(nombre);
-        holder.getPuntuacion().setText(String.valueOf(puntuacion));
+        //holder.getPuntuacion().setText(String.valueOf(puntuacion));
         holder.getPosicion().setText(String.valueOf(position+1));
     }
 
