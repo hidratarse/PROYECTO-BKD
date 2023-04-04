@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/iBiblioteca"
         android:layout_width="522dp"
-        android:layout_height="733dp"
+        android:layout_height="760dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,12 +19,11 @@
 
     <ImageView
         android:id="@+id/iPergamino"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="435dp"
+        android:layout_height="536dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
         app:srcCompat="@drawable/pergamino" />
 
     <ImageButton
@@ -37,6 +36,122 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/h8"
         app:srcCompat="@drawable/sello1" />
+
+    <LinearLayout
+        android:id="@+id/LinEstandartes"
+        android:layout_width="406dp"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/framePartidas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPartidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Partidas"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FramePerfiles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPerfiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPerfiles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPerfiles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Perfiles"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FrameRanking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtRanking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tRanking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Ranking"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tCerrar"
@@ -69,49 +184,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="434dp" />
+        app:layout_constraintGuide_begin="463dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="577dp" />
+        app:layout_constraintGuide_begin="614dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="165dp" />
+        app:layout_constraintGuide_begin="192dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="234dp" />
+        app:layout_constraintGuide_begin="292dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="275dp" />
+        app:layout_constraintGuide_begin="338dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="331dp" />
+        app:layout_constraintGuide_begin="377dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="384dp" />
+        app:layout_constraintGuide_begin="421dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/v2"
@@ -388,14 +503,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="371dp" />
+        app:layout_constraintGuide_begin="356dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="195dp" />
+        app:layout_constraintGuide_begin="255dp" />
 
     <ImageView
         android:id="@+id/imgFoto"

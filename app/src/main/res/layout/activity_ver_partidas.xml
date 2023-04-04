@@ -8,189 +8,152 @@
 
     <ImageView
         android:id="@+id/imgBiblioteca"
-        android:layout_width="515dp"
-        android:layout_height="739dp"
+        android:layout_width="525dp"
+        android:layout_height="798dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/biblioteca" />
 
+    <ImageView
+        android:id="@+id/imgPergamino"
+        android:layout_width="400dp"
+        android:layout_height="524dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
+        app:srcCompat="@drawable/pergamino" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPartidas"
+        android:layout_width="411dp"
+        android:layout_height="368dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline31">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:id="@+id/LinEstandartes"
+        android:layout_width="406dp"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/LinEstandartes"
-            android:layout_width="406dp"
-            android:layout_height="170dp"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:id="@+id/framePartidas"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageButton
-                    android:id="@+id/bImgPartidas"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#00FFFFFF"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/estandarte" />
-
-                <LinearLayout
-                    android:id="@+id/LinTxtPartidas"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#00FFFFFF"
-                    android:backgroundTint="#00FFFFFF"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tPartidas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:fontFamily="@font/enchanted_land"
-                        android:text="@string/Partidas"
-                        android:textAlignment="viewStart"
-                        android:textColor="#FF9800"
-                        android:textSize="34sp" />
-                </LinearLayout>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/FramePerfiles"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageButton
-                    android:id="@+id/bImgPerfiles"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#00FFFFFF"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/estandarte" />
-
-                <LinearLayout
-                    android:id="@+id/LinTxtPerfiles"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tPerfiles"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/enchanted_land"
-                        android:text="@string/Perfiles"
-                        android:textAlignment="center"
-                        android:textColor="#FF9800"
-                        android:textSize="34sp" />
-
-                </LinearLayout>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/FrameRanking"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageButton
-                    android:id="@+id/bImgRanking"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#00FFFFFF"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/estandarte" />
-
-                <LinearLayout
-                    android:id="@+id/LinTxtRanking"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tRanking"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/enchanted_land"
-                        android:text="@string/Ranking"
-                        android:textAlignment="center"
-                        android:textColor="#FF9800"
-                        android:textSize="34sp" />
-                </LinearLayout>
-
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/framePartidas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <LinearLayout
+            <ImageButton
+                android:id="@+id/bImgPartidas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
 
-                <FrameLayout
-                    android:id="@+id/frameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/LinTxtPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/imgPergamino"
-                        android:layout_width="410dp"
-                        android:layout_height="568dp"
-                        app:srcCompat="@drawable/pergamino" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/button3"
-                            android:layout_width="match_parent"
-                            android:layout_height="81dp"
-                            android:visibility="invisible"
-                            app:iconTint="#00FFFFFF" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerPartidas"
-                            android:layout_width="409dp"
-                            android:layout_height="559dp">
-
-                        </androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
-
-                </FrameLayout>
+                <TextView
+                    android:id="@+id/tPartidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Partidas"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
             </LinearLayout>
 
-        </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FramePerfiles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPerfiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPerfiles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPerfiles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Perfiles"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FrameRanking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtRanking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tRanking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Ranking"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
     </LinearLayout>
 
     <Switch
@@ -217,13 +180,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="60dp" />
+        app:layout_constraintGuide_percent="0.91928864" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="18dp" />
+        app:layout_constraintGuide_percent="0.04379562" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.82079345" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

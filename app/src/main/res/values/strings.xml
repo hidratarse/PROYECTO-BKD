@@ -36,5 +36,7 @@
     <string name="Musica">Música</string>
     <string name="NuevoPerfil">Nuevo Perfil</string>
     <string name="CerrarSesion">Cerrar \nSesión</string>
+    <string name="SeleccionJugador">Selecciona Jugadores</string>
+
 
 </resources>
