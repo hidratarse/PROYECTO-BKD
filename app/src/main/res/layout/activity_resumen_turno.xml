@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imgBiblioteca"
-        android:layout_width="515dp"
-        android:layout_height="739dp"
+        android:layout_width="525dp"
+        android:layout_height="798dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,21 +137,19 @@
 
     <ImageView
         android:id="@+id/imgPerga"
-        android:layout_width="395dp"
-        android:layout_height="566dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBiblioteca"
+        android:layout_width="421dp"
+        android:layout_height="514dp"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/guideline20"
         app:srcCompat="@drawable/pergamino" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/id_rv_resumenTurnos"
-        android:layout_width="287dp"
-        android:layout_height="382dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        android:layout_width="289dp"
+        android:layout_height="356dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -160,14 +158,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3255814" />
+        app:layout_constraintGuide_percent="0.31" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="648dp" />
+        app:layout_constraintGuide_begin="629dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -247,10 +245,9 @@
         android:layout_height="94dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:srcCompat="@drawable/sello2" />
+        app:srcCompat="@drawable/sello1" />
 
     <ImageButton
         android:id="@+id/bTerminar"
@@ -258,7 +255,6 @@
         android:layout_height="100dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
         app:srcCompat="@drawable/sello1" />
@@ -298,7 +294,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="621dp" />
+        app:layout_constraintGuide_begin="601dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -312,32 +308,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.27" />
-    <Switch
-        android:id="@+id/sMPartida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00FF5722"
-        android:checked="true"
-        android:fontFamily="@font/enchanted_land"
-        android:showText="false"
-        android:splitTrack="false"
-        android:text="Musica"
-        android:textColor="@color/naranja"
-        android:textColorHighlight="#FF5722"
-        android:textColorLink="#FF5722"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline25"
-        app:layout_constraintTop_toTopOf="@+id/guideline24"
-        app:layout_constraintVertical_bias="0.2" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="60dp" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"
@@ -362,15 +333,14 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline25"
-        app:layout_constraintTop_toTopOf="@+id/guideline24"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline24" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="60dp" />
+        app:layout_constraintGuide_end="56dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"

@@ -126,10 +126,9 @@
 
     <ImageView
         android:id="@+id/imgPergam"
-        android:layout_width="412dp"
-        android:layout_height="563dp"
-        android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="382dp"
+        android:layout_height="520dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
@@ -159,8 +158,8 @@
 
     <EditText
         android:id="@+id/eNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="395dp"
+        android:layout_height="53dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/enchanted_land"
@@ -174,8 +173,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout16"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="232dp"
+        android:layout_height="43dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout17"
         app:layout_constraintEnd_toEndOf="parent"
@@ -185,8 +184,8 @@
 
         <TextView
             android:id="@+id/tPartidasJugadas"
-            android:layout_width="215dp"
-            android:layout_height="match_parent"
+            android:layout_width="219dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/enchanted_land"
             android:inputType="textPersonName"
@@ -197,7 +196,7 @@
         <TextView
             android:id="@+id/NumPartidasJugadas"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/enchanted_land"
             android:text="5"
             android:textSize="34sp" />
@@ -205,8 +204,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout17"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="233dp"
+        android:layout_height="42dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout18"
         app:layout_constraintEnd_toEndOf="parent"
@@ -216,8 +215,8 @@
 
         <TextView
             android:id="@+id/tPartidasGanadas"
-            android:layout_width="215dp"
-            android:layout_height="match_parent"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/enchanted_land"
             android:inputType="textPersonName"
@@ -228,7 +227,7 @@
         <TextView
             android:id="@+id/NumPartidasGanadas"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/enchanted_land"
             android:text="2"
             android:textSize="34sp" />
@@ -236,8 +235,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout18"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="254dp"
+        android:layout_height="45dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -246,8 +245,8 @@
 
         <TextView
             android:id="@+id/tMaxPuntuacion"
-            android:layout_width="215dp"
-            android:layout_height="match_parent"
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/enchanted_land"
             android:inputType="textPersonName"
@@ -257,7 +256,7 @@
 
         <TextView
             android:id="@+id/NumMaxPuntuacion"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
             android:text="125"
@@ -276,31 +275,31 @@
         android:layout_width="156dp"
         android:layout_height="107dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sello2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:scaleType="centerInside"
+        android:src="@drawable/sello1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout18" />
 
     <ImageButton
         android:id="@+id/imgSello2"
         android:layout_width="156dp"
         android:layout_height="107dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sello2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:scaleType="centerInside"
+        android:src="@drawable/sello1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout18" />
 
     <ImageButton
         android:id="@+id/imgSello3"
         android:layout_width="156dp"
         android:layout_height="107dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sello2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/sello1"
         app:layout_constraintEnd_toStartOf="@+id/tModificar"
-        app:layout_constraintStart_toEndOf="@+id/tCancela" />
+        app:layout_constraintStart_toEndOf="@+id/tCancela"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout18" />
 
     <TextView
         android:id="@+id/tCancela"
@@ -325,7 +324,7 @@
         android:text="@string/Eliminar"
         android:textColor="#FFC107"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSello3"
         app:layout_constraintEnd_toEndOf="@+id/imgSello3"
         app:layout_constraintStart_toStartOf="@+id/imgSello3"
         app:layout_constraintTop_toTopOf="@+id/imgSello3" />

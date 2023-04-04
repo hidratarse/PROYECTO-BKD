@@ -7,41 +7,161 @@
     tools:context=".perfiles.activity_perfiles"
     android:background="@drawable/muropiedra5">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="416dp"
-        android:layout_height="178dp"
+    <LinearLayout
+        android:id="@+id/LinEstandartes"
+        android:layout_width="406dp"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/framePartidas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPartidas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPartidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Partidas"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FramePerfiles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgPerfiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtPerfiles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tPerfiles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Perfiles"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FrameRanking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/bImgRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/estandarte" />
+
+            <LinearLayout
+                android:id="@+id/LinTxtRanking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tRanking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="@string/Ranking"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgCartel"
+        android:layout_width="412dp"
+        android:layout_height="173dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline26"
         app:srcCompat="@drawable/nombremadera" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tSelecciona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Selecciona Perfiles"
+        android:text="@string/SeleccionJugador"
         android:textColor="@color/naranja"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline22"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline22" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="416dp"
-        android:layout_height="485dp"
+        android:layout_width="408dp"
+        android:layout_height="291dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+        app:layout_constraintTop_toBottomOf="@+id/imgCartel" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="95dp" />
+        app:layout_constraintGuide_begin="188dp" />
 
     <Button
         android:id="@+id/bComenzar"
@@ -96,5 +216,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="128dp" />
+        app:layout_constraintGuide_begin="145dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

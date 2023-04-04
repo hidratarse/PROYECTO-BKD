@@ -17,14 +17,18 @@ import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.DetallePartida;
+import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.partida.VerPartidas;
+import com.example.proyecto_bkd.perfiles.activity_perfiles;
+import com.example.proyecto_bkd.ranking.activity_ranking2;
 
 public class NuevoFeudo extends AppCompatActivity{
 
-    ImageButton mas, menos;
+    ImageButton mas, menos, bImgPartidas,bImgPerfiles,bImgRanking;
     TextView torres, tCancelar, tAnadir;
     ImageView madera,pez,zanahoria,polvo,seta,plata,oro,cobre,diamante,perla;
     Switch sMNuevoFeudo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,9 @@ public class NuevoFeudo extends AppCompatActivity{
         diamante=findViewById(R.id.imgDiamante);
         perla=findViewById(R.id.imgPerla);
         sMNuevoFeudo = findViewById(R.id.sMNuevoFeudo);
+        bImgPartidas=findViewById(R.id.bImgPartidas);
+        bImgPerfiles=findViewById(R.id.bImgPerfiles);
+        bImgRanking=findViewById(R.id.bImgRanking);
 
         sMNuevoFeudo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +62,32 @@ public class NuevoFeudo extends AppCompatActivity{
                 }else{
                     Login.mp.pause();
                 }
+            }
+        });
+
+        bImgRanking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NuevoFeudo.this, activity_ranking2.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        bImgPartidas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NuevoFeudo.this, Partida.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        bImgPerfiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NuevoFeudo.this, activity_perfiles.class);
+                startActivity(intent);
+                finish();
             }
         });
 
