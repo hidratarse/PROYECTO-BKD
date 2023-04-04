@@ -13,8 +13,8 @@ import android.widget.Switch;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
-import com.example.proyecto_bkd.perfiles.Perfil;
-import com.example.proyecto_bkd.perfiles.activity_perfiles;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
+import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,7 +70,7 @@ public class activity_ranking2 extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ranking2.this, activity_perfiles.class);
+                Intent intent = new Intent(activity_ranking2.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }

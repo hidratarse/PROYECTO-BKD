@@ -4,14 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.perfiles.Perfil;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
 
 import java.util.ArrayList;
 
@@ -74,7 +73,7 @@ public class Ranking2_adapter extends RecyclerView.Adapter<Ranking2_adapter.View
         }
 
         Perfil p =datos.get(position);
-        String nombre = p.getNombre();
+        String nombre = p.getEmail();
         int puntuacion = p.getPuntuacionGeneral();
         holder.getNombre().setText(nombre);
         holder.getPuntuacion().setText(String.valueOf(puntuacion));

@@ -3,7 +3,6 @@ package com.example.proyecto_bkd.partida;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,11 +11,9 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.perfiles.activity_perfiles;
+import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
-import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.resumenturno.SeleccionPerfiles;
-import com.example.proyecto_bkd.resumenturno.activity_ResumenTurno;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -78,7 +75,7 @@ public class Partida extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, activity_perfiles.class);
+                Intent intent = new Intent(Partida.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }

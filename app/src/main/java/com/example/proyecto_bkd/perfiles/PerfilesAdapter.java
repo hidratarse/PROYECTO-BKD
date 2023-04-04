@@ -14,10 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
 
 import java.util.ArrayList;
 
-public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.ViewHolder> {
+public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHolder> {
     private ArrayList<Perfil> datos;
     public interface ItemClickListener{
         void onClick(View view, Perfil perfil);
@@ -26,7 +27,7 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
     public void setClickListener(ItemClickListener itemClickListener){
         this.clickListener=itemClickListener;
     }
-    public Perfiles_adapter(ArrayList<Perfil> dataSet){
+    public PerfilesAdapter(ArrayList<Perfil> dataSet){
         datos = new ArrayList<>();
         add(dataSet);
     }
@@ -59,7 +60,7 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
 
     @NonNull
     @Override
-    public Perfiles_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PerfilesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.perfiles_view,parent,false);
         return new ViewHolder(v);
     }
@@ -67,7 +68,7 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Perfil p = datos.get(position);
-        String nombre = p.getNombre();
+        String nombre = p.getEmail();
         if(position==0) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo11);
         }
@@ -99,7 +100,7 @@ public class Perfiles_adapter extends RecyclerView.Adapter<Perfiles_adapter.View
             holder.imagen_perfil.setImageResource(R.drawable.conejo1);
         }
         Log.d(TAG,nombre);
-        holder.getNombre().setText(p.getNombre());
+        holder.getNombre().setText(p.getEmail());
     }
 
     @Override
