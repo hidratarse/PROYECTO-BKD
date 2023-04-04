@@ -12,16 +12,16 @@ public class Perfil implements Serializable {
 
     //foto de perfil, en URI?
 
-    private int partidasJugadas;
+    private String partidasJugadas;
 
-    private int maxPuntuacion;
+    private String maxPuntuacion;
 
-    private int partidasGanadas;
+    private String partidasGanadas;
 
     public Perfil() {
     }
 
-    public Perfil(String email, String nombre, int partidasJugadas, int maxPuntuacion, int partidasGanadas) {
+    public Perfil(String email, String nombre, String partidasJugadas, String maxPuntuacion, String partidasGanadas) {
         this.email = email;
         this.nombre = nombre;
         this.partidasJugadas = partidasJugadas;
@@ -32,6 +32,7 @@ public class Perfil implements Serializable {
     public String getId() {
         return id;
     }
+
     public String getEmail() {
         return email;
     }
@@ -40,15 +41,15 @@ public class Perfil implements Serializable {
         return nombre;
     }
 
-    public int getPartidasJugadas() {
+    public String getPartidasJugadas() {
         return partidasJugadas;
     }
 
-    public int getMaxPuntuacion() {
+    public String getMaxPuntuacion() {
         return maxPuntuacion;
     }
 
-    public int getPartidasGanadas() {
+    public String getPartidasGanadas() {
         return partidasGanadas;
     }
 
@@ -64,15 +65,15 @@ public class Perfil implements Serializable {
         this.nombre = nombre;
     }
 
-    public void setPartidasJugadas(int partidasJugadas) {
+    public void setPartidasJugadas(String partidasJugadas) {
         this.partidasJugadas = partidasJugadas;
     }
 
-    public void setMaxPuntuacion(int maxPuntuacion) {
+    public void setMaxPuntuacion(String maxPuntuacion) {
         this.maxPuntuacion = maxPuntuacion;
     }
 
-    public void setPartidasGanadas(int partidasGanadas) {
+    public void setPartidasGanadas(String partidasGanadas) {
         this.partidasGanadas = partidasGanadas;
     }
 }
