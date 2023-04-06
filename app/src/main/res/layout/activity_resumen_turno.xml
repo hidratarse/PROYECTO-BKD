@@ -5,7 +5,7 @@
     android:id="@+id/ContraintTotal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".resumenturno.activity_ResumenTurno">
+    tools:context=".resumenturno.actividades.activity_ResumenTurno">
 
     <ImageView
         android:id="@+id/imgBiblioteca"

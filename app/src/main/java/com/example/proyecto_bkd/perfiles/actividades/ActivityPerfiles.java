@@ -110,7 +110,6 @@ public class ActivityPerfiles extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     @Override
