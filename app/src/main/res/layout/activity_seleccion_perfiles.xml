@@ -148,7 +148,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline22" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rJugadores"
         android:layout_width="408dp"
         android:layout_height="291dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +175,7 @@
         app:iconTint="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/rJugadores"
         tools:ignore="TextContrastCheck" />
 
     <Switch

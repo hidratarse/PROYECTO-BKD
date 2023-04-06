@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".resumenturno.NuevoFeudo">
+    tools:context=".resumenturno.actividades.NuevoFeudo">
 
     <ImageView
         android:id="@+id/imgFondo"
@@ -384,6 +384,17 @@
         app:layout_constraintEnd_toStartOf="@+id/imgMas"
         app:layout_constraintStart_toEndOf="@+id/imgMenos"
         app:layout_constraintTop_toTopOf="@+id/guideline15" />
+
+    <TextView
+        android:id="@+id/tPuntosFeudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="0"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearRecursos" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline18"

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PROYECTOBKD"
         tools:targetApi="31">
         <activity
-            android:name=".resumenturno.SeleccionPerfiles"
+            android:name=".resumenturno.actividades.SeleccionPerfiles"
             android:exported="false" />
         <activity
             android:name=".registrarusuario.RegistroMain"
@@ -23,14 +23,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".resumenturno.NuevoFeudo"
+            android:name=".resumenturno.actividades.NuevoFeudo"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".resumenturno.activity_ResumenTurno"
+            android:name=".resumenturno.actividades.activity_ResumenTurno"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
