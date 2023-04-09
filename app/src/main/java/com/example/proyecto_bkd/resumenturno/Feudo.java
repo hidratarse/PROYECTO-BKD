@@ -7,7 +7,7 @@ public class Feudo implements Serializable {
     private static ArrayList<String> Recursos = new ArrayList<String>();
     private static int puntos;
     private static int torres;
-    public Feudo(){}
+
     public Feudo(ArrayList<String> recursos, int torres, int puntos) {
         Recursos = recursos;
         this.puntos = puntos;

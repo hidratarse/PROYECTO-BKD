@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -26,13 +26,13 @@ import java.util.ArrayList;
 
 public class activity_ResumenTurno extends AppCompatActivity {
     RecyclerView recyclerView;
-    private static ArrayList<Feudo> feudos;
+    public ArrayList<Feudo> listaFeudos;
     ResumenTurnoAdapter adapter;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
     TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda;
     Switch sMResumenTurno;
-    String[] jugadores={"Jorge","Jose","Carlos","Luis"};
-    int[] puntuacion={50,75,25,10};
+    String[] jugadores={"Jorge","Jose"};
+    int[] puntuacion={0,0};
     int ronda=1;
     int turno=0;
     private final int MAX_RONDAS=4;
@@ -51,7 +51,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tNumTurno = findViewById(R.id.tNumTurno);
         tNomJugador = findViewById(R.id.tNomJugador);
         tPuntosRonda= findViewById(R.id.tPuntosRonda);
-        tNumTurno.setText(ronda+"");
+        tNumTurno.setText(String.valueOf(ronda));
         sMResumenTurno= findViewById(R.id.sMResumenTurno);
 
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
@@ -91,25 +91,34 @@ public class activity_ResumenTurno extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.id_rv_resumenTurnos);
-        feudos = new ArrayList<>();
+        listaFeudos = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ResumenTurnoAdapter();
+        adapter = new ResumenTurnoAdapter(listaFeudos);
         recyclerView.setAdapter(adapter);
         tNomJugador.setText(jugadores[0]);
-        tPuntosRonda.setText(puntuacion[turno]+"");
+        tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
 
         ActivityResultLauncher activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),result -> {
                     int codigo = result.getResultCode();
+
                     switch (codigo){
                         case RESULT_CANCELED:
                             break;
                         case NuevoFeudo.ACTUALIZAR_ADAPTER:
                             Intent data = result.getData();
                             Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
-                            feudos.add(fNuevo);
-                            adapter.setResults(feudos);
+                            puntuacion[turno]=Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos();
+                            tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
+                            listaFeudos.add(fNuevo);
+                            adapter=new ResumenTurnoAdapter(listaFeudos);
+                            recyclerView.setAdapter(adapter);
+                           /*
+                            for (int i = 0; i <listaFeudos.size(); i++) {
+                                Log.d("despues",String.valueOf(listaFeudos.get(i).getTorres()));
+                            }
+                            */
                             break;
                     }
                 });
@@ -118,10 +127,10 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //feudos=null;
                 turno++;
-                feudos=new ArrayList<>();
-                adapter.setResults(feudos);
+                listaFeudos.clear();
+                adapter = new ResumenTurnoAdapter(listaFeudos);
+                recyclerView.setAdapter(adapter);
                 if(turno==jugadores.length) {
                     ronda++;
                     turno=0;
@@ -138,6 +147,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
+
     }
 
     @Override
