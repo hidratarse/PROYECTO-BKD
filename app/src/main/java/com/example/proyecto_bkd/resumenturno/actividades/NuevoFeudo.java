@@ -34,6 +34,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
     private int puntuacionFeudo=0;
 
     ArrayList<String> listaRecursos = new ArrayList<String>();
+
     public class Seleccionrecursos implements View.OnClickListener{
         ImageView fotoRecurso;
         Enum recursos;
@@ -309,8 +310,8 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
     }
     private void contarPuntos(){
         puntuacionFeudo=listaRecursos.size()*Integer.parseInt(torres.getText().toString());
-        Log.d("PUNTUACION", puntuacionFeudo+"");
-        tPuntosFeudo.setText(puntuacionFeudo+"");
+        Log.d("PUNTUACION", String.valueOf(puntuacionFeudo));
+        tPuntosFeudo.setText(String.valueOf(puntuacionFeudo));
     }
 
 }
