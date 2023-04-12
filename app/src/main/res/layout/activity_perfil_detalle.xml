@@ -338,6 +338,22 @@
         android:text="@string/Modificar"
         android:textColor="#FFC107"
         android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSello2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imgSello2"
+        app:layout_constraintTop_toTopOf="@+id/imgSello2" />
+
+    <TextView
+        android:id="@+id/tInsertar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/Añadir"
+        android:textColor="#FFC107"
+        android:textSize="24sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/imgSello2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imgSello2"

@@ -1,6 +1,7 @@
 package com.example.proyecto_bkd.perfiles.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,16 +14,18 @@ import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
+import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-    TextView tCancela, tModificar;
+    TextView tCancela, tModificar, tInsertar;
     Switch sMPerfilDetalle;
-
-
+    PerfilesViewModel vm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,28 +36,38 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         nombre = findViewById(R.id.eNombre);
         tCancela=findViewById(R.id.tCancela);
         tModificar=findViewById(R.id.tModificar);
-
+        tInsertar = findViewById(R.id.tInsertar);
         sMPerfilDetalle= findViewById(R.id.sMPerfilDetalle);
 
-        sMPerfilDetalle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(sMPerfilDetalle.isChecked()){
-                    Login.mp.start();
-                }else{
-                    Login.mp.pause();
-                }
-            }
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String email = currentUser.getEmail();
+
+        vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
+        vm.init();
+
+        boolean editando = getIntent().getBooleanExtra("PERFIL", false);
+
+        if (editando){
+            tModificar.setVisibility(View.VISIBLE);
+            tInsertar.setVisibility(View.INVISIBLE);
+        }else {
+            tModificar.setVisibility(View.INVISIBLE);
+            tInsertar.setVisibility(View.VISIBLE);
+        }
+
+        tInsertar.setOnClickListener(view -> {
+            String newName = nombre.getText().toString();
+            Perfil nuevoPerfil = new Perfil(email,newName,"1","2","3");
+            vm.insertarPerfil(nuevoPerfil);
+            Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
+            startActivity(intent);
+            finish();
         });
 
-
-        tModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
-                startActivity(intent);
-                finish();
-            }
+        tModificar.setOnClickListener(view -> {
+            Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
+            startActivity(intent);
+            finish();
         });
 
         tCancela.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +105,16 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             }
         });
 
-        Perfil perfil = (Perfil) getIntent().getSerializableExtra("PERFIL");
-
-        nombre.setText(perfil.getEmail());
+        sMPerfilDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sMPerfilDetalle.isChecked()){
+                    Login.mp.start();
+                }else{
+                    Login.mp.pause();
+                }
+            }
+        });
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.proyecto_bkd.perfiles.actividades;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -25,7 +26,9 @@ public class ActivityPerfiles extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PerfilesAdapter adaptador;
     private PerfilesViewModel vm;
+    private boolean editando;
     ImageButton bImgPartidas, bImgPerfiles, bImgRanking;
+    Button nuevoPerfil;
     Switch sMPerfiles;
 
     @Override
@@ -37,6 +40,7 @@ public class ActivityPerfiles extends AppCompatActivity {
         bImgRanking = findViewById(R.id.bImgRanking);
         recyclerView = findViewById(R.id.recycled_perfiles);
         sMPerfiles = findViewById(R.id.sMPerfiles);
+        nuevoPerfil = findViewById(R.id.bNuevoPerfil);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -68,47 +72,43 @@ public class ActivityPerfiles extends AppCompatActivity {
         });
 
         adaptador.setClickListener((view, perfil) -> {
+            editando=true;
             Toast.makeText(ActivityPerfiles.this, "Pulsado " + perfil.getEmail(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ActivityDetallePerfil.class);
-            intent.putExtra("PERFIL", perfil);
+            intent.putExtra("PERFIL",editando);
             startActivity(intent);
         });
 
-        sMPerfiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (sMPerfiles.isChecked()) {
-                    Login.mp.start();
-                } else {
-                    Login.mp.pause();
-                }
+        nuevoPerfil.setOnClickListener(view -> {
+            editando=false;
+            Intent intent = new Intent(this, ActivityDetallePerfil.class);
+            intent.putExtra("PERFIL",editando);
+            startActivity(intent);
+        });
+
+        sMPerfiles.setOnClickListener(view -> {
+            if (sMPerfiles.isChecked()) {
+                Login.mp.start();
+            } else {
+                Login.mp.pause();
             }
         });
 
-        bImgRanking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfiles.this, activity_ranking2.class);
-                startActivity(intent);
-                finish();
-            }
+        bImgRanking.setOnClickListener(view -> {
+            Intent intent = new Intent(ActivityPerfiles.this, activity_ranking2.class);
+            startActivity(intent);
+            finish();
         });
 
-        bImgPartidas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfiles.this, Partida.class);
-                startActivity(intent);
-                finish();
-            }
+        bImgPartidas.setOnClickListener(view -> {
+            Intent intent = new Intent(ActivityPerfiles.this, Partida.class);
+            startActivity(intent);
+            finish();
         });
-        bImgPerfiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActivityPerfiles.this, ActivityPerfiles.class);
-                startActivity(intent);
-                finish();
-            }
+        bImgPerfiles.setOnClickListener(view -> {
+            Intent intent = new Intent(ActivityPerfiles.this, ActivityPerfiles.class);
+            startActivity(intent);
+            finish();
         });
     }
 

@@ -22,6 +22,10 @@ public class PerfilesViewModel extends ViewModel {
         perfilesRepository.getPerfilesPorDueño(email);
     }
 
+    public void insertarPerfil(Perfil perfil){
+        perfilesRepository.insertarPerfil(perfil);
+    }
+
     public LiveData<List<Perfil>> getPerfilesLivedata() {
         return perfilesData;
     }
