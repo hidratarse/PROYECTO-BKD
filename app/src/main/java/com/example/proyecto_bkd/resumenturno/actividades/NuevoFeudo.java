@@ -279,17 +279,19 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         tCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NuevoFeudo.this, activity_ResumenTurno.class);
-                startActivity(intent);
+                //Intent intent = new Intent(NuevoFeudo.this, activity_ResumenTurno.class);
+                //startActivity(intent);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
         tAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Feudo f=new Feudo(listaRecursos,Integer.parseInt(torres.getText().toString()),puntuacionFeudo);
+                Feudo f = new Feudo(listaRecursos,Integer.parseInt(torres.getText().toString()),puntuacionFeudo);
                 Log.d("listado",f.getRecursos().toString()+" "+f.getTorres()+" "+f.getPuntos());
-                Intent intent = new Intent(NuevoFeudo.this, activity_ResumenTurno.class);
+                //Intent intent = new Intent(NuevoFeudo.this, activity_ResumenTurno.class);
+                Intent intent = new Intent();
                 intent.putExtra("enviar", f);
                 setResult(ACTUALIZAR_ADAPTER,intent);
                 finish();

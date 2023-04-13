@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Feudo implements Serializable {
-    private static ArrayList<String> Recursos = new ArrayList<String>();
-    private static int puntos;
-    private static int torres;
+    private ArrayList<String> Recursos = new ArrayList<String>();
+    private int puntos;
+    private int torres;
 
     public Feudo(ArrayList<String> recursos, int torres, int puntos) {
         Recursos = recursos;
@@ -36,5 +36,14 @@ public class Feudo implements Serializable {
 
     public void setTorres(int torres) {
         this.torres = torres;
+    }
+
+    public String toString(){
+        String sTotal = "";
+        for (String s: getRecursos()){
+            sTotal+=s;
+        }
+        sTotal += " " + getTorres() + " " +getPuntos();
+        return sTotal;
     }
 }

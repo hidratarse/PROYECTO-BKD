@@ -111,11 +111,14 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         case RESULT_CANCELED:
                             break;
                         case NuevoFeudo.ACTUALIZAR_ADAPTER:
+
                             Intent data = result.getData();
                             Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
+                            Feudo fCloned = new Feudo(fNuevo.getRecursos(), fNuevo.getTorres(), fNuevo.getPuntos());
                             puntuacion[turno]=Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos();
                             tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
-                            listaFeudos.add(fNuevo);
+                            listaFeudos.add(fCloned);
+                            fNuevo=null;
                             adapter=new ResumenTurnoAdapter(listaFeudos);
                             recyclerView.setAdapter(adapter);
                            /*
