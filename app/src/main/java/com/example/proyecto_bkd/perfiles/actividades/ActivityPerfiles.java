@@ -73,16 +73,18 @@ public class ActivityPerfiles extends AppCompatActivity {
 
         adaptador.setClickListener((view, perfil) -> {
             editando=true;
-            Toast.makeText(ActivityPerfiles.this, "Pulsado " + perfil.getEmail(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActivityPerfiles.this, "Pulsado " + perfil.getNombre(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ActivityDetallePerfil.class);
-            intent.putExtra("PERFIL",editando);
+            intent.putExtra("ID",perfil.getId());
+            intent.putExtra("EDITANDO",editando);
             startActivity(intent);
         });
 
         nuevoPerfil.setOnClickListener(view -> {
             editando=false;
             Intent intent = new Intent(this, ActivityDetallePerfil.class);
-            intent.putExtra("PERFIL",editando);
+            intent.putExtra("ID"," ");
+            intent.putExtra("EDITANDO",editando);
             startActivity(intent);
         });
 

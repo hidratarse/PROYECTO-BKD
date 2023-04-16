@@ -64,6 +64,15 @@ public class PerfilesRepository {
         });
     }
 
+    public void modificarPerfil(String idPerfil, Perfil nuevoPerfil) {
+        coleccion.document(idPerfil).set(nuevoPerfil).addOnSuccessListener(aVoid -> {
+            nuevoPerfil.setId(idPerfil);
+            perfilLiveData.postValue(nuevoPerfil);
+        }).addOnFailureListener(e -> {
+            perfilLiveData.postValue(null);
+        });
+    }
+
     public MutableLiveData<List<Perfil>> getListaPerfilesLivedata() {
         return listaPerfilesLivedata;
     }
