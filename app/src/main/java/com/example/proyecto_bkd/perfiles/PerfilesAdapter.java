@@ -15,13 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
+import com.example.proyecto_bkd.resumenturno.actividades.Jugador;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHolder> {
     private List<Perfil> datos = new ArrayList<>();
-
+    Jugador jugador;
     public interface ItemClickListener {
         void onClick(View view, Perfil perfil);
     }
@@ -73,6 +74,7 @@ public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Perfil p = datos.get(position);
+
         if (position == 0) {
             holder.imagen_perfil.setImageResource(R.drawable.conejo11);
         }

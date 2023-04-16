@@ -36,7 +36,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
     EditText puntosPergamino;
     Button aceptarPuntos;
     Switch sMResumenTurno;
-    String[] jugadores={"Jorge","Jose"};
+    Bundle bundle;
+    ArrayList<String> listaNombres=new ArrayList<String>();
     int[] puntuacion={0,0};
     int ronda=1;
     int turno=0;
@@ -45,7 +46,6 @@ public class activity_ResumenTurno extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumen_turno);
-
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
@@ -100,7 +100,10 @@ public class activity_ResumenTurno extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ResumenTurnoAdapter(listaFeudos);
         recyclerView.setAdapter(adapter);
-        tNomJugador.setText(jugadores[0]);
+        bundle=getIntent().getExtras();
+        listaNombres = getIntent().getStringArrayListExtra("jugadores");
+        tNomJugador.setText(listaNombres.get(0));
+        Log.d("NOMBRE", listaNombres.get(0));
         tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
 
         ActivityResultLauncher activityResultLauncher = registerForActivityResult(
@@ -138,11 +141,11 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 listaFeudos.clear();
                 adapter = new ResumenTurnoAdapter(listaFeudos);
                 recyclerView.setAdapter(adapter);
-                if(turno==jugadores.length) {
+                if(turno==listaNombres.size()) {
                     ronda++;
                     turno=0;
                 }
-                tNomJugador.setText(jugadores[turno]);
+                tNomJugador.setText(listaNombres.get(turno));
                 tNumTurno.setText(ronda+"");
                 tPuntosRonda.setText(puntuacion[turno]+"");
                 if(ronda>2){
@@ -168,13 +171,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
         puntosPergamino = dialogView.findViewById(R.id.ePuntosPergamino);
         aceptarPuntos = dialogView.findViewById(R.id.bPuntosPerga);
 
-        puntosPergamino.setHint("puntos "+jugadores[idJugador]);
+        puntosPergamino.setHint("puntos "+listaNombres.get(idJugador));
         alertPergaminos.show();
         aceptarPuntos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 puntuacion[idJugador]=puntuacion[idJugador]+Integer.parseInt(puntosPergamino.getText().toString());
-                Log.d("PUNTOS PERGA",jugadores[idJugador] +" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
+                Log.d("PUNTOS PERGA",listaNombres.get(idJugador)+" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
                 alertPergaminos.dismiss();
             }
         });
