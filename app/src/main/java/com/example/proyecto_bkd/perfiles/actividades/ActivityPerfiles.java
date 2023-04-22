@@ -2,10 +2,14 @@ package com.example.proyecto_bkd.perfiles.actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +31,7 @@ public class ActivityPerfiles extends AppCompatActivity {
     private PerfilesAdapter adaptador;
     private PerfilesViewModel vm;
     private boolean editando;
+    TextView tPartida, tPerfiles, tRanking;
     ImageButton bImgPartidas, bImgPerfiles, bImgRanking;
     Button nuevoPerfil;
     Switch sMPerfiles;
@@ -38,9 +43,20 @@ public class ActivityPerfiles extends AppCompatActivity {
         bImgPartidas = findViewById(R.id.bImgPartidas);
         bImgPerfiles = findViewById(R.id.bImgPerfiles);
         bImgRanking = findViewById(R.id.bImgRanking);
+        tPartida = findViewById(R.id.tPartidas);
+        tPerfiles = findViewById(R.id.tPerfiles);
+        tRanking = findViewById(R.id.tRanking);
         recyclerView = findViewById(R.id.recycled_perfiles);
         sMPerfiles = findViewById(R.id.sMPerfiles);
         nuevoPerfil = findViewById(R.id.bNuevoPerfil);
+
+        Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
+        tPartida.setAnimation(animEstandarte);
+        tPerfiles.setAnimation(animEstandarte);
+        tRanking.setAnimation(animEstandarte);
+        bImgPartidas.setAnimation(animEstandarte);
+        bImgPerfiles.setAnimation(animEstandarte);
+        bImgRanking.setAnimation(animEstandarte);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -91,8 +107,10 @@ public class ActivityPerfiles extends AppCompatActivity {
         sMPerfiles.setOnClickListener(view -> {
             if (sMPerfiles.isChecked()) {
                 Login.mp.start();
+                Login.music=true;
             } else {
                 Login.mp.pause();
+                Login.music=false;
             }
         });
 
@@ -123,6 +141,11 @@ public class ActivityPerfiles extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMPerfiles.setChecked(false);
+        }
     }
 }

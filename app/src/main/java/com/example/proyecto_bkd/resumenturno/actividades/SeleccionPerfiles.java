@@ -38,15 +38,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SeleccionPerfiles extends AppCompatActivity implements Serializable {
+    //Elementos del layout
     Switch sMSeleccion;
     Button bComenzar;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+
+    //Atributos para contruir el recyclerView
     private RecyclerView recyclerView;
     private PerfilesAdapter adaptador;
     private PerfilesViewModel vm;
+
+    //Atributos para el constructor Jugador
     int contColor =0;
     String[] color = {"Rojo","Negro","Amarrillo","Rosa"};
     ArrayList<Jugador> listaJugadores = new ArrayList<>();
+
+    //Almacena los nombres de listaJugadores para enviarlos a la actividad ResumenTurno
     ArrayList<String> nombres=new ArrayList<>();
 
     @Override
@@ -60,8 +67,11 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         bImgRanking=findViewById(R.id.bImgRanking);
         recyclerView=findViewById(R.id.rJugadores);
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(!Login.mp.isPlaying()){
+            sMSeleccion.setChecked(false);
+        }
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();
         String uid = currentUser.getUid();
 
@@ -73,13 +83,9 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         }
 
         adaptador = new PerfilesAdapter();
-
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-
         recyclerView.setAdapter(adaptador);
-
         vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
         vm.init();
 
@@ -91,7 +97,9 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
 
         adaptador.setClickListener((view, perfil) -> {
             Log.d("TAMAÑO", String.valueOf(listaJugadores.size()));
+            //Atributo para validar la selección
             boolean valido=false;
+            //Atributo para indicar la posicion del jugador en el arraylist si tiene el mismo nombre que el nombre del perfil seleccionado
             int posicion=0;
             for (int i=0; i<listaJugadores.size();i++) {
                 if (listaJugadores.get(i).getNomJugador() == perfil.getNombre()) {
@@ -99,6 +107,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                     posicion=i;
                 }
             }
+            //si existe en el arraylist se modifica el color, si ha llegado al ultimo color del array se elimina de la lista
             if (valido) {
                 if(listaJugadores.get(posicion).getContColor()==color.length-1){
                     Log.d("COLOR A CERO", "COLOR A CERO se elimina"+listaJugadores.get(posicion).getNomJugador());
@@ -109,6 +118,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                     Log.d("COLOR CAMBIA", "COLOR CAMBIA "+listaJugadores.get(posicion).getNomJugador()+" "+listaJugadores.get(posicion).getColor());
                 }
             }else{
+                //Si no existe en la lista se añade
                 listaJugadores.add(new Jugador(perfil.getNombre(),color[contColor], contColor));
                 Log.d("AÑADE JUGADOR", "AÑADE JUGADOR "+listaJugadores.get(listaJugadores.size()-1).getNomJugador());
             }
@@ -120,6 +130,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
             Log.d(" "," ");
         });
 
+        //Metodo para navegar de actividad entre los estandartes
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,6 +140,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
             }
         });
 
+        //Metodo para navegar de actividad entre los estandartes
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +149,8 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 finish();
             }
         });
+
+        //Metodo para navegar de actividad entre los estandartes
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,52 +160,56 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
             }
         });
 
+        //Método para controlar la música
         sMSeleccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMSeleccion.isChecked()){
                     Login.mp.start();
-                }else{
+                    Login.music =true;
+                }else {
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
-
+        //Metodo que envia la lista de jugadores a ResumenTurno
         bComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean valido=true;
+                //Si no hay entre 2 y 4 jugadores seleccionados no comienza la partida
                 if(listaJugadores.size()<2||listaJugadores.size()>4){
                     valido=false;
                     Toast.makeText(SeleccionPerfiles.this, "Selecciona entre 2 y 4 jugadores.", Toast.LENGTH_LONG).show();
                 }
-                int rojo = 0;
-                int negro = 0;
-                int amarillo = 0;
-                int rosa = 0;
+                int validacionColores[]={0,0,0,0};
+
                 for (int i=0; i<listaJugadores.size();i++) {
                     switch (listaJugadores.get(i).getContColor()) {
                         case 0:
-                            rojo++;
+                            validacionColores[0]++;
                             break;
                         case 1:
-                            negro++;
+                            validacionColores[1]++;
                             break;
                         case 2:
-                            amarillo++;
+                            validacionColores[2]++;
                             break;
                         case 3:
-                            rosa++;
+                            validacionColores[3]++;
                             break;
                     }
                 }
-                Log.d("COLORES", rojo +" "+ negro +" "+ amarillo +" "+ rosa);
-                if(rojo>=2||negro>1||amarillo>1||rosa>1){
-                    valido=false;
-                    Toast.makeText(SeleccionPerfiles.this, "No puede haber 2 jugadores con el mismo color.", Toast.LENGTH_LONG).show();
-
+                //Bucle para validar si hay 2 jugadores con el mismo color
+                for (int i = 0; i < validacionColores.length; i++) {
+                    Log.d("COLORES",String.valueOf(validacionColores[i]));
+                    if(validacionColores[i]>=2){
+                        valido=false;
+                        Toast.makeText(SeleccionPerfiles.this, "No puede haber 2 jugadores con el mismo color.", Toast.LENGTH_LONG).show();
+                    }
                 }
-
+                //Bucle para añadir los nombres a listaJugadores para ser enviados a la actividad ResumenTurno
                 for (int i=0; i<listaJugadores.size();i++) {
                     nombres.add(listaJugadores.get(i).getNomJugador());
                 }
@@ -208,12 +226,19 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     @Override
     protected void onPause() {
         super.onPause();
+        //Se para la música
         Login.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        //Se reanuda la música
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMSeleccion.setChecked(false);
+        }
     }
 }

@@ -22,17 +22,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NuevoFeudo extends AppCompatActivity implements Serializable {
-
+    //Elementos del layoyt
     ImageButton mas, menos, bImgPartidas,bImgPerfiles,bImgRanking;
     TextView torres, tCancelar, tAnadir,tPuntosFeudo;
     ImageView madera,pez,zanahoria,polvo,seta,plata,oro,cobre,diamante,perla;
     Switch sMNuevoFeudo;
+    //Atributo para el ActivityResultLauncher
     public static final int ACTUALIZAR_ADAPTER=1;
 
+    private int puntuacionFeudo=0;
+    //Atributos para los recursos
     private enum Recursos{madera, pez, zanahoria,polvo, seta, plata, oro, cobre, diamante, perla};
     private int recursosCont=0;
-    private int puntuacionFeudo=0;
-
     ArrayList<String> listaRecursos = new ArrayList<String>();
 
     public class Seleccionrecursos implements View.OnClickListener{
@@ -43,7 +44,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
             this.fotoRecurso = fotoRecurso;
             this.recursos = recursos;
         }
-
+        //Se define el método onClick para añadir o quitar recursos de la lista
         @Override
         public void onClick(View view) {
             Recursos seleccionado = Recursos.valueOf(recursos.name());
@@ -199,6 +200,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
 
+        //Se crean los manejadores de los recursos
         Seleccionrecursos manejadorMadera = new Seleccionrecursos(madera, Recursos.madera);
         Seleccionrecursos manejadorZanahoria = new Seleccionrecursos(zanahoria, Recursos.zanahoria);
         Seleccionrecursos manejadorPez = new Seleccionrecursos(pez, Recursos.pez);
@@ -210,6 +212,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         Seleccionrecursos manejadorDiamante = new Seleccionrecursos(diamante, Recursos.diamante);
         Seleccionrecursos manejadorPerla = new Seleccionrecursos(perla, Recursos.perla);
 
+        //Se llama al método onclick de los recursos con el manejador como parámetro
         madera.setOnClickListener(manejadorMadera);
         zanahoria.setOnClickListener(manejadorZanahoria);
         pez.setOnClickListener(manejadorPez);
@@ -221,17 +224,22 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         diamante.setOnClickListener(manejadorDiamante);
         perla.setOnClickListener(manejadorPerla);
 
+
+        //Método para controlar la música
         sMNuevoFeudo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMNuevoFeudo.isChecked()){
                     Login.mp.start();
-                }else{
+                    Login.music =true;
+                }else {
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
 
+        //Metodo para navegar de actividad entre los estandartes
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -241,6 +249,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
             }
         });
 
+        //Metodo para navegar de actividad entre los estandartes
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -249,6 +258,8 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
                 finish();
             }
         });
+
+        //Metodo para navegar de actividad entre los estandartes
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -258,6 +269,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
             }
         });
 
+        //Método para aumentar el número de torres
         mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -265,6 +277,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
                 contarPuntos();
             }
         });
+        //Método para reducir el número de torres, no puede bajar de 0
         menos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -276,15 +289,15 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
                 contarPuntos();
             }
         });
+        //Al pulsar cancelar se llama ActivityResultLauncher
         tCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(NuevoFeudo.this, activity_ResumenTurno.class);
-                //startActivity(intent);
                 setResult(RESULT_CANCELED);
                 finish();
             }
         });
+        //Se envia la información y a la actividad para que se actualice el adapter
         tAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -299,17 +312,25 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         });
     }
 
+    //Se para la música
     @Override
     protected void onPause() {
         super.onPause();
         Login.mp.pause();
     }
 
+    //Se reanuda la música
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMNuevoFeudo.setChecked(false);
+        }
     }
+    //metodo que multiplica los puntos de las torres por el número de recursos y actualiza elemento en layout
     private void contarPuntos(){
         puntuacionFeudo=listaRecursos.size()*Integer.parseInt(torres.getText().toString());
         Log.d("PUNTUACION", String.valueOf(puntuacionFeudo));
