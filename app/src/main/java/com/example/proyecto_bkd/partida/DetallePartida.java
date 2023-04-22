@@ -54,13 +54,21 @@ public class DetallePartida extends AppCompatActivity {
             }
         });
 
+        if(!Login.mp.isPlaying()){
+            sMDetallePartida.setChecked(false);
+        }else{
+            sMDetallePartida.setChecked(true);
+        }
+
         sMDetallePartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMDetallePartida.isChecked()){
                     Login.mp.start();
-                }else{
+                    Login.music =true;
+                }else {
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
@@ -84,6 +92,11 @@ public class DetallePartida extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMDetallePartida.setChecked(false);
+        }
     }
 }

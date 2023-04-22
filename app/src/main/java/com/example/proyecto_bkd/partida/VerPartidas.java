@@ -31,13 +31,19 @@ public class VerPartidas extends AppCompatActivity {
         bImgRanking=findViewById(R.id.bImgRanking);
         sMVerPartida= findViewById(R.id.sMVerPartida);
 
+        if(!Login.mp.isPlaying()){
+            sMVerPartida.setChecked(false);
+        }
+
         sMVerPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMVerPartida.isChecked()){
                     Login.mp.start();
-                }else{
+                    Login.music =true;
+                }else {
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
@@ -91,6 +97,11 @@ public class VerPartidas extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMVerPartida.setChecked(false);
+        }
     }
 }

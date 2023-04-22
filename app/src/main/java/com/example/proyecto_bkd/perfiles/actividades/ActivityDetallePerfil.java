@@ -133,8 +133,10 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             public void onClick(View view) {
                 if(sMPerfilDetalle.isChecked()){
                     Login.mp.start();
-                }else{
+                    Login.music =true;
+                }else {
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
@@ -149,6 +151,11 @@ public class ActivityDetallePerfil extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMPerfilDetalle.setChecked(false);
+        }
     }
 }

@@ -28,20 +28,26 @@ import com.example.proyecto_bkd.resumenturno.data.ResumenTurnoAdapter;
 import java.util.ArrayList;
 
 public class activity_ResumenTurno extends AppCompatActivity {
-    RecyclerView recyclerView;
-    public ArrayList<Feudo> listaFeudos;
-    ResumenTurnoAdapter adapter;
+    //Atributos para las condiciones del transcurso de la partida
+    private final int MAX_RONDAS=4;
+    int ronda=1;
+    int turno=0;
+    ArrayList<String> listaNombres=new ArrayList<String>();
+    static int[]puntuacion;
+
+    //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
     TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda;
     EditText puntosPergamino;
     Button aceptarPuntos;
     Switch sMResumenTurno;
+
+    //Atributos para mostrar datos en el recyclerView
     Bundle bundle;
-    ArrayList<String> listaNombres=new ArrayList<String>();
-    int[] puntuacion={0,0};
-    int ronda=1;
-    int turno=0;
-    private final int MAX_RONDAS=4;
+    public ArrayList<Feudo> listaFeudos;
+    RecyclerView recyclerView;
+    ResumenTurnoAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +64,25 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tNumTurno.setText(String.valueOf(ronda));
         sMResumenTurno= findViewById(R.id.sMResumenTurno);
 
+        if(!Login.mp.isPlaying()){
+            sMResumenTurno.setChecked(false);
+        }
+
+        //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMResumenTurno.isChecked()){
                     Login.mp.start();
-                }else{
+                    Login.music =true;
+                }else {
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
+
+        //Metodo para navegar de actividad entre los estandartes
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +92,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
             }
         });
 
+        //Metodo para navegar de actividad entre los estandartes
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +101,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 finish();
             }
         });
+
+        //Metodo para navegar de actividad entre los estandartes
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,18 +112,24 @@ public class activity_ResumenTurno extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.id_rv_resumenTurnos);
+        //Se muestra el recyclerView
         listaFeudos = new ArrayList<>();
+        recyclerView = findViewById(R.id.id_rv_resumenTurnos);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ResumenTurnoAdapter(listaFeudos);
         recyclerView.setAdapter(adapter);
+
+        //Se obtienen los nombres de los jugadores
         bundle=getIntent().getExtras();
         listaNombres = getIntent().getStringArrayListExtra("jugadores");
         tNomJugador.setText(listaNombres.get(0));
         Log.d("NOMBRE", listaNombres.get(0));
+        puntuacion=new int[listaNombres.size()-1];
+        //Se modifica la puntuacion dependiendo del jugador
         tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
 
+        //Se crea ActivityResultLauncher para obtener los datos de los nuevos feudos
         ActivityResultLauncher activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),result -> {
                     int codigo = result.getResultCode();
@@ -133,7 +157,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
                     }
                 });
 
-
+        //Al finalizar el turno el recyclerView se vacía y se prepara para el siguiente jugador
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,6 +165,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 listaFeudos.clear();
                 adapter = new ResumenTurnoAdapter(listaFeudos);
                 recyclerView.setAdapter(adapter);
+                //Si ha jugado el turno el último jugador se inicia nueva ronda
                 if(turno==listaNombres.size()) {
                     ronda++;
                     turno=0;
@@ -148,12 +173,15 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 tNomJugador.setText(listaNombres.get(turno));
                 tNumTurno.setText(ronda+"");
                 tPuntosRonda.setText(puntuacion[turno]+"");
+                //Si se ha jugado el turno del último jugador en la ultima ronda se llama al evento mostrarAlertDialog
                 if(ronda>2){
                     tNumTurno.setText(String.valueOf(2));
                         mostrarAlertDialog(turno);
                 }
             }
         });
+
+        //Se inicia la actividad añadir feudo
         tAddFeudo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +191,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         });
     }
 
+    //Se crea ventana AlertDialog para solicitar los puntos conseguidos por los pergaminos del jugador
     private void mostrarAlertDialog(int idJugador) {
         AlertDialog alertPergaminos= new AlertDialog.Builder(activity_ResumenTurno.this).create();
         LayoutInflater inflater =this.getLayoutInflater();
@@ -173,6 +202,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
 
         puntosPergamino.setHint("puntos "+listaNombres.get(idJugador));
         alertPergaminos.show();
+
         aceptarPuntos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,12 +217,19 @@ public class activity_ResumenTurno extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        //Se para la música
         Login.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        //Se reanuda la música
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMResumenTurno.setChecked(false);
+        }
     }
 }

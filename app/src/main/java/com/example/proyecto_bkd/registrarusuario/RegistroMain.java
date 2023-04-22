@@ -26,7 +26,7 @@ import java.util.Map;
 public class RegistroMain extends AppCompatActivity {
     Button bRegistrarse, bCancelar;
     EditText email,pass, pass2;
-    Switch sMRegistro;
+    public static Switch sMRegistro;
     FirebaseFirestore fs;
     FirebaseAuth mAuth;
 
@@ -43,13 +43,21 @@ public class RegistroMain extends AppCompatActivity {
         pass = findViewById(R.id.regPass);
         pass2 = findViewById(R.id.regPass2);
 
+        if(!Login.mp.isPlaying()){
+            sMRegistro.setChecked(false);
+        }else{
+            sMRegistro.setChecked(true);
+        }
+
         sMRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMRegistro.isChecked()){
                     Login.mp.start();
+                    Login.music =true;
                 }else{
                     Login.mp.pause();
+                    Login.music = false;
                 }
             }
         });
@@ -88,7 +96,12 @@ public class RegistroMain extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMRegistro.setChecked(false);
+        }
     }
 
     private void registerUser(String email, String password) {

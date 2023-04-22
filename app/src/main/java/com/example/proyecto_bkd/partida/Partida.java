@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -19,12 +22,16 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Partida extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-    TextView verPartida, newGame, salir, cerrarSesion;
-    Switch sMPartida;
+    TextView verPartida, newGame, salir, cerrarSesion, tPartida, tPerfiles, tRanking;
+    public static Switch sMPartida;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
+        tPartida = findViewById(R.id.tPartidas);
+        tPerfiles = findViewById(R.id.tPerfiles);
+        tRanking = findViewById(R.id.tRanking);
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
@@ -33,6 +40,14 @@ public class Partida extends AppCompatActivity {
         salir=findViewById(R.id.tSalir);
         sMPartida= findViewById(R.id.sMPartida);
         cerrarSesion = findViewById(R.id.tCerrarSesion);
+
+        Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
+        tPartida.setAnimation(animEstandarte);
+        tPerfiles.setAnimation(animEstandarte);
+        tRanking.setAnimation(animEstandarte);
+        bImgPartidas.setAnimation(animEstandarte);
+        bImgPerfiles.setAnimation(animEstandarte);
+        bImgRanking.setAnimation(animEstandarte);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -43,14 +58,16 @@ public class Partida extends AppCompatActivity {
             // El usuario no está autenticado, debes enviarlo a la actividad de inicio de sesión
         }
 
-
+        Log.d("SONANDO PARTIDA",Login.mp.isPlaying()+"");
         sMPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMPartida.isChecked()){
                     Login.mp.start();
+                    Login.music=true;
                 }else{
                     Login.mp.pause();
+                    Login.music=false;
                 }
             }
         });
@@ -121,6 +138,11 @@ public class Partida extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(Login.music){
+            Login.mp.start();
+        }else{
+            Login.mp.pause();
+            sMPartida.setChecked(false);
+        }
     }
 }

@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyecto_bkd.partida.Partida;
@@ -31,35 +35,44 @@ public class Login extends AppCompatActivity {
     public static MediaPlayer mp, puerta;
     EditText campoUsu, campoPass;
     Button bLogin,bRegistrarse;
-    Switch sMLogin;
+    public static Switch sMLogin;
     FirebaseAuth mAuth;
+    TextView tRegistrar;
+    public static boolean music=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Animation animacionAbajo = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_abajo);
+
+        tRegistrar=findViewById(R.id.tRegistrar);
         campoUsu = findViewById(R.id.logUsu);
         campoPass = findViewById(R.id.logPass);
         mAuth = FirebaseAuth.getInstance();
 
+        tRegistrar.setAnimation(animacionAbajo);
         sMLogin = findViewById(R.id.sMLogin);
         mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
         bLogin=findViewById(R.id.bLogin);
         bRegistrarse=findViewById(R.id.bRegistarse);
 
+
         if(!mp.isPlaying()){
             mp.setLooping(true);
             mp.start();
         }
+
         sMLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMLogin.isChecked()){
                     mp.start();
+                    music=true;
                 }else {
                     mp.pause();
-
+                    music=false;
                 }
             }
         });
@@ -110,6 +123,6 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mp.start();
+            mp.start();
     }
 }

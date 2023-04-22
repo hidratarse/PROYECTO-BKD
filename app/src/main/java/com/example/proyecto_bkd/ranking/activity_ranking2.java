@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
@@ -21,6 +24,7 @@ import java.util.Arrays;
 
 public class activity_ranking2 extends AppCompatActivity {
 
+    TextView tPartida, tPerfiles, tRanking;
     private RecyclerView recyclerView;
     private Ranking2_adapter adapter;
     private ArrayList<Perfil> perfiles;
@@ -36,16 +40,31 @@ public class activity_ranking2 extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
+        tPartida = findViewById(R.id.tPartidas);
+        tPerfiles = findViewById(R.id.tPerfiles);
+        tRanking = findViewById(R.id.tRanking);
+
+        Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
+        tPartida.setAnimation(animEstandarte);
+        tPerfiles.setAnimation(animEstandarte);
+        tRanking.setAnimation(animEstandarte);
+        bImgPartidas.setAnimation(animEstandarte);
+        bImgPerfiles.setAnimation(animEstandarte);
+        bImgRanking.setAnimation(animEstandarte);
 
         sMRanking= findViewById(R.id.sMRanking);
+
 
         sMRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(sMRanking.isChecked()){
                     Login.mp.start();
+                    Login.music =true;
                 }else{
                     Login.mp.pause();
+                    Login.music =false;
+
                 }
             }
         });
@@ -94,6 +113,11 @@ public class activity_ranking2 extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Login.mp.start();
+        if(!Login.music){
+            sMRanking.setChecked(false);
+            Login.mp.pause();
+        }else{
+            Login.mp.start();
+        }
     }
 }
