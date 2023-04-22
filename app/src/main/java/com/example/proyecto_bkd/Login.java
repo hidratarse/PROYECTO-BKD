@@ -80,7 +80,6 @@ public class Login extends AppCompatActivity {
         bLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                puerta.start();
                 String email = campoUsu.getText().toString().trim();
                 String password = campoPass.getText().toString().trim();
 
@@ -90,6 +89,7 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        puerta.start();
                                         Toast.makeText(Login.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(Login.this, Partida.class);
                                         startActivity(intent);
