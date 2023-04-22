@@ -109,6 +109,7 @@ public class Partida extends AppCompatActivity {
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(Partida.this, SeleccionPerfiles.class);
                 startActivity(intent);
                 finish();

@@ -26,6 +26,8 @@ public class VerPartidas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_partidas);
+        overridePendingTransition(R.anim.aparece_derecha,R.anim.desaparece_izquierda);
+
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);

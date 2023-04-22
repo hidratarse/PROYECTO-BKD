@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
@@ -33,7 +35,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
     int ronda=1;
     int turno=0;
     ArrayList<String> listaNombres=new ArrayList<String>();
-    static int[]puntuacion;
+    int[] puntuacion = new int[4];
 
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
@@ -51,6 +53,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.aparece_izquierda,R.anim.desaparece_derecha);
         setContentView(R.layout.activity_resumen_turno);
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
@@ -124,8 +127,17 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bundle=getIntent().getExtras();
         listaNombres = getIntent().getStringArrayListExtra("jugadores");
         tNomJugador.setText(listaNombres.get(0));
-        Log.d("NOMBRE", listaNombres.get(0));
-        puntuacion=new int[listaNombres.size()-1];
+        Log.d("TAMAÑO LISTA", listaNombres.size()+"");
+
+
+            puntuacion = new int[listaNombres.size()];
+
+        if (ronda == 1 && turno == 0) {
+            for (int i = 0; i < puntuacion.length; i++) {
+                puntuacion[i] = 0;
+            }
+        }
+        Log.d("TAMAÑO PUNTUACION", puntuacion.length+"");
         //Se modifica la puntuacion dependiendo del jugador
         tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
 
@@ -142,17 +154,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
                             Intent data = result.getData();
                             Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
                             Feudo fCloned = new Feudo(fNuevo.getRecursos(), fNuevo.getTorres(), fNuevo.getPuntos());
-                            puntuacion[turno]=Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos();
+                            puntuacion[turno] = Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos();
                             tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
                             listaFeudos.add(fCloned);
                             fNuevo=null;
                             adapter=new ResumenTurnoAdapter(listaFeudos);
                             recyclerView.setAdapter(adapter);
-                           /*
-                            for (int i = 0; i <listaFeudos.size(); i++) {
-                                Log.d("despues",String.valueOf(listaFeudos.get(i).getTorres()));
-                            }
-                            */
+
                             break;
                     }
                 });
@@ -174,8 +182,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 tNumTurno.setText(ronda+"");
                 tPuntosRonda.setText(puntuacion[turno]+"");
                 //Si se ha jugado el turno del último jugador en la ultima ronda se llama al evento mostrarAlertDialog
-                if(ronda>2){
-                    tNumTurno.setText(String.valueOf(2));
+                if(ronda>MAX_RONDAS){
+                    tNumTurno.setText(String.valueOf(MAX_RONDAS));
                         mostrarAlertDialog(turno);
                 }
             }
@@ -206,12 +214,28 @@ public class activity_ResumenTurno extends AppCompatActivity {
         aceptarPuntos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                puntuacion[idJugador]=puntuacion[idJugador]+Integer.parseInt(puntosPergamino.getText().toString());
-                Log.d("PUNTOS PERGA",listaNombres.get(idJugador)+" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
-                alertPergaminos.dismiss();
+                boolean valido=true;
+                    try{
+                        puntuacion[idJugador]+=Integer.parseInt(puntosPergamino.getText().toString());
+                        Log.d("PUNTOS PERGA",listaNombres.get(idJugador)+" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
+                    }catch (NumberFormatException e){
+                        Toast.makeText(activity_ResumenTurno.this, "No has introducido un número", Toast.LENGTH_SHORT).show();
+                        valido = false;
+                    }
+
+                if(valido){
+                    alertPergaminos.dismiss();
+                        turno++;
+                    if(turno<listaNombres.size()) {
+                        tNomJugador.setText(listaNombres.get(turno));
+                        mostrarAlertDialog(turno);
+                    }else{
+                        Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
+                        startActivity(intent);
+                    }
+                }
             }
         });
-
     }
 
     @Override

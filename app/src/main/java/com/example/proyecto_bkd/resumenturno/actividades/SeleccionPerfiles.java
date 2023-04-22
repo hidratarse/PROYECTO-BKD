@@ -60,6 +60,8 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_perfiles);
+        overridePendingTransition(R.anim.aparece_izquierda,R.anim.desaparece_derecha);
+
         bComenzar =findViewById(R.id.bComenzar);
         sMSeleccion= findViewById(R.id.sMSeleccion);
         bImgPartidas=findViewById(R.id.bImgPartidas);
