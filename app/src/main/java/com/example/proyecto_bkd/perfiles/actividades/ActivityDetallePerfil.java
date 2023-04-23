@@ -1,12 +1,15 @@
 package com.example.proyecto_bkd.perfiles.actividades;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -24,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-    TextView tCancela, tModificar, tInsertar, nPartidas, nGanadas, nPuntuacion;
+    TextView tCancela, tModificar, tInsertar, nPartidas, nGanadas, nPuntuacion, tBorrar;
     Switch sMPerfilDetalle;
     PerfilesViewModel vm;
     @Override
@@ -38,6 +41,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         tCancela=findViewById(R.id.tCancela);
         tModificar=findViewById(R.id.tModificar);
         tInsertar = findViewById(R.id.tInsertar);
+        tBorrar = findViewById(R.id.tBorrar);
         sMPerfilDetalle= findViewById(R.id.sMPerfilDetalle);
         nPartidas = findViewById(R.id.NumPartidasJugadas);
         nGanadas = findViewById(R.id.NumPartidasGanadas);
@@ -70,6 +74,28 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             nGanadas.setText(perfil.getPartidasGanadas());
             nPuntuacion.setText(perfil.getMaxPuntuacion());
         });
+
+        tBorrar.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityDetallePerfil.this);
+
+            View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
+            builder.setView(confirmDialogView);
+
+            Button btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
+            Button btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
+            AlertDialog alertDialog = builder.create();
+            btnConfirmar.setOnClickListener(v -> {
+                //eliminar
+            });
+
+            btnCancelar.setOnClickListener(v -> {
+                // cancelar
+                alertDialog.dismiss();
+            });
+            alertDialog.show();
+        });
+
+
 
         tInsertar.setOnClickListener(view -> {
             String newName = nombre.getText().toString();
