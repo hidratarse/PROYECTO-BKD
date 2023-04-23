@@ -81,11 +81,12 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
             builder.setView(confirmDialogView);
 
-            Button btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
-            Button btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
+            TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
+            TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
             AlertDialog alertDialog = builder.create();
             btnConfirmar.setOnClickListener(v -> {
                 //eliminar
+                alertDialog.dismiss();
             });
 
             btnCancelar.setOnClickListener(v -> {
