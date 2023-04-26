@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,6 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     Switch sMSeleccion;
     Button bComenzar;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-
     //Atributos para contruir el recyclerView
     private RecyclerView recyclerView;
     private PerfilesAdapter adaptador;
@@ -50,7 +50,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
 
     //Atributos para el constructor Jugador
     int contColor =0;
-    String[] color = {"Rojo","Negro","Amarrillo","Rosa"};
+    String[] color = {"Rojo","Negro","Amarillo","Rosa"};
     ArrayList<Jugador> listaJugadores = new ArrayList<>();
 
     //Almacena los nombres de listaJugadores para enviarlos a la actividad ResumenTurno
@@ -61,7 +61,6 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_perfiles);
         overridePendingTransition(R.anim.aparece_izquierda,R.anim.desaparece_derecha);
-
         bComenzar =findViewById(R.id.bComenzar);
         sMSeleccion= findViewById(R.id.sMSeleccion);
         bImgPartidas=findViewById(R.id.bImgPartidas);
@@ -114,6 +113,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 if(listaJugadores.get(posicion).getContColor()==color.length-1){
                     Log.d("COLOR A CERO", "COLOR A CERO se elimina"+listaJugadores.get(posicion).getNomJugador());
                     listaJugadores.remove(listaJugadores.get(posicion));
+
                 }else{
                     listaJugadores.get(posicion).setContColor(listaJugadores.get(posicion).getContColor()+1);
                     listaJugadores.get(posicion).setColor(color[listaJugadores.get(posicion).getContColor()]);

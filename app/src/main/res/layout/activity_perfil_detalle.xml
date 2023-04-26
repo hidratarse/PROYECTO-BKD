@@ -154,7 +154,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline21"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/frame" />
+        app:srcCompat="@drawable/marco_amarillo" />
 
     <EditText
         android:id="@+id/eNombre"

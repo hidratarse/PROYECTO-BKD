@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/imgProfile"
-            android:layout_width="104dp"
-            android:layout_height="116dp"
+            android:layout_width="102dp"
+            android:layout_height="106dp"
             app:layout_constraintBottom_toBottomOf="@+id/id_marco"
             app:layout_constraintEnd_toEndOf="@+id/id_marco"
             app:layout_constraintStart_toStartOf="@+id/id_marco"
@@ -26,11 +26,12 @@
             android:id="@+id/id_marco"
             android:layout_width="145dp"
             android:layout_height="137dp"
+            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/frame" />
+            app:srcCompat="@drawable/marco_naranja" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
