@@ -16,13 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.resumenturno.actividades.Jugador;
+import com.example.proyecto_bkd.resumenturno.actividades.SeleccionPerfiles;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHolder> {
     private List<Perfil> datos = new ArrayList<>();
+    private ArrayList<String> seleccionado = new ArrayList<>();
     Jugador jugador;
+
     public interface ItemClickListener {
         void onClick(View view, Perfil perfil);
     }
@@ -33,15 +36,16 @@ public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHo
         this.clickListener = itemClickListener;
     }
 
+
     public void setResults(List<Perfil> datos){
         this.datos = datos;
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final ImageView imagen_marco, imagen_perfil;
-        private final TextView nombre;
-        private final ImageButton imagen_madera;
+        private ImageView imagen_marco, imagen_perfil;
+        private TextView nombre;
+        private ImageButton imagen_madera;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,6 +54,7 @@ public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHo
             imagen_madera = itemView.findViewById(R.id.id_imagen_madera);
             imagen_perfil = itemView.findViewById(R.id.imgProfile);
             itemView.setOnClickListener(this);
+
         }
 
         public TextView getNombre() {
@@ -58,9 +63,34 @@ public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
+            int cont=0;
             if (clickListener != null) {
                 clickListener.onClick(view, datos.get(getAdapterPosition()));
+                seleccionado.add(datos.get(getAdapterPosition()).getId());
+                for (int i = 0; i <seleccionado.size() ; i++) {
+                    if(seleccionado.get(i)==datos.get(getAdapterPosition()).getId()){
+                        cont++;
+                    }
+                }
             }
+            switch (cont%5){
+                case 0:
+                    imagen_marco.setImageResource(R.drawable.marco_naranja);
+                    break;
+                case 1:
+                    imagen_marco.setImageResource(R.drawable.marco_rojo);
+                    break;
+                case 2:
+                    imagen_marco.setImageResource(R.drawable.marco_negro);
+                    break;
+                case 3:
+                    imagen_marco.setImageResource(R.drawable.marco_amarillo);
+                    break;
+                case 4:
+                    imagen_marco.setImageResource(R.drawable.marco_rosa);
+                break;
+            }
+
         }
     }
 
