@@ -73,6 +73,12 @@ public class PerfilesRepository {
         });
     }
 
+    public void  eliminarPerfil(String idPerfil){
+        coleccion.document(idPerfil).delete().addOnSuccessListener(aVoid ->{
+
+        });
+    }
+
     public MutableLiveData<List<Perfil>> getListaPerfilesLivedata() {
         return listaPerfilesLivedata;
     }

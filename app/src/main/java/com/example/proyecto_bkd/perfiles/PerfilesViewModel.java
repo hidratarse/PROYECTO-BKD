@@ -36,6 +36,10 @@ public class PerfilesViewModel extends ViewModel {
         perfilesRepository.modificarPerfil(id, nuevoPerfil);
     }
 
+    public void eliminarPerfil(String id){
+        perfilesRepository.eliminarPerfil(id);
+    }
+
     public void clear(){
         perfilLivedata.postValue(new Perfil(" ", "0","0","0"));
     }

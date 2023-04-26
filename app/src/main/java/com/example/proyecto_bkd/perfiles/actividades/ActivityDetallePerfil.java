@@ -85,8 +85,11 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
             AlertDialog alertDialog = builder.create();
             btnConfirmar.setOnClickListener(v -> {
-                //eliminar
+                vm.eliminarPerfil(idPerfil);
                 alertDialog.dismiss();
+                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
+                startActivity(intent);
+                finish();
             });
 
             btnCancelar.setOnClickListener(v -> {
@@ -95,8 +98,6 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             });
             alertDialog.show();
         });
-
-
 
         tInsertar.setOnClickListener(view -> {
             String newName = nombre.getText().toString();
