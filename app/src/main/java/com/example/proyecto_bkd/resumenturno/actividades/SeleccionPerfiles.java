@@ -68,9 +68,6 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         bImgRanking=findViewById(R.id.bImgRanking);
         recyclerView=findViewById(R.id.rJugadores);
 
-        if(!Login.mp.isPlaying()){
-            sMSeleccion.setChecked(false);
-        }
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();

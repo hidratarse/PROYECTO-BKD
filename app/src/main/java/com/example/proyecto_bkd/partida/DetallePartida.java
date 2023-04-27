@@ -54,12 +54,6 @@ public class DetallePartida extends AppCompatActivity {
             }
         });
 
-        if(!Login.mp.isPlaying()){
-            sMDetallePartida.setChecked(false);
-        }else{
-            sMDetallePartida.setChecked(true);
-        }
-
         sMDetallePartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

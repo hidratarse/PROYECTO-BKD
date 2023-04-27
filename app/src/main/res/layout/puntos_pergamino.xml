@@ -4,53 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF">
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF">
 
     <LinearLayout
         android:id="@+id/lPergamino"
         android:layout_width="310dp"
         android:layout_height="210dp"
-        android:background="@drawable/pergamino"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tTituloPer"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FF5722"
-            android:fontFamily="@font/enchanted_land"
-            android:text="Puntos de pergamino"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="40dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <EditText
-            android:id="@+id/ePuntosPergamino"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF"
             android:backgroundTint="#00FFFFFF"
-            android:ems="10"
-            android:fontFamily="@font/enchanted_land"
-            android:hint="Puntos"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textSize="34sp" />
+            android:foregroundGravity="center_horizontal">
 
-        <Button
-            android:id="@+id/bPuntosPerga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FF5722"
-            android:fontFamily="@font/enchanted_land"
-            android:text="@string/Aceptar"
-            android:textSize="34sp" />
+            <ImageView
+                android:id="@+id/imgPergaPuntos"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/pergamino" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/tTituloPer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00FF5722"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="Puntos de pergamino"
+                    android:textAlignment="center"
+                    android:textColor="#FF5722"
+                    android:textSize="40dp" />
+
+                <EditText
+                    android:id="@+id/ePuntosPergamino"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#00FFFFFF"
+                    android:ems="10"
+                    android:fontFamily="@font/enchanted_land"
+                    android:hint="Puntos"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textSize="34sp" />
+
+                <Button
+                    android:id="@+id/bPuntosPerga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FF5722"
+                    android:fontFamily="@font/enchanted_land"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Aceptar"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 

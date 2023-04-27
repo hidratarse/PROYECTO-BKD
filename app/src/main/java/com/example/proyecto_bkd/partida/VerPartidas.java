@@ -33,10 +33,6 @@ public class VerPartidas extends AppCompatActivity {
         bImgRanking=findViewById(R.id.bImgRanking);
         sMVerPartida= findViewById(R.id.sMVerPartida);
 
-        if(!Login.mp.isPlaying()){
-            sMVerPartida.setChecked(false);
-        }
-
         sMVerPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

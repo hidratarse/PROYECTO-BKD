@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +41,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
 
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo;
     EditText puntosPergamino;
     Button aceptarPuntos;
     Switch sMResumenTurno;
@@ -210,7 +212,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
 
         puntosPergamino.setHint("puntos "+listaNombres.get(idJugador));
         alertPergaminos.show();
-
+        alertPergaminos.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         aceptarPuntos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -230,12 +232,44 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         tNomJugador.setText(listaNombres.get(turno));
                         mostrarAlertDialog(turno);
                     }else{
-                        Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
-                        startActivity(intent);
+                        alertHacerFoto();
                     }
                 }
             }
         });
+    }
+
+    private void alertHacerFoto() {
+        AlertDialog alertFoto= new AlertDialog.Builder(activity_ResumenTurno.this).create();
+        LayoutInflater inflater =this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.hacer_foto,null);
+        alertFoto.setView(dialogView);
+        tSi = dialogView.findViewById(R.id.tSi);
+        tNo = dialogView.findViewById(R.id.tNo);
+
+        alertFoto.show();
+        alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hacerFoto();
+            }
+        });
+        tNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void hacerFoto(){
+        //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent intent = new Intent(this, Partida.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
