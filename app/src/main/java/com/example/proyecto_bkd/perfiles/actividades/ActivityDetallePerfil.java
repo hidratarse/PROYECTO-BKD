@@ -84,6 +84,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
             TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
             AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             btnConfirmar.setOnClickListener(v -> {
                 vm.eliminarPerfil(idPerfil);
                 alertDialog.dismiss();

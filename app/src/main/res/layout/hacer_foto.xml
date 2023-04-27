@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/lPergamino"
+        android:layout_width="310dp"
+        android:layout_height="210dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF"
+            android:backgroundTint="#00FFFFFF"
+            android:foregroundGravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imgPergaFoto"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/pergamino" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/tQuieresFoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00FF5722"
+                    android:fontFamily="@font/enchanted_land"
+                    android:text="¿Quieres hacer una foto?"
+                    android:textAlignment="center"
+                    android:textColor="#FF5722"
+                    android:textSize="39dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/bSi"
+                            android:layout_width="153dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="left"
+                            android:backgroundTint="#00FFFFFF"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/sello1" />
+
+                        <ImageButton
+                            android:id="@+id/bNo"
+                            android:layout_width="152dp"
+                            android:layout_height="132dp"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:backgroundTint="#00FFFFFF"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/sello1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tSi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:fontFamily="@font/enchanted_land"
+                                android:gravity="center_horizontal"
+                                android:text="Si"
+                                android:textColor="#FFC107"
+                                android:textSize="34sp" />
+
+                            <TextView
+                                android:id="@+id/tNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:fontFamily="@font/enchanted_land"
+                                android:gravity="center_horizontal"
+                                android:text="No"
+                                android:textColor="#FFC107"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,11 +43,6 @@ public class RegistroMain extends AppCompatActivity {
         pass = findViewById(R.id.regPass);
         pass2 = findViewById(R.id.regPass2);
 
-        if(!Login.mp.isPlaying()){
-            sMRegistro.setChecked(false);
-        }else{
-            sMRegistro.setChecked(true);
-        }
 
         sMRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
