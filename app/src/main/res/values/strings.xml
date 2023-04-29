@@ -38,6 +38,17 @@
     <string name="CerrarSesion">Cerrar \nSesión</string>
     <string name="SeleccionJugador">Selecciona Jugadores</string>
     <string name="Aceptar">Aceptar</string>
+    <string name="Si">Si</string>
+    <string name="No">No</string>
+    <string name="Foto">¿Quieres hacer una foto?</string>
+    <string name="CompletarCampos">Por favor completa los campos</string>
+    <string name="ErrorInicio">Error al iniciar sesión</string>
+    <string name="Bienvenido">Bienvenido</string>
+    <string name="ErrorNumJugadores">Selecciona entre 2 y 4 jugadores</string>
+    <string name="ErrorColorJugadores">No puede haber 2 jugadores con el mismo color</string>
+    <string name="NoNum">No has introducido un número</string>
+
+
 
 
 </resources>

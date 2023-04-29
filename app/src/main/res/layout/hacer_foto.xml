@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:background="#00FF5722"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="¿Quieres hacer una foto?"
+                    android:text="@string/Foto"
                     android:textAlignment="center"
                     android:textColor="#FF5722"
                     android:textSize="39dp" />
@@ -64,7 +64,7 @@
                         android:layout_weight="1">
 
                         <ImageButton
-                            android:id="@+id/bSi"
+                            android:id="@+id/bNo"
                             android:layout_width="153dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="left"
@@ -73,7 +73,7 @@
                             app:srcCompat="@drawable/sello1" />
 
                         <ImageButton
-                            android:id="@+id/bNo"
+                            android:id="@+id/bSi"
                             android:layout_width="152dp"
                             android:layout_height="132dp"
                             android:layout_gravity="right"
@@ -89,18 +89,6 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/tSi"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:fontFamily="@font/enchanted_land"
-                                android:gravity="center_horizontal"
-                                android:text="Si"
-                                android:textColor="#FFC107"
-                                android:textSize="34sp" />
-
-                            <TextView
                                 android:id="@+id/tNo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -108,7 +96,19 @@
                                 android:clickable="true"
                                 android:fontFamily="@font/enchanted_land"
                                 android:gravity="center_horizontal"
-                                android:text="No"
+                                android:text="@string/No"
+                                android:textColor="#FFC107"
+                                android:textSize="34sp" />
+
+                            <TextView
+                                android:id="@+id/tSi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:fontFamily="@font/enchanted_land"
+                                android:gravity="center_horizontal"
+                                android:text="@string/Si"
                                 android:textColor="#FFC107"
                                 android:textSize="34sp" />
                         </LinearLayout>
