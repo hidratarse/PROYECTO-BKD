@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +45,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     Switch sMSeleccion;
     Button bComenzar;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    TextView tAceptar, tMensajeError;
     //Atributos para contruir el recyclerView
     private RecyclerView recyclerView;
     private PerfilesAdapter adaptador;
@@ -67,7 +70,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
         recyclerView=findViewById(R.id.rJugadores);
-
+        Vibrator vibrator =(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();
@@ -180,7 +183,8 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 //Si no hay entre 2 y 4 jugadores seleccionados no comienza la partida
                 if(listaJugadores.size()<2||listaJugadores.size()>4){
                     valido=false;
-                    Toast.makeText(SeleccionPerfiles.this, "Selecciona entre 2 y 4 jugadores.", Toast.LENGTH_LONG).show();
+                    vibrator.vibrate(500);
+                    alertError(getResources().getString(R.string.ErrorNumJugadores));
                 }
                 int validacionColores[]={0,0,0,0};
 
@@ -205,7 +209,8 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                     Log.d("COLORES",String.valueOf(validacionColores[i]));
                     if(validacionColores[i]>=2){
                         valido=false;
-                        Toast.makeText(SeleccionPerfiles.this, "No puede haber 2 jugadores con el mismo color.", Toast.LENGTH_LONG).show();
+                        vibrator.vibrate(500);
+                        alertError(getResources().getString(R.string.ErrorColorJugadores));
                     }
                 }
                 //Bucle para añadir los nombres a listaJugadores para ser enviados a la actividad ResumenTurno
@@ -219,6 +224,23 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                     finish();
                 }
             }
+        });
+    }
+
+    private void alertError(String mensaje) {
+        AlertDialog alertError= new AlertDialog.Builder(SeleccionPerfiles.this).create();
+        LayoutInflater inflater =this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.mensaje_error,null);
+        alertError.setView(dialogView);
+        tAceptar = dialogView.findViewById(R.id.tAceptarError);
+        tMensajeError = dialogView.findViewById(R.id.tMensajeError);
+        tMensajeError.setText(mensaje);
+        alertError.show();
+        alertError.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertError.dismiss();            }
         });
     }
 

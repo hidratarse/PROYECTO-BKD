@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +37,11 @@ public class activity_ResumenTurno extends AppCompatActivity {
     int turno=0;
     ArrayList<String> listaNombres=new ArrayList<String>();
     int[] puntuacion = new int[4];
+    AlertDialog alertError;
 
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tAceptar,tMensajeError;
     EditText puntosPergamino;
     Button aceptarPuntos;
     Switch sMResumenTurno;
@@ -203,7 +203,9 @@ public class activity_ResumenTurno extends AppCompatActivity {
 
     //Se crea ventana AlertDialog para solicitar los puntos conseguidos por los pergaminos del jugador
     private void mostrarAlertDialog(int idJugador) {
+        Vibrator vibrator =(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         AlertDialog alertPergaminos= new AlertDialog.Builder(activity_ResumenTurno.this).create();
+        alertPergaminos.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.puntos_pergamino,null);
         alertPergaminos.setView(dialogView);
@@ -221,7 +223,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         puntuacion[idJugador]+=Integer.parseInt(puntosPergamino.getText().toString());
                         Log.d("PUNTOS PERGA",listaNombres.get(idJugador)+" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
                     }catch (NumberFormatException e){
-                        Toast.makeText(activity_ResumenTurno.this, "No has introducido un número", Toast.LENGTH_SHORT).show();
+                        vibrator.vibrate(500);
+                        alertError(getResources().getString(R.string.NoNum));
                         valido = false;
                     }
 
@@ -239,12 +242,42 @@ public class activity_ResumenTurno extends AppCompatActivity {
         });
     }
 
+    public void alertError(String mensaje) {
+        alertError = new AlertDialog.Builder(activity_ResumenTurno.this).create();
+        alertError.setCancelable(false);
+        LayoutInflater inflater =this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.mensaje_error,null);
+        alertError.setView(dialogView);
+        tAceptar = dialogView.findViewById(R.id.tAceptarError);
+        tMensajeError = dialogView.findViewById(R.id.tMensajeError);
+        tMensajeError.setText(mensaje);
+        alertError.show();
+        alertError.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertError.dismiss();            }
+        });
+
+    }
+    @Override
+    public void onBackPressed() {
+        if (alertError != null && alertError.isShowing()) {
+            // Mostrar el diálogo si aún no se ha mostrado
+            alertError.show();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
     private void alertHacerFoto() {
         AlertDialog alertFoto= new AlertDialog.Builder(activity_ResumenTurno.this).create();
+        alertFoto.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.hacer_foto,null);
         alertFoto.setView(dialogView);
-        tSi = dialogView.findViewById(R.id.tSi);
+        tSi = dialogView.findViewById(R.id.tNo);
         tNo = dialogView.findViewById(R.id.tNo);
 
         alertFoto.show();

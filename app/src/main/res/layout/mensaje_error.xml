@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imgFondoError"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/pergamino" />
+
+    <LinearLayout
+        android:id="@+id/rError"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="75dp" />
+
+        <TextView
+            android:id="@+id/tMensajeError"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/enchanted_land"
+            android:textAlignment="center"
+            android:textSize="34sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal|center_vertical">
+
+            <ImageButton
+                android:id="@+id/bAceptarError"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/sello1" />
+
+            <TextView
+                android:id="@+id/tAceptarError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:fontFamily="@font/enchanted_land"
+                android:gravity="center|center_horizontal"
+                android:text="@string/Aceptar"
+                android:textColor="#FFC107"
+                android:textSize="24sp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+</RelativeLayout>
