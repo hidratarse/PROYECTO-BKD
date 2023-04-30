@@ -28,6 +28,8 @@ import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 import com.example.proyecto_bkd.resumenturno.Feudo;
 import com.example.proyecto_bkd.resumenturno.data.ResumenTurnoAdapter;
+import com.example.proyecto_bkd.utils.Alert;
+
 import java.util.ArrayList;
 
 public class activity_ResumenTurno extends AppCompatActivity {
@@ -37,7 +39,6 @@ public class activity_ResumenTurno extends AppCompatActivity {
     int turno=0;
     ArrayList<String> listaNombres=new ArrayList<String>();
     int[] puntuacion = new int[4];
-    AlertDialog alertError;
 
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
@@ -224,7 +225,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         Log.d("PUNTOS PERGA",listaNombres.get(idJugador)+" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
                     }catch (NumberFormatException e){
                         vibrator.vibrate(500);
-                        alertError(getResources().getString(R.string.NoNum));
+                        Alert.alertError(activity_ResumenTurno.this,getResources().getString(R.string.NoNum));
                         valido = false;
                     }
 
@@ -242,29 +243,11 @@ public class activity_ResumenTurno extends AppCompatActivity {
         });
     }
 
-    public void alertError(String mensaje) {
-        alertError = new AlertDialog.Builder(activity_ResumenTurno.this).create();
-        alertError.setCancelable(false);
-        LayoutInflater inflater =this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.mensaje_error,null);
-        alertError.setView(dialogView);
-        tAceptar = dialogView.findViewById(R.id.tAceptarError);
-        tMensajeError = dialogView.findViewById(R.id.tMensajeError);
-        tMensajeError.setText(mensaje);
-        alertError.show();
-        alertError.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertError.dismiss();            }
-        });
-
-    }
     @Override
     public void onBackPressed() {
-        if (alertError != null && alertError.isShowing()) {
+        if (Alert.alertError != null && Alert.alertError.isShowing()) {
             // Mostrar el diálogo si aún no se ha mostrado
-            alertError.show();
+            Alert.alertError.show();
         } else {
             super.onBackPressed();
         }
