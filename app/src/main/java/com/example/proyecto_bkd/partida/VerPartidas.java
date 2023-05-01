@@ -13,7 +13,7 @@ import android.widget.Switch;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
+import com.example.proyecto_bkd.ranking.Ranking;
 
 public class VerPartidas extends AppCompatActivity {
 
@@ -49,7 +49,7 @@ public class VerPartidas extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VerPartidas.this, activity_ranking2.class);
+                Intent intent = new Intent(VerPartidas.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }

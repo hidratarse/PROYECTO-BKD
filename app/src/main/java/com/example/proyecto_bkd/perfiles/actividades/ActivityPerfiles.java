@@ -2,8 +2,6 @@ package com.example.proyecto_bkd.perfiles.actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -22,7 +20,7 @@ import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.perfiles.PerfilesAdapter;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
+import com.example.proyecto_bkd.ranking.Ranking;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -115,7 +113,7 @@ public class ActivityPerfiles extends AppCompatActivity {
         });
 
         bImgRanking.setOnClickListener(view -> {
-            Intent intent = new Intent(ActivityPerfiles.this, activity_ranking2.class);
+            Intent intent = new Intent(ActivityPerfiles.this, Ranking.class);
             startActivity(intent);
             finish();
         });

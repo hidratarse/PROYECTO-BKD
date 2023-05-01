@@ -4,12 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -20,7 +18,7 @@ import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
+import com.example.proyecto_bkd.ranking.Ranking;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -134,7 +132,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDetallePerfil.this, activity_ranking2.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }

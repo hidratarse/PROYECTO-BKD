@@ -14,11 +14,11 @@ import com.example.proyecto_bkd.perfiles.data.Perfil;
 
 import java.util.ArrayList;
 
-public class Ranking2_adapter extends RecyclerView.Adapter<Ranking2_adapter.ViewHolder> {
+public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder> {
 
     private ArrayList<Perfil> datos;
 
-    public Ranking2_adapter(ArrayList<Perfil> dataSet){
+    public RankingAdapter(ArrayList<Perfil> dataSet){
         datos = new ArrayList<>();
         add(dataSet);
     }

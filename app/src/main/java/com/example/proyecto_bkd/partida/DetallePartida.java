@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
+import com.example.proyecto_bkd.ranking.Ranking;
 
 import java.io.File;
 
@@ -49,7 +49,7 @@ public class DetallePartida extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetallePartida.this, activity_ranking2.class);
+                Intent intent = new Intent(DetallePartida.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,39 +1,30 @@
 package com.example.proyecto_bkd.resumenturno.actividades;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
-import com.example.proyecto_bkd.perfiles.PerfilesAdapter;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
-import com.example.proyecto_bkd.perfiles.actividades.ActivityDetallePerfil;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
-import com.example.proyecto_bkd.resumenturno.Feudo;
+import com.example.proyecto_bkd.ranking.Ranking;
+import com.example.proyecto_bkd.resumenturno.JugadorAdapter;
+import com.example.proyecto_bkd.resumenturno.data.Jugador;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -48,17 +39,13 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     TextView tAceptar, tMensajeError;
     //Atributos para contruir el recyclerView
     private RecyclerView recyclerView;
-    private PerfilesAdapter adaptador;
+    private JugadorAdapter adaptador;
     private PerfilesViewModel vm;
 
     //Atributos para el constructor Jugador
     int contColor =0;
     String[] color = {"Rojo","Negro","Amarillo","Rosa"};
     public static ArrayList<Jugador> listaJugadores = new ArrayList<>();
-
-    //Almacena los nombres de listaJugadores para enviarlos a la actividad ResumenTurno
-    ArrayList<String> nombres=new ArrayList<>();
-    public static ArrayList<String> colores = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +71,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
             // El usuario no está autenticado, debes enviarlo a la actividad de inicio de sesión
         }
 
-        adaptador = new PerfilesAdapter();
+        adaptador = new JugadorAdapter();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(adaptador);
@@ -127,7 +114,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SeleccionPerfiles.this, activity_ranking2.class);
+                Intent intent = new Intent(SeleccionPerfiles.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }
@@ -203,14 +190,8 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                         alertError(getResources().getString(R.string.ErrorColorJugadores));
                     }
                 }
-                //Bucle para añadir los nombres a listaJugadores para ser enviados a la actividad ResumenTurno
-                for (int i=0; i<listaJugadores.size();i++) {
-                    nombres.add(listaJugadores.get(i).getNomJugador());
-                    colores.add(listaJugadores.get(i).getColor());
-                }
                 if(valido){
-                    Intent intent = new Intent(SeleccionPerfiles.this, activity_ResumenTurno.class);
-                    intent.putStringArrayListExtra("jugadores", nombres);
+                    Intent intent = new Intent(SeleccionPerfiles.this, ResumenTurno.class);
                     startActivity(intent);
                     finish();
                 }
