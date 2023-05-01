@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.perfiles;
+package com.example.proyecto_bkd.resumenturno;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +16,17 @@ import com.example.proyecto_bkd.perfiles.data.Perfil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHolder> {
+public class JugadorAdapter extends RecyclerView.Adapter<JugadorAdapter.ViewHolder> {
     private List<Perfil> datos = new ArrayList<>();
+    private ArrayList<String> seleccionado = new ArrayList<>();
 
     public interface ItemClickListener {
         void onClick(View view, Perfil perfil);
     }
 
-    private ItemClickListener clickListener;
+    private JugadorAdapter.ItemClickListener clickListener;
 
-    public void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(JugadorAdapter.ItemClickListener itemClickListener) {
         this.clickListener = itemClickListener;
     }
 
@@ -56,21 +57,45 @@ public class PerfilesAdapter extends RecyclerView.Adapter<PerfilesAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
+            int cont=0;
             if (clickListener != null) {
                 clickListener.onClick(view, datos.get(getAdapterPosition()));
+                seleccionado.add(datos.get(getAdapterPosition()).getId());
+                for (int i = 0; i <seleccionado.size() ; i++) {
+                    if(seleccionado.get(i)==datos.get(getAdapterPosition()).getId()){
+                        cont++;
+                    }
+                }
+            }
+            switch (cont%5){
+                case 0:
+                    imagen_marco.setImageResource(R.drawable.marco_naranja);
+                    break;
+                case 1:
+                    imagen_marco.setImageResource(R.drawable.marco_rojo);
+                    break;
+                case 2:
+                    imagen_marco.setImageResource(R.drawable.marco_negro);
+                    break;
+                case 3:
+                    imagen_marco.setImageResource(R.drawable.marco_amarillo);
+                    break;
+                case 4:
+                    imagen_marco.setImageResource(R.drawable.marco_rosa);
+                    break;
             }
         }
     }
 
     @NonNull
     @Override
-    public PerfilesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public JugadorAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.perfiles_view, parent, false);
-        return new ViewHolder(v);
+        return new JugadorAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull JugadorAdapter.ViewHolder holder, int position) {
         Perfil p = datos.get(position);
 
         if (position == 0) {

@@ -1,7 +1,7 @@
-package com.example.proyecto_bkd.resumenturno.actividades;
+package com.example.proyecto_bkd.resumenturno.data;
 
 public class Jugador {
-    String nomJugador, color;
+    String idJugador, nomJugador, color;
     int contColor, puntos, posicion;
 
     public Jugador(String nomJugador, String color, int contColor) {
@@ -41,11 +41,20 @@ public class Jugador {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
     public int getPosicion() {
         return posicion;
     }
 
     public void setPosicion(int posicion) {
         this.posicion = posicion;
+    }
+
+    public String getIdJugador() {
+        return idJugador;
+    }
+
+    public void setIdJugador(String idJugador) {
+        this.idJugador = idJugador;
     }
 }

@@ -48,14 +48,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".resumenturno.actividades.activity_ResumenTurno"
+            android:name=".resumenturno.actividades.ResumenTurno"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ranking.activity_ranking2"
+            android:name=".ranking.Ranking"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

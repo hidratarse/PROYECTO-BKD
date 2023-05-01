@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.resumenturno.actividades.activity_ResumenTurno;
 
 public class Alert {
     public static AlertDialog alertError;

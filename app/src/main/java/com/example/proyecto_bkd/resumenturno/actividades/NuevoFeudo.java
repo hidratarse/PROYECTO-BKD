@@ -15,14 +15,14 @@ import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
-import com.example.proyecto_bkd.resumenturno.Feudo;
+import com.example.proyecto_bkd.ranking.Ranking;
+import com.example.proyecto_bkd.resumenturno.data.Feudo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NuevoFeudo extends AppCompatActivity implements Serializable {
-    //Elementos del layoyt
+    //Elementos del layout
     ImageButton mas, menos, bImgPartidas,bImgPerfiles,bImgRanking;
     TextView torres, tCancelar, tAnadir,tPuntosFeudo;
     ImageView madera,pez,zanahoria,polvo,seta,plata,oro,cobre,diamante,perla;
@@ -243,7 +243,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NuevoFeudo.this, activity_ranking2.class);
+                Intent intent = new Intent(NuevoFeudo.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }

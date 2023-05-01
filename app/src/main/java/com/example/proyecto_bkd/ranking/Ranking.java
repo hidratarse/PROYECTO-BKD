@@ -20,13 +20,12 @@ import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class activity_ranking2 extends AppCompatActivity {
+public class Ranking extends AppCompatActivity {
 
     TextView tPartida, tPerfiles, tRanking;
     private RecyclerView recyclerView;
-    private Ranking2_adapter adapter;
+    private RankingAdapter adapter;
     private ArrayList<Perfil> perfiles;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     Switch sMRanking;
@@ -72,7 +71,7 @@ public class activity_ranking2 extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ranking2.this, activity_ranking2.class);
+                Intent intent = new Intent(Ranking.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }
@@ -81,7 +80,7 @@ public class activity_ranking2 extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ranking2.this, Partida.class);
+                Intent intent = new Intent(Ranking.this, Partida.class);
                 startActivity(intent);
                 finish();
             }
@@ -89,7 +88,7 @@ public class activity_ranking2 extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ranking2.this, ActivityPerfiles.class);
+                Intent intent = new Intent(Ranking.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }

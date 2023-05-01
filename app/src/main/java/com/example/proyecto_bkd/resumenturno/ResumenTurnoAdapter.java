@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.resumenturno.data.Feudo;
 
 import java.util.ArrayList;
 
@@ -28,12 +29,7 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
     public ResumenTurnoAdapter (ArrayList<Feudo> feudoArrayList){
         this.datos=feudoArrayList;
     }
-    /*
-    public void setResults(ArrayList<Feudo> datos){
-        this.datos = datos;
-        notifyDataSetChanged();
-    }
-    */
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView torres,txtPuntuacion;
         private ImageView madera,pez,zanahoria,polvo,seta,plata,oro,cobre,diamante,perla;

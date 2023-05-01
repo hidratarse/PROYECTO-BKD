@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
@@ -23,14 +24,23 @@ import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
+import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.ranking.activity_ranking2;
-import com.example.proyecto_bkd.resumenturno.Feudo;
+import com.example.proyecto_bkd.ranking.Ranking;
+import com.example.proyecto_bkd.resumenturno.PartidasViewModel;
+import com.example.proyecto_bkd.resumenturno.data.Feudo;
 import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
+import com.example.proyecto_bkd.resumenturno.data.Partidas;
 import com.example.proyecto_bkd.utils.Alert;
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class activity_ResumenTurno extends AppCompatActivity {
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class ResumenTurno extends AppCompatActivity {
     //Atributos para las condiciones del transcurso de la partida
     private final int MAX_RONDAS=4;
     int ronda=1;
@@ -46,6 +56,9 @@ public class activity_ResumenTurno extends AppCompatActivity {
     public ArrayList<Feudo> listaFeudos;
     RecyclerView recyclerView;
     ResumenTurnoAdapter adapter;
+    String email;
+    Partidas partida;
+    PartidasViewModel vm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +76,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tPuntosRonda= findViewById(R.id.tPuntosRonda);
         tNumTurno.setText(String.valueOf(ronda));
         sMResumenTurno= findViewById(R.id.sMResumenTurno);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        email = currentUser.getEmail();
 
+        vm = new ViewModelProvider(this).get(PartidasViewModel  .class);
+        vm.init();
+
+        Log.d("IDDDD",generarID());
         if(!Login.mp.isPlaying()){
             sMResumenTurno.setChecked(false);
         }
@@ -86,7 +105,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ResumenTurno.this, activity_ranking2.class);
+                Intent intent = new Intent(ResumenTurno.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }
@@ -96,7 +115,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
+                Intent intent = new Intent(ResumenTurno.this, Partida.class);
                 startActivity(intent);
                 finish();
             }
@@ -106,7 +125,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ResumenTurno.this, ActivityPerfiles.class);
+                Intent intent = new Intent(ResumenTurno.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -175,7 +194,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tAddFeudo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ResumenTurno.this, NuevoFeudo.class);
+                Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
                 activityResultLauncher.launch(intent);
             }
         });
@@ -184,7 +203,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
     //Se crea ventana AlertDialog para solicitar los puntos conseguidos por los pergaminos del jugador
     private void mostrarAlertDialog(int idJugador) {
         Vibrator vibrator =(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-        AlertDialog alertPergaminos= new AlertDialog.Builder(activity_ResumenTurno.this).create();
+        AlertDialog alertPergaminos= new AlertDialog.Builder(ResumenTurno.this).create();
         alertPergaminos.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.puntos_pergamino,null);
@@ -192,9 +211,10 @@ public class activity_ResumenTurno extends AppCompatActivity {
         puntosPergamino = dialogView.findViewById(R.id.ePuntosPergamino);
         aceptarPuntos = dialogView.findViewById(R.id.bPuntosPerga);
 
-        puntosPergamino.setHint("puntos "+SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
+        puntosPergamino.setHint(getResources().getString(R.string.IntroducePuntos)+" "+SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
         alertPergaminos.show();
         alertPergaminos.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        puntosPergamino.findFocus();
         aceptarPuntos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,7 +224,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         Log.d("PUNTOS PERGA",SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador()+" "+puntosPergamino.getText().toString()+" "+String.valueOf(SeleccionPerfiles.listaJugadores.get(idJugador).getPuntos()));
                     }catch (NumberFormatException e){
                         vibrator.vibrate(500);
-                        Alert.alertError(activity_ResumenTurno.this,getResources().getString(R.string.NoNum));
+                        Alert.alertError(ResumenTurno.this,getResources().getString(R.string.NoNum));
                         valido = false;
                     }
 
@@ -215,6 +235,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
                         mostrarAlertDialog(turno);
                     }else{
+                        crearPartida();
+                        vm.insertarPartida(partida);
                         alertHacerFoto();
                     }
                 }
@@ -233,7 +255,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
     }
 
     private void alertHacerFoto() {
-        AlertDialog alertFoto= new AlertDialog.Builder(activity_ResumenTurno.this).create();
+        AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
         alertFoto.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.hacer_foto,null);
@@ -253,7 +275,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
+                Intent intent = new Intent(ResumenTurno.this, Partida.class);
                 startActivity(intent);
                 alertFoto.dismiss();
                 finish();
@@ -295,5 +317,33 @@ public class activity_ResumenTurno extends AppCompatActivity {
             Login.mp.pause();
             sMResumenTurno.setChecked(false);
         }
+    }
+
+    private void crearPartida(){
+        long ahora = System.currentTimeMillis();
+        Date date = new Date(ahora);
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String fecha = df.format(date);
+        switch (SeleccionPerfiles.listaJugadores.size()){
+            case 2:
+                partida =new Partidas(email, fecha,SeleccionPerfiles.listaJugadores.get(0),SeleccionPerfiles.listaJugadores.get(1));
+                break;
+            case 3:
+                partida =new Partidas(email, fecha,SeleccionPerfiles.listaJugadores.get(0),SeleccionPerfiles.listaJugadores.get(1),SeleccionPerfiles.listaJugadores.get(2));
+                break;
+            case 4:
+                partida =new Partidas(email, fecha,SeleccionPerfiles.listaJugadores.get(0),SeleccionPerfiles.listaJugadores.get(1),SeleccionPerfiles.listaJugadores.get(2),SeleccionPerfiles.listaJugadores.get(3));
+                break;
+        }
+    }
+
+    private String generarID(){
+        String id ="";
+        char letra;
+        do{
+            letra =(char)(65+(Math.random()*25));
+            id+=letra;
+        }while (id.length()<8);
+        return id;
     }
 }

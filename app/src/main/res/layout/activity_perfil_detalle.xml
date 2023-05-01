@@ -150,11 +150,12 @@
         android:layout_width="173dp"
         android:layout_height="165dp"
         android:backgroundTint="#FBF7F7"
+        android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline21"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/marco_amarillo" />
+        app:srcCompat="@drawable/marco_naranja" />
 
     <EditText
         android:id="@+id/eNombre"

@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno;
+package com.example.proyecto_bkd.resumenturno.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
