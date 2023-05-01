@@ -1,9 +1,8 @@
 package com.example.proyecto_bkd.resumenturno.actividades;
 
 public class Jugador {
-    String nomJugador;
-    String color;
-    int contColor;
+    String nomJugador, color;
+    int contColor, puntos, posicion;
 
     public Jugador(String nomJugador, String color, int contColor) {
         this.nomJugador = nomJugador;
@@ -33,5 +32,20 @@ public class Jugador {
 
     public void setContColor(int contColor) {
         this.contColor = contColor;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 }

@@ -54,10 +54,11 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     //Atributos para el constructor Jugador
     int contColor =0;
     String[] color = {"Rojo","Negro","Amarillo","Rosa"};
-    ArrayList<Jugador> listaJugadores = new ArrayList<>();
+    public static ArrayList<Jugador> listaJugadores = new ArrayList<>();
 
     //Almacena los nombres de listaJugadores para enviarlos a la actividad ResumenTurno
     ArrayList<String> nombres=new ArrayList<>();
+    public static ArrayList<String> colores = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,6 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         });
 
         adaptador.setClickListener((view, perfil) -> {
-            Log.d("TAMAÑO", String.valueOf(listaJugadores.size()));
             //Atributo para validar la selección
             boolean valido=false;
             //Atributo para indicar la posicion del jugador en el arraylist si tiene el mismo nombre que el nombre del perfil seleccionado
@@ -111,25 +111,16 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
             //si existe en el arraylist se modifica el color, si ha llegado al ultimo color del array se elimina de la lista
             if (valido) {
                 if(listaJugadores.get(posicion).getContColor()==color.length-1){
-                    Log.d("COLOR A CERO", "COLOR A CERO se elimina"+listaJugadores.get(posicion).getNomJugador());
                     listaJugadores.remove(listaJugadores.get(posicion));
 
                 }else{
                     listaJugadores.get(posicion).setContColor(listaJugadores.get(posicion).getContColor()+1);
                     listaJugadores.get(posicion).setColor(color[listaJugadores.get(posicion).getContColor()]);
-                    Log.d("COLOR CAMBIA", "COLOR CAMBIA "+listaJugadores.get(posicion).getNomJugador()+" "+listaJugadores.get(posicion).getColor());
                 }
             }else{
                 //Si no existe en la lista se añade
                 listaJugadores.add(new Jugador(perfil.getNombre(),color[contColor], contColor));
-                Log.d("AÑADE JUGADOR", "AÑADE JUGADOR "+listaJugadores.get(listaJugadores.size()-1).getNomJugador());
             }
-            for (int i=0; i<listaJugadores.size();i++) {
-                Log.d("LISTADO", listaJugadores.get(i).getNomJugador() + " " + listaJugadores.get(i).getColor());
-            }
-
-            Log.d("TAMAÑO FINAL", String.valueOf(listaJugadores.size()));
-            Log.d(" "," ");
         });
 
         //Metodo para navegar de actividad entre los estandartes
@@ -206,7 +197,6 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 }
                 //Bucle para validar si hay 2 jugadores con el mismo color
                 for (int i = 0; i < validacionColores.length; i++) {
-                    Log.d("COLORES",String.valueOf(validacionColores[i]));
                     if(validacionColores[i]>=2){
                         valido=false;
                         vibrator.vibrate(500);
@@ -216,6 +206,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 //Bucle para añadir los nombres a listaJugadores para ser enviados a la actividad ResumenTurno
                 for (int i=0; i<listaJugadores.size();i++) {
                     nombres.add(listaJugadores.get(i).getNomJugador());
+                    colores.add(listaJugadores.get(i).getColor());
                 }
                 if(valido){
                     Intent intent = new Intent(SeleccionPerfiles.this, activity_ResumenTurno.class);

@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.registrarusuario.RegistroMain;
 import com.example.proyecto_bkd.resumenturno.actividades.activity_ResumenTurno;
+import com.example.proyecto_bkd.utils.Alert;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +48,7 @@ public class Login extends AppCompatActivity {
     Button bLogin,bRegistrarse;
     public static Switch sMLogin;
     FirebaseAuth mAuth;
-    TextView tRegistrar,tAceptar,tMensajeError;
+    TextView tRegistrar;
     public static boolean music=true;
 
     @Override
@@ -106,13 +107,13 @@ public class Login extends AppCompatActivity {
                                         finish();
                                     } else {
                                         vibrator.vibrate(500);
-                                        alertError(getResources().getString(R.string.ErrorInicio));
+                                        Alert.alertError(Login.this,getResources().getString(R.string.ErrorInicio));
                                     }
                                 }
                             });
                 } else {
                     vibrator.vibrate(500);
-                    alertError(getResources().getString(R.string.CompletarCampos));
+                    Alert.alertError(Login.this,getResources().getString(R.string.CompletarCampos));
                 }
             }
         });
@@ -123,23 +124,6 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        });
-    }
-
-    public void alertError(String mensaje) {
-        AlertDialog alertError= new AlertDialog.Builder(Login.this).create();
-        LayoutInflater inflater =this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.mensaje_error,null);
-        alertError.setView(dialogView);
-        tAceptar = dialogView.findViewById(R.id.tAceptarError);
-        tMensajeError = dialogView.findViewById(R.id.tMensajeError);
-        tMensajeError.setText(mensaje);
-        alertError.show();
-        alertError.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertError.dismiss();            }
         });
     }
 
