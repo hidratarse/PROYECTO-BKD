@@ -45,7 +45,7 @@
     <string name="ErrorInicio">Error al iniciar sesión</string>
     <string name="Bienvenido">Bienvenido</string>
     <string name="ErrorNumJugadores">Selecciona entre 2 y 4 jugadores</string>
-    <string name="ErrorColorJugadores">No puede haber 2 jugadores con el mismo color</string>
+    <string name="ErrorColorJugadores">No puede haber 2 jugadores \ncon el mismo color</string>
     <string name="NoNum">No has introducido un número</string>
     <string name="save">Guardar</string>
 

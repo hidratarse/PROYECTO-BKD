@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno.data;
+package com.example.proyecto_bkd.resumenturno;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.resumenturno.Feudo;
 
 import java.util.ArrayList;
 

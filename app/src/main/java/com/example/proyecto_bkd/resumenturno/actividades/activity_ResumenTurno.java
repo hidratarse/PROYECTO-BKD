@@ -6,11 +6,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +20,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.Partida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 import com.example.proyecto_bkd.resumenturno.Feudo;
-import com.example.proyecto_bkd.resumenturno.data.ResumenTurnoAdapter;
+import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.utils.Alert;
-
 import java.util.ArrayList;
 
 public class activity_ResumenTurno extends AppCompatActivity {
@@ -38,17 +36,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
     int ronda=1;
     int turno=0;
     ArrayList<String> listaNombres=new ArrayList<String>();
-    int[] puntuacion = new int[4];
-
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tAceptar,tMensajeError;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo;
     EditText puntosPergamino;
     Button aceptarPuntos;
     Switch sMResumenTurno;
-
     //Atributos para mostrar datos en el recyclerView
-    Bundle bundle;
     public ArrayList<Feudo> listaFeudos;
     RecyclerView recyclerView;
     ResumenTurnoAdapter adapter;
@@ -88,7 +82,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
             }
         });
 
-        //Metodo para navegar de actividad entre los estandartes
+        //Método para navegar de actividad entre los estandartes
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,23 +120,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
         adapter = new ResumenTurnoAdapter(listaFeudos);
         recyclerView.setAdapter(adapter);
 
-        //Se obtienen los nombres de los jugadores
-        bundle=getIntent().getExtras();
-        listaNombres = getIntent().getStringArrayListExtra("jugadores");
-        tNomJugador.setText(listaNombres.get(0));
-        Log.d("TAMAÑO LISTA", listaNombres.size()+"");
-
-
-            puntuacion = new int[listaNombres.size()];
-
-        if (ronda == 1 && turno == 0) {
-            for (int i = 0; i < puntuacion.length; i++) {
-                puntuacion[i] = 0;
-            }
+        for (int i = 0; i <SeleccionPerfiles.listaJugadores.size() ; i++) {
+            SeleccionPerfiles.listaJugadores.get(i).setPuntos(0);
         }
-        Log.d("TAMAÑO PUNTUACION", puntuacion.length+"");
-        //Se modifica la puntuacion dependiendo del jugador
-        tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
+
+        tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
+        //Se modifica la puntuación dependiendo del jugador
+        tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
 
         //Se crea ActivityResultLauncher para obtener los datos de los nuevos feudos
         ActivityResultLauncher activityResultLauncher = registerForActivityResult(
@@ -153,17 +137,12 @@ public class activity_ResumenTurno extends AppCompatActivity {
                         case RESULT_CANCELED:
                             break;
                         case NuevoFeudo.ACTUALIZAR_ADAPTER:
-
                             Intent data = result.getData();
                             Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
-                            Feudo fCloned = new Feudo(fNuevo.getRecursos(), fNuevo.getTorres(), fNuevo.getPuntos());
-                            puntuacion[turno] = Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos();
-                            tPuntosRonda.setText(String.valueOf(puntuacion[turno]));
-                            listaFeudos.add(fCloned);
-                            fNuevo=null;
+                            SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos());
+                            tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
                             adapter=new ResumenTurnoAdapter(listaFeudos);
                             recyclerView.setAdapter(adapter);
-
                             break;
                     }
                 });
@@ -177,13 +156,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 adapter = new ResumenTurnoAdapter(listaFeudos);
                 recyclerView.setAdapter(adapter);
                 //Si ha jugado el turno el último jugador se inicia nueva ronda
-                if(turno==listaNombres.size()) {
+                if(turno==SeleccionPerfiles.listaJugadores.size()) {
                     ronda++;
                     turno=0;
                 }
-                tNomJugador.setText(listaNombres.get(turno));
+                tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
                 tNumTurno.setText(ronda+"");
-                tPuntosRonda.setText(puntuacion[turno]+"");
+                tPuntosRonda.setText(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()+"");
                 //Si se ha jugado el turno del último jugador en la ultima ronda se llama al evento mostrarAlertDialog
                 if(ronda>MAX_RONDAS){
                     tNumTurno.setText(String.valueOf(MAX_RONDAS));
@@ -213,7 +192,7 @@ public class activity_ResumenTurno extends AppCompatActivity {
         puntosPergamino = dialogView.findViewById(R.id.ePuntosPergamino);
         aceptarPuntos = dialogView.findViewById(R.id.bPuntosPerga);
 
-        puntosPergamino.setHint("puntos "+listaNombres.get(idJugador));
+        puntosPergamino.setHint("puntos "+SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
         alertPergaminos.show();
         alertPergaminos.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         aceptarPuntos.setOnClickListener(new View.OnClickListener() {
@@ -221,8 +200,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
             public void onClick(View view) {
                 boolean valido=true;
                     try{
-                        puntuacion[idJugador]+=Integer.parseInt(puntosPergamino.getText().toString());
-                        Log.d("PUNTOS PERGA",listaNombres.get(idJugador)+" "+puntosPergamino.getText().toString()+" "+String.valueOf(puntuacion[idJugador]));
+                        SeleccionPerfiles.listaJugadores.get(idJugador).setPuntos(SeleccionPerfiles.listaJugadores.get(idJugador).getPuntos()+Integer.parseInt(puntosPergamino.getText().toString()));
+                        Log.d("PUNTOS PERGA",SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador()+" "+puntosPergamino.getText().toString()+" "+String.valueOf(SeleccionPerfiles.listaJugadores.get(idJugador).getPuntos()));
                     }catch (NumberFormatException e){
                         vibrator.vibrate(500);
                         Alert.alertError(activity_ResumenTurno.this,getResources().getString(R.string.NoNum));
@@ -232,8 +211,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
                 if(valido){
                     alertPergaminos.dismiss();
                         turno++;
-                    if(turno<listaNombres.size()) {
-                        tNomJugador.setText(listaNombres.get(turno));
+                    if(turno<SeleccionPerfiles.listaJugadores.size()) {
+                        tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
                         mostrarAlertDialog(turno);
                     }else{
                         alertHacerFoto();
@@ -253,14 +232,13 @@ public class activity_ResumenTurno extends AppCompatActivity {
         }
     }
 
-
     private void alertHacerFoto() {
         AlertDialog alertFoto= new AlertDialog.Builder(activity_ResumenTurno.this).create();
         alertFoto.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.hacer_foto,null);
         alertFoto.setView(dialogView);
-        tSi = dialogView.findViewById(R.id.tNo);
+        tSi = dialogView.findViewById(R.id.tSi);
         tNo = dialogView.findViewById(R.id.tNo);
 
         alertFoto.show();
@@ -268,7 +246,8 @@ public class activity_ResumenTurno extends AppCompatActivity {
         tSi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hacerFoto();
+                hacerFoto(view);
+                alertFoto.dismiss();
             }
         });
         tNo.setOnClickListener(new View.OnClickListener() {
@@ -276,17 +255,28 @@ public class activity_ResumenTurno extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(activity_ResumenTurno.this, Partida.class);
                 startActivity(intent);
+                alertFoto.dismiss();
                 finish();
             }
         });
     }
 
-    private void hacerFoto(){
-        //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Intent intent = new Intent(this, Partida.class);
-        startActivity(intent);
-        finish();
+    private void hacerFoto(View v){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult.launch(takePictureIntent);
+        }
     }
+
+    private final ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent data = result.getData();
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                }
+            });
 
     @Override
     protected void onPause() {

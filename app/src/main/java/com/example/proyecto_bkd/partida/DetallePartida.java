@@ -3,22 +3,29 @@ package com.example.proyecto_bkd.partida;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.activity_ranking2;
 
+import java.io.File;
+
 public class DetallePartida extends AppCompatActivity {
     TextView tCerrar;
     Switch sMDetallePartida;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-
+    ImageView imgFoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +34,17 @@ public class DetallePartida extends AppCompatActivity {
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
+        imgFoto = findViewById(R.id.imgFoto);
+
+        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "image.jpg");
+
+        if (file.exists()) {
+            Toast.makeText(this, " EXISTE", Toast.LENGTH_SHORT).show();
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            imgFoto.setImageBitmap(bitmap);
+        } else {
+            Toast.makeText(this, "NO EXISTE LA FOTO", Toast.LENGTH_SHORT).show();
+        }
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
