@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.verPartida;
+package com.example.proyecto_bkd.partida.verPartida.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,11 +13,11 @@ import android.widget.Switch;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.DetallePartida;
-import com.example.proyecto_bkd.partida.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
-import com.example.proyecto_bkd.resumenturno.PartidasViewModel;
+import com.example.proyecto_bkd.partida.PartidasViewModel;
+import com.example.proyecto_bkd.partida.verPartida.VerPartidasAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -87,18 +87,19 @@ public class VerPartidas extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adaptador);
-        
+
         vm = new ViewModelProvider(this).get(PartidasViewModel.class);
         vm.init();
 
         vm.getPartidas(email);
 
-        vm.getPerfilesLivedata().observe(this, (dato)-> {
+        vm.getPartidasLivedata().observe(this, (dato)-> {
             adaptador.setResults(dato);
         });
 
-        adaptador.setClickListener((view, adapterPosition, partidas) -> {
+        adaptador.setClickListener((view, partidas) -> {
             Intent intent = new Intent(VerPartidas.this, DetallePartida.class);
+            intent.putExtra("ID",partidas.getIdPartida());
             startActivity(intent);
             finish();
         });

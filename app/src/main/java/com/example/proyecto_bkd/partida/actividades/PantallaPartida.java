@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.partida;
+package com.example.proyecto_bkd.partida.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +16,8 @@ import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
-import com.example.proyecto_bkd.resumenturno.actividades.SeleccionPerfiles;
-import com.example.proyecto_bkd.verPartida.VerPartidas;
+import com.example.proyecto_bkd.partida.resumenturno.actividades.SeleccionPerfiles;
+import com.example.proyecto_bkd.partida.verPartida.actividades.VerPartidas;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

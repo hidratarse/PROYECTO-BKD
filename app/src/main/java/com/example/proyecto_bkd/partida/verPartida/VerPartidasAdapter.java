@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.verPartida;
+package com.example.proyecto_bkd.partida.verPartida;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.resumenturno.data.Partidas;
+import com.example.proyecto_bkd.partida.data.Partidas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
     private List<Partidas> datos = new ArrayList<>();
 
     public interface ItemClickListener {
-        void onClick(View view, int adapterPosition, Partidas partidas);
+        void onClick(View view, Partidas partidas);
     }
 
     private ItemClickListener clickListener;
@@ -92,10 +92,8 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         }
         @Override
         public void onClick(View view) {
-            // Si tengo un manejador de evento lo propago con el índice
-
             if (clickListener != null)
-                clickListener.onClick(view, getAdapterPosition(),datos.get(getAdapterPosition()));
+                clickListener.onClick(view, datos.get(getAdapterPosition()));
 
         }
     }

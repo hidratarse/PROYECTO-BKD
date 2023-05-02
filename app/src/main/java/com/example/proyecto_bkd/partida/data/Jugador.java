@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno.data;
+package com.example.proyecto_bkd.partida.data;
 
 public class Jugador {
     String idJugador, nomJugador, color;
