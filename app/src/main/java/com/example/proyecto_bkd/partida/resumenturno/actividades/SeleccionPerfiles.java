@@ -63,6 +63,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();
         String uid = currentUser.getUid();
+        listaJugadores.clear();
 
         if (currentUser != null) {
 

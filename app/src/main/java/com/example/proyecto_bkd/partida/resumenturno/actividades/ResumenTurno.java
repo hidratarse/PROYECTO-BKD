@@ -16,11 +16,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
@@ -37,6 +38,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class ResumenTurno extends AppCompatActivity {
@@ -45,10 +47,9 @@ public class ResumenTurno extends AppCompatActivity {
     int ronda=1;
     int turno=0;
     //Atributos de elementos del layout
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
     TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo;
     EditText puntosPergamino;
-    Button aceptarPuntos;
     Switch sMResumenTurno;
     //Atributos para mostrar datos en el recyclerView
     public ArrayList<Feudo> listaFeudos;
@@ -74,13 +75,13 @@ public class ResumenTurno extends AppCompatActivity {
         tPuntosRonda= findViewById(R.id.tPuntosRonda);
         tNumTurno.setText(String.valueOf(ronda));
         sMResumenTurno= findViewById(R.id.sMResumenTurno);
+
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
 
         vm = new ViewModelProvider(this).get(PartidasViewModel  .class);
         vm.init();
 
-        Log.d("IDDDD",generarID());
         if(!Login.mp.isPlaying()){
             sMResumenTurno.setChecked(false);
         }
@@ -158,12 +159,12 @@ public class ResumenTurno extends AppCompatActivity {
                             Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
                             SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos());
                             tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
+                            listaFeudos.add(fNuevo);
                             adapter=new ResumenTurnoAdapter(listaFeudos);
                             recyclerView.setAdapter(adapter);
                             break;
                     }
                 });
-
         //Al finalizar el turno el recyclerView se vacía y se prepara para el siguiente jugador
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,6 +197,14 @@ public class ResumenTurno extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
+
+        adapter.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
+            @Override
+            public void onClick(View view, Feudo feudo) {
+                Toast.makeText(ResumenTurno.this, feudo.getTorres()+"", Toast.LENGTH_SHORT).show();
+                Log.d("CLICK",feudo.getRecursos().toString());
+            }
+        });
     }
 
     //Se crea ventana AlertDialog para solicitar los puntos conseguidos por los pergaminos del jugador
@@ -207,13 +216,13 @@ public class ResumenTurno extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.puntos_pergamino,null);
         alertPergaminos.setView(dialogView);
         puntosPergamino = dialogView.findViewById(R.id.ePuntosPergamino);
-        aceptarPuntos = dialogView.findViewById(R.id.bPuntosPerga);
+        bPuntosPerga = dialogView.findViewById(R.id.bPuntosPerga);
 
-        puntosPergamino.setHint(getResources().getString(R.string.IntroducePuntos)+" "+SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
+        puntosPergamino.setHint(SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
         alertPergaminos.show();
         alertPergaminos.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         puntosPergamino.findFocus();
-        aceptarPuntos.setOnClickListener(new View.OnClickListener() {
+        bPuntosPerga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean valido=true;
@@ -233,8 +242,6 @@ public class ResumenTurno extends AppCompatActivity {
                         tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
                         mostrarAlertDialog(turno);
                     }else{
-                        crearPartida();
-                        vm.insertarPartida(partida);
                         alertHacerFoto();
                     }
                 }
@@ -253,6 +260,10 @@ public class ResumenTurno extends AppCompatActivity {
     }
 
     private void alertHacerFoto() {
+        posiciones();
+        crearPartida();
+        vm.insertarPartida(partida);
+
         AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
         alertFoto.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
@@ -335,13 +346,17 @@ public class ResumenTurno extends AppCompatActivity {
         }
     }
 
-    private String generarID(){
-        String id ="";
-        char letra;
-        do{
-            letra =(char)(65+(Math.random()*25));
-            id+=letra;
-        }while (id.length()<8);
-        return id;
+    private void posiciones(){
+       ArrayList<Integer> puntuaciones = new ArrayList<>();
+        for (int j = 0; j <SeleccionPerfiles.listaJugadores.size(); j++) {
+            puntuaciones.add(SeleccionPerfiles.listaJugadores.get(j).getPuntos());
+        }
+        Collections.sort(puntuaciones);
+        Collections.reverse(puntuaciones);
+        int posicion = 0;
+        for (int i = 0; i <puntuaciones.size() ; i++) {
+            posicion = puntuaciones.indexOf(SeleccionPerfiles.listaJugadores.get(i).getPuntos()) ;
+            SeleccionPerfiles.listaJugadores.get(i).setPosicion(posicion+1);
+        }
     }
 }
