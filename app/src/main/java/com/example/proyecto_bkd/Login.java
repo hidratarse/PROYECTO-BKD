@@ -18,7 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.proyecto_bkd.partida.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
 import com.example.proyecto_bkd.registrarusuario.RegistroMain;
 import com.example.proyecto_bkd.utils.Alert;
 import com.google.android.gms.tasks.OnCompleteListener;

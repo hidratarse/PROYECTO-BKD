@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno.actividades;
+package com.example.proyecto_bkd.partida.resumenturno.actividades;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,12 +19,12 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
-import com.example.proyecto_bkd.resumenturno.JugadorAdapter;
-import com.example.proyecto_bkd.resumenturno.data.Jugador;
+import com.example.proyecto_bkd.partida.JugadorAdapter;
+import com.example.proyecto_bkd.partida.data.Jugador;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

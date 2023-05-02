@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno.actividades;
+package com.example.proyecto_bkd.partida.resumenturno.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
-import com.example.proyecto_bkd.resumenturno.data.Feudo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

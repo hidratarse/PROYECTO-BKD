@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".resumenturno.actividades.SeleccionPerfiles"
+            android:name=".partida.resumenturno.actividades.SeleccionPerfiles"
             android:exported="false" />
         <activity
             android:name=".registrarusuario.RegistroMain"
@@ -41,14 +41,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".resumenturno.actividades.NuevoFeudo"
+            android:name=".partida.resumenturno.actividades.NuevoFeudo"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".resumenturno.actividades.ResumenTurno"
+            android:name=".partida.resumenturno.actividades.ResumenTurno"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -62,10 +62,10 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".partida.DetallePartida"
+            android:name=".partida.verPartida.actividades.DetallePartida"
             android:exported="false" />
         <activity
-            android:name=".verPartida.VerPartidas"
+            android:name=".partida.verPartida.actividades.VerPartidas"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -79,7 +79,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".partida.PantallaPartida"
+            android:name=".partida.actividades.PantallaPartida"
             android:exported="false" />
         <activity
             android:name=".perfiles.actividades.ActivityDetallePerfil"

@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno.actividades;
+package com.example.proyecto_bkd.partida.resumenturno.actividades;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -23,13 +23,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.data.Feudo;
+import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
-import com.example.proyecto_bkd.resumenturno.PartidasViewModel;
-import com.example.proyecto_bkd.resumenturno.data.Feudo;
-import com.example.proyecto_bkd.resumenturno.ResumenTurnoAdapter;
-import com.example.proyecto_bkd.resumenturno.data.Partidas;
+import com.example.proyecto_bkd.partida.PartidasViewModel;
+import com.example.proyecto_bkd.partida.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.utils.Alert;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

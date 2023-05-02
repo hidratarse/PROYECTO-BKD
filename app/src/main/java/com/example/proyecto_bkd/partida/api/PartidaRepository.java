@@ -1,8 +1,8 @@
-package com.example.proyecto_bkd.resumenturno.api;
+package com.example.proyecto_bkd.partida.api;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.proyecto_bkd.resumenturno.data.Partidas;
+import com.example.proyecto_bkd.partida.data.Partidas;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.resumenturno;
+package com.example.proyecto_bkd.partida;
 
 import android.view.LayoutInflater;
 import android.view.View;
