@@ -1,6 +1,7 @@
-package com.example.proyecto_bkd.partida;
+package com.example.proyecto_bkd.verPartida;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,15 +13,21 @@ import android.widget.Switch;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.partida.DetallePartida;
+import com.example.proyecto_bkd.partida.PantallaPartida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
+import com.example.proyecto_bkd.resumenturno.PartidasViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class VerPartidas extends AppCompatActivity {
-
+    private RecyclerView recyclerView;
+    private VerPartidasAdapter adaptador;
+    private PartidasViewModel vm;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
-    RecyclerView rcv;
-    VerPartidasAdapter adap;
     Switch sMVerPartida;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,10 @@ public class VerPartidas extends AppCompatActivity {
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
         bImgRanking=findViewById(R.id.bImgRanking);
         sMVerPartida= findViewById(R.id.sMVerPartida);
+        recyclerView = findViewById(R.id.recyclerPartidas);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        email = currentUser.getEmail();
 
         sMVerPartida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +69,7 @@ public class VerPartidas extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VerPartidas.this, Partida.class);
+                Intent intent = new Intent(VerPartidas.this, PantallaPartida.class);
                 startActivity(intent);
                 finish();
             }
@@ -71,19 +82,25 @@ public class VerPartidas extends AppCompatActivity {
                 finish();
             }
         });
-        rcv = findViewById(R.id.recyclerPartidas);
-        rcv.setLayoutManager(new LinearLayoutManager(this));
 
-        adap = new VerPartidasAdapter(ResumenPartidas.generador());
-        rcv.setAdapter(adap);
+        adaptador = new VerPartidasAdapter();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adaptador);
+        
+        vm = new ViewModelProvider(this).get(PartidasViewModel.class);
+        vm.init();
 
-        adap.setClickListener(new VerPartidasAdapter.ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, ResumenPartidas resumen) {
-                Intent intent = new Intent(VerPartidas.this, DetallePartida.class);
-                startActivity(intent);
-                finish();
-            }
+        vm.getPartidas(email);
+
+        vm.getPerfilesLivedata().observe(this, (dato)-> {
+            adaptador.setResults(dato);
+        });
+
+        adaptador.setClickListener((view, adapterPosition, partidas) -> {
+            Intent intent = new Intent(VerPartidas.this, DetallePartida.class);
+            startActivity(intent);
+            finish();
         });
     }
     @Override

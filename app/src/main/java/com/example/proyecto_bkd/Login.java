@@ -18,7 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.proyecto_bkd.partida.Partida;
+import com.example.proyecto_bkd.partida.PantallaPartida;
 import com.example.proyecto_bkd.registrarusuario.RegistroMain;
 import com.example.proyecto_bkd.utils.Alert;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         puerta.start();
                                         Toast.makeText(Login.this, getResources().getString(R.string.Bienvenido), Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(Login.this, Partida.class);
+                                        Intent intent = new Intent(Login.this, PantallaPartida.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

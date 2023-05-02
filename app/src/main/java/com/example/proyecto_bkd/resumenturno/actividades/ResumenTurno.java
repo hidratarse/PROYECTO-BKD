@@ -23,8 +23,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.Partida;
-import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
+import com.example.proyecto_bkd.partida.PantallaPartida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.resumenturno.PartidasViewModel;
@@ -45,7 +44,6 @@ public class ResumenTurno extends AppCompatActivity {
     private final int MAX_RONDAS=4;
     int ronda=1;
     int turno=0;
-    ArrayList<String> listaNombres=new ArrayList<String>();
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd;
     TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo;
@@ -115,7 +113,7 @@ public class ResumenTurno extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResumenTurno.this, Partida.class);
+                Intent intent = new Intent(ResumenTurno.this, PantallaPartida.class);
                 startActivity(intent);
                 finish();
             }
@@ -275,7 +273,7 @@ public class ResumenTurno extends AppCompatActivity {
         tNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResumenTurno.this, Partida.class);
+                Intent intent = new Intent(ResumenTurno.this, PantallaPartida.class);
                 startActivity(intent);
                 alertFoto.dismiss();
                 finish();

@@ -17,10 +17,11 @@ import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.resumenturno.actividades.SeleccionPerfiles;
+import com.example.proyecto_bkd.verPartida.VerPartidas;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Partida extends AppCompatActivity {
+public class PantallaPartida extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     TextView verPartida, newGame, salir, cerrarSesion, tPartida, tPerfiles, tRanking;
     public static Switch sMPartida;
@@ -75,7 +76,7 @@ public class Partida extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, Ranking.class);
+                Intent intent = new Intent(PantallaPartida.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }
@@ -84,7 +85,7 @@ public class Partida extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, Partida.class);
+                Intent intent = new Intent(PantallaPartida.this, PantallaPartida.class);
                 startActivity(intent);
                 finish();
             }
@@ -92,7 +93,7 @@ public class Partida extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, ActivityPerfiles.class);
+                Intent intent = new Intent(PantallaPartida.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -100,7 +101,7 @@ public class Partida extends AppCompatActivity {
         verPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, VerPartidas.class);
+                Intent intent = new Intent(PantallaPartida.this, VerPartidas.class);
                 startActivity(intent);
                 finish();
             }
@@ -110,7 +111,7 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(Partida.this, SeleccionPerfiles.class);
+                Intent intent = new Intent(PantallaPartida.this, SeleccionPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -124,7 +125,7 @@ public class Partida extends AppCompatActivity {
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Partida.this, Login.class);
+                Intent intent = new Intent(PantallaPartida.this, Login.class);
                 startActivity(intent);
                 finish();
             }
