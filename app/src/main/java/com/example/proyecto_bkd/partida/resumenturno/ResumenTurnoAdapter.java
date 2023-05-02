@@ -1,16 +1,20 @@
 package com.example.proyecto_bkd.partida.resumenturno;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.data.Feudo;
+import com.example.proyecto_bkd.partida.resumenturno.actividades.ResumenTurno;
 
 import java.util.ArrayList;
 
@@ -18,7 +22,7 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
     private ArrayList<Feudo> datos;
 
     public interface ItemClickListener{
-        void onClick(View view, int position, Feudo feudo);
+        void onClick(View view, Feudo feudo);
     }
     private ItemClickListener clickListener;
 
@@ -36,31 +40,25 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
 
         public ViewHolder(View view) {
             super(view);
-            madera=(ImageView) view.findViewById(R.id.imgMadera);
-            pez=(ImageView) view.findViewById(R.id.imgPez);
-            zanahoria=(ImageView) view.findViewById(R.id.imgZanahoria);
-            polvo=(ImageView) view.findViewById(R.id.imgPolvo);
-            seta=(ImageView) view.findViewById(R.id.imgSeta);
-            plata=(ImageView) view.findViewById(R.id.imgPlata);
-            oro=(ImageView) view.findViewById(R.id.imgOro);
-            cobre=(ImageView) view.findViewById(R.id.imgCobre);
-            diamante=(ImageView) view.findViewById(R.id.imgDiamante);
-            perla=(ImageView) view.findViewById(R.id.imgPerla);
-            torres=(TextView) view.findViewById(R.id.tNumTorres);
-            txtPuntuacion=(TextView) view.findViewById(R.id.txtPuntuacion);
-            }
-        public void setInfo(Feudo feudo){
-            txtPuntuacion.setText(feudo.getPuntos());
-            torres.setText(feudo.getTorres());
+            madera= view.findViewById(R.id.imgMadera);
+            pez= view.findViewById(R.id.imgPez);
+            zanahoria= view.findViewById(R.id.imgZanahoria);
+            polvo= view.findViewById(R.id.imgPolvo);
+            seta= view.findViewById(R.id.imgSeta);
+            plata= view.findViewById(R.id.imgPlata);
+            oro= view.findViewById(R.id.imgOro);
+            cobre= view.findViewById(R.id.imgCobre);
+            diamante= view.findViewById(R.id.imgDiamante);
+            perla= view.findViewById(R.id.imgPerla);
+            torres= view.findViewById(R.id.tNumTorres);
+            txtPuntuacion= view.findViewById(R.id.txtPuntuacion);
         }
 
         @Override
         public void onClick(View view) {
-            /*
             if (clickListener != null) {
                 clickListener.onClick(view, datos.get(getAdapterPosition()));
-             }
-             */
+            }
         }
     }
     @NonNull

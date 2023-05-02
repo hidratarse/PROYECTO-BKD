@@ -45,8 +45,6 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
-
             fechaPart = view.findViewById(R.id.tFecha);
             jug1 = view.findViewById(R.id.tJugador1);
             jug2 = view.findViewById(R.id.tJugador2);
@@ -98,22 +96,16 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         }
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public VerPartidasAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.lista_partidas, viewGroup, false);
 
         return new VerPartidasAdapter.ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(VerPartidasAdapter.ViewHolder viewHolder, final int position) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         Partidas p = datos.get(position);
         if(p.getJ3()==null){
             viewHolder.setInfo(p.getFecha(),p.getJ1().getNomJugador(),p.getJ2().getNomJugador(), p.getJ1().getPuntos(),p.getJ2().getPuntos());
@@ -125,7 +117,6 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return datos.size();

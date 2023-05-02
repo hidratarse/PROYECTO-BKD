@@ -339,7 +339,7 @@
         app:layout_constraintTop_toTopOf="@+id/h3" />
 
     <TextView
-        android:id="@+id/tPoscion4"
+        android:id="@+id/tPoscion2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
@@ -351,7 +351,7 @@
         app:layout_constraintTop_toTopOf="@+id/h4" />
 
     <TextView
-        android:id="@+id/tPoscion2"
+        android:id="@+id/tPoscion3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
@@ -363,7 +363,7 @@
         app:layout_constraintTop_toTopOf="@+id/h5" />
 
     <TextView
-        android:id="@+id/tPoscion3"
+        android:id="@+id/tPoscion4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"

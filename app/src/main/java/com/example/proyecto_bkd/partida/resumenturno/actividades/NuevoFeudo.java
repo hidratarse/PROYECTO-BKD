@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
@@ -302,8 +303,6 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 Feudo f = new Feudo(listaRecursos,Integer.parseInt(torres.getText().toString()),puntuacionFeudo);
-                Log.d("listado",f.getRecursos().toString()+" "+f.getTorres()+" "+f.getPuntos());
-                //Intent intent = new Intent(NuevoFeudo.this, activity_ResumenTurno.class);
                 Intent intent = new Intent();
                 intent.putExtra("enviar", f);
                 setResult(ACTUALIZAR_ADAPTER,intent);
@@ -333,7 +332,6 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
     //metodo que multiplica los puntos de las torres por el número de recursos y actualiza elemento en layout
     private void contarPuntos(){
         puntuacionFeudo=listaRecursos.size()*Integer.parseInt(torres.getText().toString());
-        Log.d("PUNTUACION", String.valueOf(puntuacionFeudo));
         tPuntosFeudo.setText(String.valueOf(puntuacionFeudo));
     }
 
