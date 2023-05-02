@@ -52,6 +52,7 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
             perla= view.findViewById(R.id.imgPerla);
             torres= view.findViewById(R.id.tNumTorres);
             txtPuntuacion= view.findViewById(R.id.txtPuntuacion);
+            itemView.setOnClickListener(this);
         }
 
         @Override
