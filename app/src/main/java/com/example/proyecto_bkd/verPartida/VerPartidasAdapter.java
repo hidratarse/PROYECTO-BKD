@@ -1,4 +1,4 @@
-package com.example.proyecto_bkd.partida;
+package com.example.proyecto_bkd.verPartida;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +8,16 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.resumenturno.data.Partidas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.ViewHolder> {
-    private ArrayList<ResumenPartidas> datos;
+    private List<Partidas> datos = new ArrayList<>();
 
-    /*
-     * Relacionado con el evento.
-     */
     public interface ItemClickListener {
-        void onClick(View view, int position, ResumenPartidas product);
+        void onClick(View view, int adapterPosition, Partidas partidas);
     }
 
     private ItemClickListener clickListener;
@@ -27,10 +26,11 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         this.clickListener = itemClickListener;
     }
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
+    public void setResults(List<Partidas> datos){
+        this.datos = datos;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView fechaPart;
         private final TextView jug1;
@@ -47,15 +47,15 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
             super(view);
             // Define click listener for the ViewHolder's View
 
-            fechaPart = (TextView) view.findViewById(R.id.tFecha);
-            jug1 = (TextView) view.findViewById(R.id.tJugador1);
-            jug2 = (TextView) view.findViewById(R.id.tJugador2);
-            jug3 = (TextView) view.findViewById(R.id.tJugador3);
-            jug4 = (TextView) view.findViewById(R.id.tJugador4);
-            ptos1= (TextView) view.findViewById(R.id.tPuntos1);
-            ptos2 = (TextView) view.findViewById(R.id.tPuntos2);
-            ptos3= (TextView) view.findViewById(R.id.tPuntos3);
-            ptos4= (TextView) view.findViewById(R.id.tPuntos4);
+            fechaPart = view.findViewById(R.id.tFecha);
+            jug1 = view.findViewById(R.id.tJugador1);
+            jug2 = view.findViewById(R.id.tJugador2);
+            jug3 = view.findViewById(R.id.tJugador3);
+            jug4 = view.findViewById(R.id.tJugador4);
+            ptos1= view.findViewById(R.id.tPuntos1);
+            ptos2 = view.findViewById(R.id.tPuntos2);
+            ptos3= view.findViewById(R.id.tPuntos3);
+            ptos4= view.findViewById(R.id.tPuntos4);
             view.setOnClickListener(this);
         }
 
@@ -90,23 +90,14 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
             ptos3.setText(pt3+"");
             ptos4.setText(pt4+"");
         }
-
         @Override
         public void onClick(View view) {
             // Si tengo un manejador de evento lo propago con el índice
-            if (clickListener != null) clickListener.onClick(view, getAdapterPosition(),datos.get(getAdapterPosition()));
-        }
-    }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public VerPartidasAdapter(ArrayList<ResumenPartidas> dataSet) {
-        datos = new ArrayList<ResumenPartidas>();
-        add(dataSet);
+            if (clickListener != null)
+                clickListener.onClick(view, getAdapterPosition(),datos.get(getAdapterPosition()));
+
+        }
     }
 
     // Create new views (invoked by the layout manager)
@@ -125,13 +116,13 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        ResumenPartidas p = datos.get(position);
+        Partidas p = datos.get(position);
         if(p.getJ3()==null){
-            viewHolder.setInfo(p.getFecha(),p.getJ1(),p.getJ2(),p.getPto1(),p.getPto2());
+            viewHolder.setInfo(p.getFecha(),p.getJ1().getNomJugador(),p.getJ2().getNomJugador(), p.getJ1().getPuntos(),p.getJ2().getPuntos());
         }else if(p.getJ4()==null){
-            viewHolder.setInfo(p.getFecha(),p.getJ1(),p.getJ2(),p.getJ3(),p.getPto1(),p.getPto2(),p.getPto3());
+            viewHolder.setInfo(p.getFecha(),p.getJ1().getNomJugador(),p.getJ2().getNomJugador(),p.getJ3().getNomJugador(),p.getJ1().getPuntos(),p.getJ2().getPuntos(),p.getJ3().getPuntos());
         }else{
-            viewHolder.setInfo(p.getFecha(),p.getJ1(),p.getJ2(),p.getJ3(),p.getJ4(),p.getPto1(),p.getPto2(),p.getPto3(),p.getPto4());
+            viewHolder.setInfo(p.getFecha(),p.getJ1().getNomJugador(),p.getJ2().getNomJugador(),p.getJ3().getNomJugador(),p.getJ4().getNomJugador(),p.getJ1().getPuntos(),p.getJ2().getPuntos(),p.getJ3().getPuntos(),p.getJ4().getPuntos());
         }
 
     }
@@ -140,10 +131,5 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
     @Override
     public int getItemCount() {
         return datos.size();
-    }
-
-    public void add(ArrayList<ResumenPartidas> dataSet){
-        datos.addAll(dataSet);
-        notifyDataSetChanged();
     }
 }

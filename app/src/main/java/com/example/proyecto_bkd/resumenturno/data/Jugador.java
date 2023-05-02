@@ -4,6 +4,8 @@ public class Jugador {
     String idJugador, nomJugador, color;
     int contColor, puntos, posicion;
 
+    public Jugador() {}
+
     public Jugador(String nomJugador, String color, int contColor) {
         this.nomJugador = nomJugador;
         this.color = color;

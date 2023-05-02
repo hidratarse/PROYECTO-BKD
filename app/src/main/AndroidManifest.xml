@@ -65,7 +65,7 @@
             android:name=".partida.DetallePartida"
             android:exported="false" />
         <activity
-            android:name=".partida.VerPartidas"
+            android:name=".verPartida.VerPartidas"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -79,7 +79,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".partida.Partida"
+            android:name=".partida.PantallaPartida"
             android:exported="false" />
         <activity
             android:name=".perfiles.actividades.ActivityDetallePerfil"

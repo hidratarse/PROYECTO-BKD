@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.Partida;
+import com.example.proyecto_bkd.partida.PantallaPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.Ranking;
@@ -141,7 +141,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDetallePerfil.this, Partida.class);
+                Intent intent = new Intent(ActivityDetallePerfil.this, PantallaPartida.class);
                 startActivity(intent);
                 finish();
             }

@@ -4,6 +4,7 @@ public class Partidas {
     private String idPartida, email, fecha;
     private Jugador j1, j2, j3,j4;
 
+    public Partidas(){}
     public Partidas(String email, String fecha, Jugador j1, Jugador j2) {
         this.email = email;
         this.fecha = fecha;

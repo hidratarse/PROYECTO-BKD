@@ -1,11 +1,7 @@
 package com.example.proyecto_bkd.resumenturno.api;
 
-import android.provider.Telephony;
-
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.proyecto_bkd.perfiles.api.PerfilesRepository;
-import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.resumenturno.data.Partidas;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,7 +48,7 @@ public class PartidaRepository {
     public void getPartida(String idPartida) {
         coleccion.document(idPartida).get().addOnSuccessListener(documentSnapshot -> {
             Partidas partidas = documentSnapshot.toObject(Partidas.class);
-            partidas.setIdPartida(documentSnapshot.getId());
+            //partidas.setIdPartida(documentSnapshot.getId());
             partidasLiveData.postValue(partidas);
         }).addOnFailureListener(e -> {
             partidasLiveData.postValue(null);
