@@ -170,6 +170,7 @@
         android:backgroundTint="#E35311"
         android:fontFamily="@font/enchanted_land"
         android:text="@string/Comenzar"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:cornerRadius="10dp"
         app:iconTint="#00FFFFFF"

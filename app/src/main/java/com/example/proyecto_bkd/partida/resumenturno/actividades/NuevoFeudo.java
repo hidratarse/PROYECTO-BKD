@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
@@ -23,6 +21,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NuevoFeudo extends AppCompatActivity implements Serializable {
+
     //Elementos del layout
     ImageButton mas, menos, bImgPartidas,bImgPerfiles,bImgRanking;
     TextView torres, tCancelar, tAnadir,tPuntosFeudo;
@@ -30,7 +29,6 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
     Switch sMNuevoFeudo;
     //Atributo para el ActivityResultLauncher
     public static final int ACTUALIZAR_ADAPTER=1;
-
     private int puntuacionFeudo=0;
     //Atributos para los recursos
     private enum Recursos{madera, pez, zanahoria,polvo, seta, plata, oro, cobre, diamante, perla};
@@ -49,7 +47,6 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         @Override
         public void onClick(View view) {
             Recursos seleccionado = Recursos.valueOf(recursos.name());
-
             switch (seleccionado){
                 case madera:
                     madera.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
@@ -224,7 +221,6 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         cobre.setOnClickListener(manejadorCobre);
         diamante.setOnClickListener(manejadorDiamante);
         perla.setOnClickListener(manejadorPerla);
-
 
         //Método para controlar la música
         sMNuevoFeudo.setOnClickListener(new View.OnClickListener() {
