@@ -16,27 +16,33 @@ import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.data.Jugador;
+import com.example.proyecto_bkd.partida.data.Partidas;
+import com.example.proyecto_bkd.partida.resumenturno.actividades.ResumenTurno;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class DetallePartida extends AppCompatActivity {
-    TextView tCerrar,tFechaP,tJug1,tJug2,tJug3,tJug4,tColor1,tColor2,tColor3,tColor4;
+    TextView tCerrar,tFechaP,tJug1,tJug2,tJug3,tJug4,tColor1,tColor2,tColor3,tColor4, tEliminar;
     TextView tPtos1, tPtos2,tPtos3,tPtos4,tPosicion1,tPosicion2,tPosicion3,tPosicion4;
     Switch sMDetallePartida;
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     ImageView imgFoto;
     PartidasViewModel vm;
+    String idPartida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_partida);
-        sMDetallePartida= findViewById(R.id.sMDetallePartida);
-        bImgPartidas=findViewById(R.id.bImgPartidas);
-        bImgPerfiles=findViewById(R.id.bImgPerfiles);
-        bImgRanking=findViewById(R.id.bImgRanking);
+        sMDetallePartida = findViewById(R.id.sMDetallePartida);
+        bImgPartidas = findViewById(R.id.bImgPartidas);
+        bImgPerfiles = findViewById(R.id.bImgPerfiles);
+        bImgRanking = findViewById(R.id.bImgRanking);
         imgFoto = findViewById(R.id.imgFoto);
         tFechaP = findViewById(R.id.tFechaP);
         tJug1 = findViewById(R.id.tJug1);
@@ -49,22 +55,29 @@ public class DetallePartida extends AppCompatActivity {
         tColor4 = findViewById(R.id.tColor4);
         tPtos1 = findViewById(R.id.tPtos);
         tPtos2 = findViewById(R.id.tPtos1);
-        tPtos3= findViewById(R.id.tPtos2);
+        tPtos3 = findViewById(R.id.tPtos2);
         tPtos4 = findViewById(R.id.tPtos3);
         tPosicion1 = findViewById(R.id.tPoscion1);
         tPosicion2 = findViewById(R.id.tPoscion2);
         tPosicion3 = findViewById(R.id.tPoscion3);
         tPosicion4 = findViewById(R.id.tPoscion4);
+        tEliminar = findViewById(R.id.tEliminarFeudo);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();
 
         vm = new ViewModelProvider(this).get(PartidasViewModel.class);
         vm.init();
-        String idPartida = getIntent().getStringExtra("ID");
-        Log.d("IDDDDDD",idPartida);
-
-        vm.getPartida(idPartida);
+        if (ResumenTurno.finPartida) {
+            colocarDatos(ResumenTurno.partida);
+        }else{
+            idPartida = getIntent().getStringExtra("ID");
+            vm.getPartida(idPartida);
+            vm.getPartidaLivedata().observe(this, partidas -> {
+                colocarDatos(partidas);
+            });
+        }
+        ResumenTurno.finPartida=false;
 
         /*
         File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "image.jpg");
@@ -77,39 +90,8 @@ public class DetallePartida extends AppCompatActivity {
             Toast.makeText(this, "NO EXISTE LA FOTO", Toast.LENGTH_SHORT).show();
         }
         */
-        vm.getPartidaLivedata().observe(this,partidas -> {
-            tFechaP.setText(partidas.getFecha()+"");
-            tJug1.setText(partidas.getJ1().getNomJugador());
-            tJug2.setText(partidas.getJ2().getNomJugador());
-            tColor1.setText(partidas.getJ1().getColor());
-            tColor2.setText(partidas.getJ2().getColor());
-            tPtos1.setText(String.valueOf(partidas.getJ1().getPuntos()));
-            tPtos2.setText(String.valueOf(partidas.getJ2().getPuntos()));
-            tPosicion1.setText(String.valueOf(partidas.getJ1().getPosicion()));
-            tPosicion2.setText((String.valueOf(partidas.getJ2().getPosicion())));
-            if(partidas.getJ3()!=null){
-                tJug3.setText(partidas.getJ3().getNomJugador());
-                tColor3.setText(partidas.getJ3().getColor());
-                tPtos3.setText(String.valueOf(partidas.getJ3().getPuntos()));
-                tPosicion3.setText((String.valueOf(partidas.getJ3().getPosicion())));
-            }else{
-                tJug3.setText("");
-                tColor3.setText("");
-                tPtos3.setText("");
-                tPosicion3.setText("");
-            }
-            if(partidas.getJ4()!=null) {
-                tJug4.setText(partidas.getJ4().getNomJugador());
-                tColor4.setText(partidas.getJ4().getColor());
-                tPtos4.setText(String.valueOf(partidas.getJ4().getPuntos()));
-                tPosicion4.setText((String.valueOf(partidas.getJ4().getPosicion())));
-            }else{
-                tJug4.setText("");
-                tColor4.setText("");
-                tPtos4.setText("");
-                tPosicion4.setText("");
-            }
-        });
+
+
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,17 +122,17 @@ public class DetallePartida extends AppCompatActivity {
         sMDetallePartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sMDetallePartida.isChecked()){
+                if (sMDetallePartida.isChecked()) {
                     Login.mp.start();
-                    Login.music =true;
-                }else {
+                    Login.music = true;
+                } else {
                     Login.mp.pause();
                     Login.music = false;
                 }
             }
         });
 
-        tCerrar=findViewById(R.id.tCerrar);
+        tCerrar = findViewById(R.id.tCerrar);
         tCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +141,56 @@ public class DetallePartida extends AppCompatActivity {
                 finish();
             }
         });
+        tEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    vm.eliminarPartida(idPartida);
+                }catch (Exception e){
+
+                }
+                Intent intent = new Intent(DetallePartida.this, VerPartidas.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
     }
+    public void colocarDatos(Partidas partidas){
+
+        tFechaP.setText(partidas.getFecha()+"");
+        tJug1.setText(partidas.getJ1().getNomJugador());
+        tJug2.setText(partidas.getJ2().getNomJugador());
+        tColor1.setText(partidas.getJ1().getColor());
+        tColor2.setText(partidas.getJ2().getColor());
+        tPtos1.setText(String.valueOf(partidas.getJ1().getPuntos()));
+        tPtos2.setText(String.valueOf(partidas.getJ2().getPuntos()));
+        tPosicion1.setText(String.valueOf(partidas.getJ1().getPosicion()));
+        tPosicion2.setText((String.valueOf(partidas.getJ2().getPosicion())));
+        if(partidas.getJ3()!=null){
+            tJug3.setText(partidas.getJ3().getNomJugador());
+            tColor3.setText(partidas.getJ3().getColor());
+            tPtos3.setText(String.valueOf(partidas.getJ3().getPuntos()));
+            tPosicion3.setText((String.valueOf(partidas.getJ3().getPosicion())));
+        }else{
+            tJug3.setText("");
+            tColor3.setText("");
+            tPtos3.setText("");
+            tPosicion3.setText("");
+        }
+        if(partidas.getJ4()!=null) {
+            tJug4.setText(partidas.getJ4().getNomJugador());
+            tColor4.setText(partidas.getJ4().getColor());
+            tPtos4.setText(String.valueOf(partidas.getJ4().getPuntos()));
+            tPosicion4.setText((String.valueOf(partidas.getJ4().getPosicion())));
+        }else{
+            tJug4.setText("");
+            tColor4.setText("");
+            tPtos4.setText("");
+            tPosicion4.setText("");
+        }
+    }
+
     @Override
     protected void onPause() {
         super.onPause();

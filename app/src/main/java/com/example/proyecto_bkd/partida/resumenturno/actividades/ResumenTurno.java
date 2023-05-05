@@ -26,7 +26,9 @@ import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
+import com.example.proyecto_bkd.partida.data.Jugador;
 import com.example.proyecto_bkd.partida.data.Partidas;
+import com.example.proyecto_bkd.partida.verPartida.actividades.DetallePartida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
@@ -56,8 +58,9 @@ public class ResumenTurno extends AppCompatActivity {
     RecyclerView recyclerView;
     ResumenTurnoAdapter adapter;
     String email;
-    Partidas partida;
+    public static Partidas partida;
     PartidasViewModel vm;
+    public static boolean  finPartida = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -277,14 +280,18 @@ public class ResumenTurno extends AppCompatActivity {
         tSi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hacerFoto(view);
+                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
+                finPartida=true;
+                startActivity(intent);
                 alertFoto.dismiss();
+                finish();
+                //hacerFoto(view);
             }
         });
         tNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResumenTurno.this, PantallaPartida.class);
+                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 startActivity(intent);
                 alertFoto.dismiss();
                 finish();
@@ -353,7 +360,7 @@ public class ResumenTurno extends AppCompatActivity {
         }
         Collections.sort(puntuaciones);
         Collections.reverse(puntuaciones);
-        int posicion = 0;
+        int posicion=0;
         for (int i = 0; i <puntuaciones.size() ; i++) {
             posicion = puntuaciones.indexOf(SeleccionPerfiles.listaJugadores.get(i).getPuntos()) ;
             SeleccionPerfiles.listaJugadores.get(i).setPosicion(posicion+1);
