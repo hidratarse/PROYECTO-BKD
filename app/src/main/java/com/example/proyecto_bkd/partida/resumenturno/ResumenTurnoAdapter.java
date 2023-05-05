@@ -34,6 +34,11 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
         this.datos=feudoArrayList;
     }
 
+    public void setResults(ArrayList<Feudo> feudoArrayList){
+        this.datos=feudoArrayList;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView torres,txtPuntuacion;
         private ImageView madera,pez,zanahoria,polvo,seta,plata,oro,cobre,diamante,perla;

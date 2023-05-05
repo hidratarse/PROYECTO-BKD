@@ -160,7 +160,7 @@ public class ResumenTurno extends AppCompatActivity {
                             SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos());
                             tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
                             listaFeudos.add(fNuevo);
-                            adapter=new ResumenTurnoAdapter(listaFeudos);
+                            adapter.setResults(listaFeudos);
                             recyclerView.setAdapter(adapter);
                             break;
                     }
@@ -171,7 +171,7 @@ public class ResumenTurno extends AppCompatActivity {
             public void onClick(View view) {
                 turno++;
                 listaFeudos.clear();
-                adapter = new ResumenTurnoAdapter(listaFeudos);
+                adapter.setResults(listaFeudos);
                 recyclerView.setAdapter(adapter);
                 //Si ha jugado el turno el último jugador se inicia nueva ronda
                 if(turno==SeleccionPerfiles.listaJugadores.size()) {
