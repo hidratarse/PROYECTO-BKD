@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".partida.actividades.PantallaPartida">
+    tools:context=".partida.actividades.PrincipalPartida">
 
     <ImageView
         android:id="@+id/imgBosque"

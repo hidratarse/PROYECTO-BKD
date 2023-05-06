@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
@@ -125,7 +125,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SeleccionPerfiles.this, PantallaPartida.class);
+                Intent intent = new Intent(SeleccionPerfiles.this, PrincipalPartida.class);
                 startActivity(intent);
                 finish();
             }

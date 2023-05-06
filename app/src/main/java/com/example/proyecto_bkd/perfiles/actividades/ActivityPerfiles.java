@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesAdapter;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.ranking.Ranking;
@@ -119,7 +119,7 @@ public class ActivityPerfiles extends AppCompatActivity {
         });
 
         bImgPartidas.setOnClickListener(view -> {
-            Intent intent = new Intent(ActivityPerfiles.this, PantallaPartida.class);
+            Intent intent = new Intent(ActivityPerfiles.this, PrincipalPartida.class);
             startActivity(intent);
             finish();
         });

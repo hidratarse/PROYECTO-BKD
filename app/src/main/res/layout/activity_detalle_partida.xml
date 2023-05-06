@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iBiblioteca"
-        android:layout_width="522dp"
-        android:layout_height="760dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
         app:srcCompat="@drawable/sello1" />
 
     <ImageButton
-        android:id="@+id/imgEliminarFeudo"
+        android:id="@+id/imgEliminarPartida"
         android:layout_width="154dp"
         android:layout_height="101dp"
         android:backgroundTint="#00FFFFFF"
@@ -186,17 +186,16 @@
         android:text="@string/Eliminar"
         android:textColor="#FFC107"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgEliminarFeudo"
+        app:layout_constraintBottom_toBottomOf="@+id/imgEliminarPartida"
         app:layout_constraintEnd_toEndOf="@+id/imgCerrar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgEliminarFeudo" />
+        app:layout_constraintTop_toTopOf="@+id/imgEliminarPartida" />
 
     <TextView
         android:id="@+id/tFechaP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Fecha"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/h2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -271,7 +270,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Jugador 1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h4"
         app:layout_constraintEnd_toStartOf="@+id/v2"
@@ -331,7 +329,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Color 1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h4"
         app:layout_constraintEnd_toStartOf="@+id/v3"
@@ -343,7 +340,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Puntos 1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h4"
         app:layout_constraintEnd_toStartOf="@+id/v4"
@@ -355,7 +351,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="1º"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h4"
         app:layout_constraintEnd_toStartOf="@+id/v5"
@@ -367,7 +362,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="4º"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h5"
         app:layout_constraintEnd_toStartOf="@+id/v5"
@@ -379,7 +373,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="3º"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h6"
         app:layout_constraintEnd_toStartOf="@+id/v5"
@@ -391,7 +384,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="2º"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h7"
         app:layout_constraintEnd_toStartOf="@+id/v5"
@@ -399,11 +391,10 @@
         app:layout_constraintTop_toTopOf="@+id/h6" />
 
     <TextView
-        android:id="@+id/tPtos"
+        android:id="@+id/tPtos2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Puntos 2"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h5"
         app:layout_constraintEnd_toStartOf="@+id/v4"
@@ -411,11 +402,10 @@
         app:layout_constraintTop_toTopOf="@+id/h4" />
 
     <TextView
-        android:id="@+id/tPtos2"
+        android:id="@+id/tPtos3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Puntos 3"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h6"
         app:layout_constraintEnd_toStartOf="@+id/v4"
@@ -423,11 +413,10 @@
         app:layout_constraintTop_toTopOf="@+id/h5" />
 
     <TextView
-        android:id="@+id/tPtos3"
+        android:id="@+id/tPtos4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Puntos 4"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h7"
         app:layout_constraintEnd_toStartOf="@+id/v4"
@@ -439,7 +428,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Color 2"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h5"
         app:layout_constraintEnd_toStartOf="@+id/v3"
@@ -451,7 +439,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Color 3"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h6"
         app:layout_constraintEnd_toStartOf="@+id/v3"
@@ -463,7 +450,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Color 4"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h7"
         app:layout_constraintEnd_toStartOf="@+id/v3"
@@ -475,7 +461,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Jugador 2"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h5"
         app:layout_constraintEnd_toStartOf="@+id/v2"
@@ -487,7 +472,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Jugador 3"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h6"
         app:layout_constraintEnd_toStartOf="@+id/v2"
@@ -500,7 +484,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Jugador 4"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h7"
         app:layout_constraintEnd_toStartOf="@+id/v2"

@@ -21,7 +21,7 @@ import com.example.proyecto_bkd.partida.verPartida.actividades.VerPartidas;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class PantallaPartida extends AppCompatActivity {
+public class PrincipalPartida extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     TextView verPartida, newGame, salir, cerrarSesion, tPartida, tPerfiles, tRanking;
     public static Switch sMPartida;
@@ -76,7 +76,7 @@ public class PantallaPartida extends AppCompatActivity {
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PantallaPartida.this, Ranking.class);
+                Intent intent = new Intent(PrincipalPartida.this, Ranking.class);
                 startActivity(intent);
                 finish();
             }
@@ -85,7 +85,7 @@ public class PantallaPartida extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PantallaPartida.this, PantallaPartida.class);
+                Intent intent = new Intent(PrincipalPartida.this, PrincipalPartida.class);
                 startActivity(intent);
                 finish();
             }
@@ -93,7 +93,7 @@ public class PantallaPartida extends AppCompatActivity {
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PantallaPartida.this, ActivityPerfiles.class);
+                Intent intent = new Intent(PrincipalPartida.this, ActivityPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -101,7 +101,7 @@ public class PantallaPartida extends AppCompatActivity {
         verPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PantallaPartida.this, VerPartidas.class);
+                Intent intent = new Intent(PrincipalPartida.this, VerPartidas.class);
                 startActivity(intent);
                 finish();
             }
@@ -111,7 +111,7 @@ public class PantallaPartida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(PantallaPartida.this, SeleccionPerfiles.class);
+                Intent intent = new Intent(PrincipalPartida.this, SeleccionPerfiles.class);
                 startActivity(intent);
                 finish();
             }
@@ -125,7 +125,8 @@ public class PantallaPartida extends AppCompatActivity {
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PantallaPartida.this, Login.class);
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(PrincipalPartida.this, Login.class);
                 startActivity(intent);
                 finish();
             }

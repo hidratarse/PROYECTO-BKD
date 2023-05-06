@@ -43,25 +43,23 @@
                     android:layout_height="30dp" />
 
                 <TextView
-                    android:id="@+id/tTituloPer"
+                    android:id="@+id/tAlertDato"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FF5722"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Puntos de pergamino"
                     android:textAlignment="center"
                     android:textColor="#FF5722"
-                    android:textSize="40dp" />
+                    android:textSize="40sp" />
 
                 <EditText
-                    android:id="@+id/ePuntosPergamino"
+                    android:id="@+id/eDato"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00FFFFFF"
                     android:ems="10"
                     android:fontFamily="@font/enchanted_land"
                     android:gravity="top"
-                    android:hint="Puntos"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:textSize="34sp" />
@@ -72,7 +70,7 @@
                     android:layout_gravity="center|center_horizontal">
 
                     <ImageButton
-                        android:id="@+id/bPuntosPerga"
+                        android:id="@+id/bAceptarDato"
                         android:layout_width="match_parent"
                         android:layout_height="95dp"
                         android:backgroundTint="#00FFFFFF"
@@ -80,7 +78,7 @@
                         app:srcCompat="@drawable/sello1" />
 
                     <TextView
-                        android:id="@+id/tAceptarPuntos"
+                        android:id="@+id/tAceptarDato"
                         android:layout_width="match_parent"
                         android:layout_height="94dp"
                         android:fontFamily="@font/enchanted_land"

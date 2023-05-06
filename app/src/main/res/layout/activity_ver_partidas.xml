@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imgBiblioteca"
-        android:layout_width="525dp"
-        android:layout_height="798dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -162,6 +162,7 @@
         android:id="@+id/tOlividado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:fontFamily="@font/enchanted_land"
         android:text="@string/Olvidado"
         android:textColor="#FF5722"
