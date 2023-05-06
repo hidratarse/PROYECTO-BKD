@@ -1,10 +1,13 @@
 package com.example.proyecto_bkd.ranking;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,22 +18,29 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.PartidasViewModel;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
+import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Ranking extends AppCompatActivity {
 
     TextView tPartida, tPerfiles, tRanking;
     private RecyclerView recyclerView;
     private RankingAdapter adapter;
-    private ArrayList<Perfil> perfiles;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    private PerfilesViewModel vm;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bMaxPuntuacion, bWin;
     Switch sMRanking;
-
-
+    String email;
+    public static boolean ordenPuntos =true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +52,9 @@ public class Ranking extends AppCompatActivity {
         tPartida = findViewById(R.id.tPartidas);
         tPerfiles = findViewById(R.id.tPerfiles);
         tRanking = findViewById(R.id.tRanking);
-
+        bMaxPuntuacion = findViewById(R.id.bMaxPuntuacion);
+        bWin = findViewById(R.id.bWin);
+        recyclerView = findViewById(R.id.id_recycler_ranking2);
         Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
         tPartida.setAnimation(animEstandarte);
         tPerfiles.setAnimation(animEstandarte);
@@ -51,8 +63,11 @@ public class Ranking extends AppCompatActivity {
         bImgPerfiles.setAnimation(animEstandarte);
         bImgRanking.setAnimation(animEstandarte);
 
+
         sMRanking= findViewById(R.id.sMRanking);
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        email = currentUser.getEmail();
 
         sMRanking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +95,7 @@ public class Ranking extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Ranking.this, PantallaPartida.class);
+                Intent intent = new Intent(Ranking.this, PrincipalPartida.class);
                 startActivity(intent);
                 finish();
             }
@@ -93,14 +108,66 @@ public class Ranking extends AppCompatActivity {
                 finish();
             }
         });
+        OrdenarPorPuntos();
 
-        recyclerView = findViewById(R.id.id_recycler_ranking2);
+        bMaxPuntuacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ordenPuntos =true;
+                OrdenarPorPuntos();
+            }
+        });
+        bWin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ordenPuntos=false;
+                OrdenarPorVictorias();
+            }
+        });
+    }
 
+    public void OrdenarPorPuntos(){
+        adapter = new RankingAdapter();
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         recyclerView.setAdapter(adapter);
+
+        vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
+        vm.init();
+        vm.getPerfiles(email);
+        vm.getPerfilesLivedata().observe(this, perfiles -> {
+            Collections.sort(perfiles, new PuntuacionComparator()); // ordenar la lista según el criterio de puntuación
+            adapter.setResults(perfiles);
+        });
+        adapter.notifyDataSetChanged();
+    }
+    public void OrdenarPorVictorias(){
+        adapter = new RankingAdapter();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
+        vm.init();
+        vm.getPerfiles(email);
+        vm.getPerfilesLivedata().observe(this, perfiles -> {
+            Collections.sort(perfiles, new VictoriasComparator()); // ordenar la lista según el criterio de puntuación
+            adapter.setResults(perfiles);
+        });
+        adapter.notifyDataSetChanged();
+    }
+
+    public class PuntuacionComparator implements Comparator<Perfil> {
+        @Override
+        public int compare(Perfil p1, Perfil p2) {
+            return Integer.compare(Integer.parseInt(p2.getMaxPuntuacion()), Integer.parseInt(p1.getMaxPuntuacion())); // ordena de mayor a menor
+        }
+    }
+    public class VictoriasComparator implements Comparator<Perfil> {
+        @Override
+        public int compare(Perfil p1, Perfil p2) {
+            return Integer.compare(Integer.parseInt(p2.getPartidasGanadas()), Integer.parseInt(p1.getPartidasGanadas())); // ordena de mayor a menor
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ import android.widget.Switch;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
@@ -69,7 +69,7 @@ public class VerPartidas extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VerPartidas.this, PantallaPartida.class);
+                Intent intent = new Intent(VerPartidas.this, PrincipalPartida.class);
                 startActivity(intent);
                 finish();
             }

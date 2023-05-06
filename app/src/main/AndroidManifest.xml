@@ -80,7 +80,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".partida.actividades.PantallaPartida"
+            android:name=".partida.actividades.PrincipalPartida"
             android:exported="false" />
         <activity
             android:name=".perfiles.actividades.ActivityDetallePerfil"

@@ -1,5 +1,7 @@
 package com.example.proyecto_bkd.ranking;
 
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.partida.resumenturno.actividades.ResumenTurno;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder> {
+    private List<Perfil> datos = new ArrayList<>();
 
-    private ArrayList<Perfil> datos;
-
-    public RankingAdapter(ArrayList<Perfil> dataSet){
-        datos = new ArrayList<>();
-        add(dataSet);
+    public void setResults(List<Perfil> datos){
+        this.datos = datos;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -71,22 +76,21 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
                 break;
 
         }
-
         Perfil p =datos.get(position);
-        String nombre = p.getEmail();
-        //int puntuacion = p.getPuntuacionGeneral();
+        String nombre = p.getNombre();
+        int puntuacion = Integer.parseInt(p.getMaxPuntuacion());
+        String victorias = p.getPartidasGanadas();
         holder.getNombre().setText(nombre);
-        //holder.getPuntuacion().setText(String.valueOf(puntuacion));
+        if(Ranking.ordenPuntos){
+            holder.getPuntuacion().setText(String.valueOf(puntuacion));
+        }else{
+            holder.getPuntuacion().setText(victorias);
+        }
         holder.getPosicion().setText(String.valueOf(position+1));
     }
 
     @Override
     public int getItemCount() {
         return datos.size();
-    }
-
-    private void add(ArrayList<Perfil> dataSet) {
-        datos.addAll(dataSet);
-        notifyDataSetChanged();
     }
 }

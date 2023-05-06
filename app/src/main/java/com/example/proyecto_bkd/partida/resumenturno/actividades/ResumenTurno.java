@@ -24,9 +24,8 @@ import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
-import com.example.proyecto_bkd.partida.data.Jugador;
 import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.partida.verPartida.actividades.DetallePartida;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
@@ -50,7 +49,7 @@ public class ResumenTurno extends AppCompatActivity {
     int turno=0;
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tTituloAlert;
     EditText puntosPergamino;
     Switch sMResumenTurno;
     //Atributos para mostrar datos en el recyclerView
@@ -117,7 +116,7 @@ public class ResumenTurno extends AppCompatActivity {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResumenTurno.this, PantallaPartida.class);
+                Intent intent = new Intent(ResumenTurno.this, PrincipalPartida.class);
                 startActivity(intent);
                 finish();
             }
@@ -216,15 +215,15 @@ public class ResumenTurno extends AppCompatActivity {
         AlertDialog alertPergaminos= new AlertDialog.Builder(ResumenTurno.this).create();
         alertPergaminos.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.puntos_pergamino,null);
+        View dialogView = inflater.inflate(R.layout.alert_inserta_datos,null);
         alertPergaminos.setView(dialogView);
-        puntosPergamino = dialogView.findViewById(R.id.ePuntosPergamino);
-        bPuntosPerga = dialogView.findViewById(R.id.bPuntosPerga);
-
-        puntosPergamino.setHint(SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
+        puntosPergamino = dialogView.findViewById(R.id.eDato);
+        tTituloAlert = dialogView.findViewById(R.id.tAlertDato);
+        bPuntosPerga = dialogView.findViewById(R.id.bAceptarDato);
+        tTituloAlert.setText(getResources().getString(R.string.AlertPergamino));
+        puntosPergamino.setHint(getResources().getString(R.string.IntroducePuntos)+" "+ SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
         alertPergaminos.show();
         alertPergaminos.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        puntosPergamino.findFocus();
         bPuntosPerga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -292,6 +291,7 @@ public class ResumenTurno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
+                finPartida=true;
                 startActivity(intent);
                 alertFoto.dismiss();
                 finish();

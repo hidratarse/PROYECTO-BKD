@@ -49,7 +49,9 @@
     <string name="NoNum">No has introducido un número</string>
     <string name="save">Guardar</string>
     <string name="IntroducePuntos">Introduce puntos \nde </string>
-
-
+    <string name="AlertPergamino">Puntos de pergaminos </string>
+    <string name="IntroduceEmail">Introduce email </string>
+    <string name="ErrorEmail">No es un email valido </string>
+    <string name="RestaurarContraseña">Restaurar Contraseña </string>
 
 </resources>

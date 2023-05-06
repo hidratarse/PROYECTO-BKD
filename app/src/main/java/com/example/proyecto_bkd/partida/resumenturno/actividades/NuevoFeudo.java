@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PantallaPartida;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
@@ -250,7 +250,7 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NuevoFeudo.this, PantallaPartida.class);
+                Intent intent = new Intent(NuevoFeudo.this, PrincipalPartida.class);
                 startActivity(intent);
                 finish();
             }
