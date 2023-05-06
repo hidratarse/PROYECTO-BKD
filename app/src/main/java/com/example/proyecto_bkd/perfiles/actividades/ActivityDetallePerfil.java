@@ -1,11 +1,18 @@
 package com.example.proyecto_bkd.perfiles.actividades;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
@@ -24,10 +32,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking, perfilImg;
     TextView tCancela, tModificar, tInsertar, nPartidas, nGanadas, nPuntuacion, tBorrar;
     Switch sMPerfilDetalle;
     PerfilesViewModel vm;
+    private Uri pfpUri;
+    private String currentPfpUrl = "";
+    ActivityResultLauncher<Intent> resultLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +56,33 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         nPartidas = findViewById(R.id.NumPartidasJugadas);
         nGanadas = findViewById(R.id.NumPartidasGanadas);
         nPuntuacion = findViewById(R.id.NumMaxPuntuacion);
+        perfilImg = findViewById(R.id.imgPerfil);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();
 
         vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
         vm.init();
+
+        ActivityResultLauncher<String> request = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted ->{
+            if (isGranted) {
+                seleccionarImagen();
+            } else{
+                // explicar por que se necesita
+            }
+        });
+
+        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            switch (result.getResultCode()){
+                case RESULT_CANCELED:
+                    break;
+                case RESULT_OK:
+                    Intent data = result.getData();
+                    pfpUri = data.getData();
+                    perfilImg.setImageURI(pfpUri);
+                    break;
+            }
+        });
 
         boolean editando = getIntent().getBooleanExtra("EDITANDO", false);
         String idPerfil = getIntent().getStringExtra("ID");
@@ -63,6 +96,8 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         }else {
             tModificar.setVisibility(View.INVISIBLE);
             tInsertar.setVisibility(View.VISIBLE);
+            Glide.with(this)
+                    .clear(this.perfilImg);
             vm.clear();
         }
 
@@ -71,6 +106,22 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             nPartidas.setText(perfil.getPartidasJugadas());
             nGanadas.setText(perfil.getPartidasGanadas());
             nPuntuacion.setText(perfil.getMaxPuntuacion());
+            if (editando) {
+                currentPfpUrl = perfil.getPfpImg();
+                Glide.with(this)
+                        .load(currentPfpUrl)
+                        .into(this.perfilImg);
+            }
+        });
+
+        perfilImg.setOnClickListener(view -> {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                seleccionarImagen();
+            } else if (false) {
+                // dialog explicando porque necesitamos su imagen
+            } else {
+                request.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
         });
 
         tBorrar.setOnClickListener(view -> {
@@ -83,11 +134,11 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
             AlertDialog alertDialog = builder.create();
             alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
             btnConfirmar.setOnClickListener(v -> {
                 vm.eliminarPerfil(idPerfil);
                 alertDialog.dismiss();
-                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
-                startActivity(intent);
+                setResult(ActivityPerfiles.REFRESH);
                 finish();
             });
 
@@ -101,9 +152,8 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         tInsertar.setOnClickListener(view -> {
             String newName = nombre.getText().toString();
             Perfil nuevoPerfil = new Perfil(email,newName,"0","0","0");
-            vm.insertarPerfil(nuevoPerfil);
-            Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
-            startActivity(intent);
+            vm.insertarPerfil(nuevoPerfil, pfpUri);
+            setResult(ActivityPerfiles.REFRESH);
             finish();
         });
 
@@ -114,17 +164,19 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             String mPuntos = String.valueOf(nPuntuacion.getText());
             Perfil nPerfil = new Perfil(email, mNombre, mPartidas, mGanadas, mPuntos);
             nPerfil.setId(idPerfil);
-            vm.modificarPerfil(idPerfil,nPerfil);
-            Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
-            startActivity(intent);
+            nPerfil.setPfpImg(currentPfpUrl);
+
+            vm.modificarPerfil(idPerfil,nPerfil, pfpUri);
+            setResult(ActivityPerfiles.REFRESH);
             finish();
         });
 
         tCancela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDetallePerfil.this, ActivityPerfiles.class);
-                startActivity(intent);
+                Glide.with(perfilImg)
+                        .clear(perfilImg);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
@@ -167,6 +219,12 @@ public class ActivityDetallePerfil extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void seleccionarImagen() {
+        Intent i =new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        i.putExtra(MediaStore.EXTRA_OUTPUT, pfpUri);
+        resultLauncher.launch(i);
     }
 
     @Override
