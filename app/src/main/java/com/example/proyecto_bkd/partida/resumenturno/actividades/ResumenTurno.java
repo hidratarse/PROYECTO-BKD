@@ -28,7 +28,7 @@ import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.partida.verPartida.actividades.DetallePartida;
-import com.example.proyecto_bkd.partida.verPartida.actividades.VerPartidas;
+import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
@@ -59,7 +59,8 @@ public class ResumenTurno extends AppCompatActivity {
     ResumenTurnoAdapter adapter;
     String email;
     public static Partidas partida;
-    PartidasViewModel vm;
+    PartidasViewModel vmPartidas;
+    PerfilesViewModel vmPerfiles;
     public static boolean  finPartida = false;
 
     @Override
@@ -82,8 +83,9 @@ public class ResumenTurno extends AppCompatActivity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
 
-        vm = new ViewModelProvider(this).get(PartidasViewModel.class);
-        vm.init();
+        vmPartidas = new ViewModelProvider(this).get(PartidasViewModel.class);
+        vmPartidas.init();
+        vmPerfiles = new ViewModelProvider(this).get(PerfilesViewModel.class);
 
         //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +221,6 @@ public class ResumenTurno extends AppCompatActivity {
                     @Override
                     public void onClick(View view, Feudo feudo) {
                         Toast.makeText(ResumenTurno.this, feudo.getTorres() + "", Toast.LENGTH_SHORT).show();
-                        Log.d("CLICK", feudo.getRecursos().toString());
                     }
                 });
             }
@@ -281,7 +282,8 @@ public class ResumenTurno extends AppCompatActivity {
     private void alertHacerFoto() {
         posiciones();
         crearPartida();
-        vm.insertarPartida(partida);
+        vmPartidas.insertarPartida(partida);
+
 
         AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
         alertFoto.setCancelable(false);
@@ -290,7 +292,8 @@ public class ResumenTurno extends AppCompatActivity {
         alertFoto.setView(dialogView);
         tSi = dialogView.findViewById(R.id.tSi);
         tNo = dialogView.findViewById(R.id.tNo);
-
+        tSi.setTextSize(34);
+        tNo.setTextSize(34);
         alertFoto.show();
         alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tSi.setOnClickListener(new View.OnClickListener() {

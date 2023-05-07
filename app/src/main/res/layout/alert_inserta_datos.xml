@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/lPergamino"
         android:layout_width="315dp"
-        android:layout_height="231dp"
+        android:layout_height="292dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:gravity="center_horizontal"
@@ -20,7 +20,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="match_parent"
             android:background="#00FFFFFF"
             android:backgroundTint="#00FFFFFF"
             android:foregroundGravity="center_horizontal">
@@ -28,19 +28,19 @@
             <ImageView
                 android:id="@+id/imgPergaPuntos"
                 android:layout_width="match_parent"
-                android:layout_height="231dp"
+                android:layout_height="293dp"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/pergamino" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="224dp"
+                android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="30dp" />
+                    android:layout_height="53dp" />
 
                 <TextView
                     android:id="@+id/tAlertDato"
@@ -55,7 +55,7 @@
                 <EditText
                     android:id="@+id/eDato"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="104dp"
                     android:backgroundTint="#00FFFFFF"
                     android:ems="10"
                     android:fontFamily="@font/enchanted_land"
@@ -66,13 +66,13 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
+                    android:layout_height="92dp"
                     android:layout_gravity="center|center_horizontal">
 
                     <ImageButton
                         android:id="@+id/bAceptarDato"
                         android:layout_width="match_parent"
-                        android:layout_height="95dp"
+                        android:layout_height="93dp"
                         android:backgroundTint="#00FFFFFF"
                         android:scaleType="centerInside"
                         app:srcCompat="@drawable/sello1" />
@@ -80,7 +80,7 @@
                     <TextView
                         android:id="@+id/tAceptarDato"
                         android:layout_width="match_parent"
-                        android:layout_height="94dp"
+                        android:layout_height="92dp"
                         android:fontFamily="@font/enchanted_land"
                         android:gravity="center|center_vertical"
                         android:text="@string/Aceptar"

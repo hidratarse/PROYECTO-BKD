@@ -170,6 +170,7 @@
         android:backgroundTint="#E35311"
         android:fontFamily="@font/enchanted_land"
         android:text="@string/NuevoPerfil"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:cornerRadius="10dp"
         app:iconTint="#00FFFFFF"
@@ -177,5 +178,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycled_perfiles"
+        app:rippleColor="#FFFFFF"
         tools:ignore="TextContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

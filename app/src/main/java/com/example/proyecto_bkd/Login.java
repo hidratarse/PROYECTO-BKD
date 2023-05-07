@@ -127,7 +127,6 @@ public class Login extends AppCompatActivity {
     }
     public void restaurar(){
         AlertDialog alertRestaurar= new AlertDialog.Builder(Login.this).create();
-        alertRestaurar.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.alert_inserta_datos,null);
         alertRestaurar.setView(dialogView);
