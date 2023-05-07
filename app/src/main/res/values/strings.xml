@@ -53,5 +53,6 @@
     <string name="IntroduceEmail">Introduce email </string>
     <string name="ErrorEmail">No es un email valido </string>
     <string name="RestaurarContraseña">Restaurar Contraseña </string>
-
+    <string name="SeguroEliminar">¿Seguro que quieres eliminar?</string>
+    <string name="TerminarTurnoJugador">¿Quieres terminar el turno?</string>
 </resources>
