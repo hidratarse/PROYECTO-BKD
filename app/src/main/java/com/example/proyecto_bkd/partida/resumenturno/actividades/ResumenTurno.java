@@ -28,6 +28,7 @@ import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.partida.verPartida.actividades.DetallePartida;
+import com.example.proyecto_bkd.partida.verPartida.actividades.VerPartidas;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
@@ -64,38 +65,34 @@ public class ResumenTurno extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.aparece_izquierda,R.anim.desaparece_derecha);
+        overridePendingTransition(R.anim.aparece_izquierda, R.anim.desaparece_derecha);
         setContentView(R.layout.activity_resumen_turno);
-        bImgPartidas=findViewById(R.id.bImgPartidas);
-        bImgPerfiles=findViewById(R.id.bImgPerfiles);
-        bImgRanking=findViewById(R.id.bImgRanking);
-        bAdd=findViewById(R.id.bAdd);
-        tFinTurno=findViewById(R.id.tFinTurno);
-        tAddFeudo=findViewById(R.id.tAddFeudo);
+        bImgPartidas = findViewById(R.id.bImgPartidas);
+        bImgPerfiles = findViewById(R.id.bImgPerfiles);
+        bImgRanking = findViewById(R.id.bImgRanking);
+        bAdd = findViewById(R.id.bAdd);
+        tFinTurno = findViewById(R.id.tFinTurno);
+        tAddFeudo = findViewById(R.id.tAddFeudo);
         tNumTurno = findViewById(R.id.tNumTurno);
         tNomJugador = findViewById(R.id.tNomJugador);
-        tPuntosRonda= findViewById(R.id.tPuntosRonda);
+        tPuntosRonda = findViewById(R.id.tPuntosRonda);
         tNumTurno.setText(String.valueOf(ronda));
-        sMResumenTurno= findViewById(R.id.sMResumenTurno);
+        sMResumenTurno = findViewById(R.id.sMResumenTurno);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
 
-        vm = new ViewModelProvider(this).get(PartidasViewModel  .class);
+        vm = new ViewModelProvider(this).get(PartidasViewModel.class);
         vm.init();
-
-        if(!Login.mp.isPlaying()){
-            sMResumenTurno.setChecked(false);
-        }
 
         //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sMResumenTurno.isChecked()){
+                if (sMResumenTurno.isChecked()) {
                     Login.mp.start();
-                    Login.music =true;
-                }else {
+                    Login.music = true;
+                } else {
                     Login.mp.pause();
                     Login.music = false;
                 }
@@ -140,7 +137,7 @@ public class ResumenTurno extends AppCompatActivity {
         adapter = new ResumenTurnoAdapter(listaFeudos);
         recyclerView.setAdapter(adapter);
 
-        for (int i = 0; i <SeleccionPerfiles.listaJugadores.size() ; i++) {
+        for (int i = 0; i < SeleccionPerfiles.listaJugadores.size(); i++) {
             SeleccionPerfiles.listaJugadores.get(i).setPuntos(0);
         }
 
@@ -150,16 +147,16 @@ public class ResumenTurno extends AppCompatActivity {
 
         //Se crea ActivityResultLauncher para obtener los datos de los nuevos feudos
         ActivityResultLauncher activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),result -> {
+                new ActivityResultContracts.StartActivityForResult(), result -> {
                     int codigo = result.getResultCode();
 
-                    switch (codigo){
+                    switch (codigo) {
                         case RESULT_CANCELED:
                             break;
                         case NuevoFeudo.ACTUALIZAR_ADAPTER:
                             Intent data = result.getData();
                             Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
-                            SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString())+fNuevo.getPuntos());
+                            SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString()) + fNuevo.getPuntos());
                             tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
                             listaFeudos.add(fNuevo);
                             adapter.setResults(listaFeudos);
@@ -171,40 +168,60 @@ public class ResumenTurno extends AppCompatActivity {
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                turno++;
-                listaFeudos.clear();
-                adapter.setResults(listaFeudos);
-                recyclerView.setAdapter(adapter);
-                //Si ha jugado el turno el último jugador se inicia nueva ronda
-                if(turno==SeleccionPerfiles.listaJugadores.size()) {
-                    ronda++;
-                    turno=0;
-                }
-                tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
-                tNumTurno.setText(ronda+"");
-                tPuntosRonda.setText(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()+"");
-                //Si se ha jugado el turno del último jugador en la ultima ronda se llama al evento mostrarAlertDialog
-                if(ronda>MAX_RONDAS){
-                    tNumTurno.setText(String.valueOf(MAX_RONDAS));
+                AlertDialog.Builder builder = new AlertDialog.Builder(ResumenTurno.this);
+                View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
+                builder.setView(confirmDialogView);
+                TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
+                TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
+                TextView dialog_title = confirmDialogView.findViewById(R.id.dialog_title);
+                btnConfirmar.setText(getResources().getString(R.string.Si));
+                btnCancelar.setText(getResources().getString(R.string.No));
+                dialog_title.setText(getResources().getString(R.string.TerminarTurnoJugador));
+                AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                btnConfirmar.setOnClickListener(v -> {
+                    turno++;
+                    listaFeudos.clear();
+                    adapter.setResults(listaFeudos);
+                    recyclerView.setAdapter(adapter);
+                    //Si ha jugado el turno el último jugador se inicia nueva ronda
+                    if (turno == SeleccionPerfiles.listaJugadores.size()) {
+                        ronda++;
+                        turno = 0;
+                    }
+                    tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
+                    tNumTurno.setText(ronda + "");
+                    tPuntosRonda.setText(SeleccionPerfiles.listaJugadores.get(turno).getPuntos() + "");
+                    //Si se ha jugado el turno del último jugador en la ultima ronda se llama al evento mostrarAlertDialog
+                    if (ronda > MAX_RONDAS) {
+                        tNumTurno.setText(String.valueOf(MAX_RONDAS));
                         mostrarAlertDialog(turno);
-                }
-            }
-        });
+                    }
+                    alertDialog.dismiss();
+                });
 
-        //Se inicia la actividad añadir feudo
-        tAddFeudo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
-                activityResultLauncher.launch(intent);
-            }
-        });
+                btnCancelar.setOnClickListener(v -> {
+                    // cancelar
+                    alertDialog.dismiss();
+                });
+                alertDialog.show();
 
-        adapter.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
-            @Override
-            public void onClick(View view, Feudo feudo) {
-                Toast.makeText(ResumenTurno.this, feudo.getTorres()+"", Toast.LENGTH_SHORT).show();
-                Log.d("CLICK",feudo.getRecursos().toString());
+                //Se inicia la actividad añadir feudo
+                tAddFeudo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
+                        activityResultLauncher.launch(intent);
+                    }
+                });
+
+                adapter.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
+                    @Override
+                    public void onClick(View view, Feudo feudo) {
+                        Toast.makeText(ResumenTurno.this, feudo.getTorres() + "", Toast.LENGTH_SHORT).show();
+                        Log.d("CLICK", feudo.getRecursos().toString());
+                    }
+                });
             }
         });
     }
