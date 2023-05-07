@@ -28,7 +28,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPartidas"
-        android:layout_width="319dp"
+        android:layout_width="307dp"
         android:layout_height="364dp"
         app:layout_constraintEnd_toEndOf="@+id/imgPergamino"
         app:layout_constraintStart_toStartOf="parent"

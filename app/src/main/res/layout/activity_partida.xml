@@ -22,9 +22,11 @@
         android:layout_width="235dp"
         android:layout_height="381dp"
         android:contentDescription="@string/Fondo"
-        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/guideline28"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes"
         app:srcCompat="@drawable/senal" />
 
     <ImageView
@@ -36,55 +38,72 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/cerrarsesion" />
 
+    <LinearLayout
+        android:id="@+id/lTextosSenal"
+        android:layout_width="234dp"
+        android:layout_height="381dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSenal"
+        app:layout_constraintEnd_toEndOf="@+id/imgSenal"
+        app:layout_constraintStart_toStartOf="@+id/imgSenal"
+        app:layout_constraintTop_toTopOf="@+id/imgSenal">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tNewGame"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:clickable="false"
+            android:fontFamily="@font/enchanted_land"
+            android:gravity="center"
+            android:text="@string/NuevaPartida"
+            android:textSize="40sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tVerPartidas"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:clickable="false"
+            android:fontFamily="@font/enchanted_land"
+            android:gravity="center"
+            android:text="@string/VerPartidas"
+            android:textSize="40sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tSalir"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:clickable="true"
+            android:fontFamily="@font/enchanted_land"
+            android:gravity="center"
+            android:text="@string/Salir"
+            android:textSize="40sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tCerrarSesion"
-        android:layout_width="70dp"
-        android:layout_height="74dp"
+        android:layout_width="130dp"
+        android:layout_height="71dp"
         android:fontFamily="@font/enchanted_land"
+        android:gravity="center"
         android:text="@string/CerrarSesion"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline28"
-        app:layout_constraintEnd_toStartOf="@+id/guideline30" />
-
-    <TextView
-        android:id="@+id/tNewGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:clickable="false"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/NuevaPartida"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tVerPartidas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/VerPartidas"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imgBosque"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgBosque" />
-
-    <TextView
-        android:id="@+id/tSalir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/Salir"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline27"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/imgCerrarSesion"
+        app:layout_constraintTop_toTopOf="@+id/imgCerrarSesion" />
 
     <LinearLayout
         android:id="@+id/LinEstandartes"
@@ -237,29 +256,6 @@
         app:layout_constraintGuide_percent="0.04379562" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="248dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_percent="0.66" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -272,13 +268,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.96" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -171,8 +171,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout16"
-        android:layout_width="232dp"
-        android:layout_height="43dp"
+        android:layout_width="260dp"
+        android:layout_height="37dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout17"
         app:layout_constraintEnd_toEndOf="parent"
@@ -193,17 +193,19 @@
 
         <TextView
             android:id="@+id/NumPartidasJugadas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="41dp"
+            android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
+            android:gravity="right"
             android:text="5"
+            android:textAlignment="center"
             android:textSize="34sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout17"
-        android:layout_width="233dp"
-        android:layout_height="42dp"
+        android:layout_width="258dp"
+        android:layout_height="41dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout18"
         app:layout_constraintEnd_toEndOf="parent"
@@ -213,8 +215,8 @@
 
         <TextView
             android:id="@+id/tPartidasGanadas"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_width="217dp"
+            android:layout_height="match_parent"
             android:ems="10"
             android:fontFamily="@font/enchanted_land"
             android:inputType="textPersonName"
@@ -224,17 +226,19 @@
 
         <TextView
             android:id="@+id/NumPartidasGanadas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="41dp"
+            android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
+            android:gravity="right"
             android:text="2"
+            android:textAlignment="center"
             android:textSize="34sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout18"
-        android:layout_width="254dp"
-        android:layout_height="45dp"
+        android:layout_width="258dp"
+        android:layout_height="43dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -243,8 +247,8 @@
 
         <TextView
             android:id="@+id/tMaxPuntuacion"
-            android:layout_width="214dp"
-            android:layout_height="wrap_content"
+            android:layout_width="217dp"
+            android:layout_height="match_parent"
             android:ems="10"
             android:fontFamily="@font/enchanted_land"
             android:inputType="textPersonName"
@@ -254,10 +258,12 @@
 
         <TextView
             android:id="@+id/NumMaxPuntuacion"
-            android:layout_width="37dp"
+            android:layout_width="43dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/enchanted_land"
+            android:gravity="left"
             android:text="125"
+            android:textAlignment="center"
             android:textSize="34sp" />
     </LinearLayout>
 
