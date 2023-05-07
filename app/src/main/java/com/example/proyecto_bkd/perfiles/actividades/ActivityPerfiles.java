@@ -10,6 +10,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +31,7 @@ public class ActivityPerfiles extends AppCompatActivity {
     private PerfilesAdapter adaptador;
     private PerfilesViewModel vm;
     private boolean editando;
+    public static final int REFRESH = 200;
     TextView tPartida, tPerfiles, tRanking;
     ImageButton bImgPartidas, bImgPerfiles, bImgRanking;
     Button nuevoPerfil;
@@ -85,13 +88,26 @@ public class ActivityPerfiles extends AppCompatActivity {
             adaptador.setResults(dato);
         });
 
+        ActivityResultLauncher activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), result -> {
+                    int codigo = result.getResultCode();
+
+                    switch (codigo){
+                        case RESULT_CANCELED:
+                            break;
+                        case REFRESH:
+                            vm.getPerfiles(email);
+                            break;
+                    }
+                });
+
         adaptador.setClickListener((view, perfil) -> {
             editando=true;
             Toast.makeText(ActivityPerfiles.this, "Pulsado " + perfil.getNombre(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ActivityDetallePerfil.class);
             intent.putExtra("ID",perfil.getId());
             intent.putExtra("EDITANDO",editando);
-            startActivity(intent);
+            activityResultLauncher.launch(intent);
         });
 
         nuevoPerfil.setOnClickListener(view -> {
@@ -99,7 +115,7 @@ public class ActivityPerfiles extends AppCompatActivity {
             Intent intent = new Intent(this, ActivityDetallePerfil.class);
             intent.putExtra("ID"," ");
             intent.putExtra("EDITANDO",editando);
-            startActivity(intent);
+            activityResultLauncher.launch(intent);
         });
 
         sMPerfiles.setOnClickListener(view -> {

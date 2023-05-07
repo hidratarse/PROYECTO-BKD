@@ -137,7 +137,6 @@
         android:layout_width="120dp"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/conejo6"
         app:layout_constraintBottom_toBottomOf="@+id/iMarco"
         app:layout_constraintEnd_toEndOf="@+id/iMarco"
         app:layout_constraintStart_toStartOf="@+id/iMarco"

@@ -10,7 +10,7 @@ public class Perfil implements Serializable {
 
     private String nombre;
 
-    //foto de perfil, en URI?
+    private String pfpImg;
 
     private String partidasJugadas;
 
@@ -59,6 +59,8 @@ public class Perfil implements Serializable {
         return partidasGanadas;
     }
 
+    public String getPfpImg() {return pfpImg;}
+
     public void setId(String id) {
         this.id = id;
     }
@@ -81,5 +83,9 @@ public class Perfil implements Serializable {
 
     public void setPartidasGanadas(String partidasGanadas) {
         this.partidasGanadas = partidasGanadas;
+    }
+
+    public void setPfpImg(String pfpImg) {
+        this.pfpImg = pfpImg;
     }
 }
