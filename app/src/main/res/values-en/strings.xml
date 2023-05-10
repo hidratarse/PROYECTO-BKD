@@ -15,7 +15,8 @@
     <string name="Entrar">Enter</string>
     <string name="Registrarse">Sign in</string>
     <string name="Color">Color</string>
-    <string name="Puntos">Score</string>
+    <string name="Puntos">Points</string>
+    <string name="Puntuacion">Score</string>
     <string name="Puesto">Rank</string>
     <string name="NuevaPartida">New Game</string>
     <string name="VerPartidas">See Game</string>
@@ -54,4 +55,6 @@
     <string name="RestaurarContraseña">Reset Password</string>
     <string name="SeguroEliminar">Are you sure?</string>
     <string name="TerminarTurnoJugador">Do you want to end the turn?</string>
+    <string name="RegistrarUsuario">Sign In</string>
+    <string name="Turno">Turn</string>
 </resources>

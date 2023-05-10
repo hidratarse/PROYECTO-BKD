@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
-        android:text="Registrar Usuario"
+        android:text="@string/RegistrarUsuario"
         android:textColor="#FF5722"
         android:textSize="70sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
