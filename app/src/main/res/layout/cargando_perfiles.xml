@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cargando_perfiles"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:background="#c8c8c8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/id_marco"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/id_marco"
+            android:layout_width="145dp"
+            android:layout_height="137dp"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/marco_naranja" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/id_imagen_madera"
+            android:layout_width="153dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="@string/nombre"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/textscroll" />
+
+        <TextView
+            android:id="@+id/id_perfiles_nombre"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="#c8c8c8"
+            android:fontFamily="@font/enchanted_land"
+            android:gravity="center"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/id_imagen_madera"
+            app:layout_constraintEnd_toEndOf="@+id/id_imagen_madera"
+            app:layout_constraintStart_toStartOf="@+id/id_imagen_madera"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

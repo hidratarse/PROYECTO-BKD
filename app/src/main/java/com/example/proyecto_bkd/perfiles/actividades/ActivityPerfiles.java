@@ -2,10 +2,13 @@ package com.example.proyecto_bkd.perfiles.actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,7 @@ public class ActivityPerfiles extends AppCompatActivity {
     ImageButton bImgPartidas, bImgPerfiles, bImgRanking;
     Button nuevoPerfil;
     Switch sMPerfiles;
+    LinearLayout lCargaPerfiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class ActivityPerfiles extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycled_perfiles);
         sMPerfiles = findViewById(R.id.sMPerfiles);
         nuevoPerfil = findViewById(R.id.bNuevoPerfil);
+        lCargaPerfiles = findViewById(R.id.lCargaPerfiles);
 
         Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
         tPartida.setAnimation(animEstandarte);
@@ -70,6 +75,14 @@ public class ActivityPerfiles extends AppCompatActivity {
         } else {
             // El usuario no está autenticado, debes enviarlo a la actividad de inicio de sesión
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                lCargaPerfiles.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        },3000);
 
         adaptador = new PerfilesAdapter();
 

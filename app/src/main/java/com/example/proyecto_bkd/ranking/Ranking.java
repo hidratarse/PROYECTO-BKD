@@ -1,24 +1,23 @@
 package com.example.proyecto_bkd.ranking;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
@@ -26,10 +25,8 @@ import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class Ranking extends AppCompatActivity {
 
@@ -40,11 +37,12 @@ public class Ranking extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bMaxPuntuacion, bWin;
     Switch sMRanking;
     String email;
+    LinearLayout lCargaRanking;
     public static boolean ordenPuntos =true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranking2);
+        setContentView(R.layout.activity_ranking);
 
         bImgPartidas=findViewById(R.id.bImgPartidas);
         bImgPerfiles=findViewById(R.id.bImgPerfiles);
@@ -55,6 +53,7 @@ public class Ranking extends AppCompatActivity {
         bMaxPuntuacion = findViewById(R.id.bMaxPuntuacion);
         bWin = findViewById(R.id.bWin);
         recyclerView = findViewById(R.id.id_recycler_ranking2);
+        lCargaRanking = findViewById(R.id.lCargaRanking);
         Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
         tPartida.setAnimation(animEstandarte);
         tPerfiles.setAnimation(animEstandarte);
@@ -62,6 +61,7 @@ public class Ranking extends AppCompatActivity {
         bImgPartidas.setAnimation(animEstandarte);
         bImgPerfiles.setAnimation(animEstandarte);
         bImgRanking.setAnimation(animEstandarte);
+
 
 
         sMRanking= findViewById(R.id.sMRanking);
@@ -108,6 +108,15 @@ public class Ranking extends AppCompatActivity {
                 finish();
             }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                lCargaRanking.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        },3000);
+
         OrdenarPorPuntos();
 
         bMaxPuntuacion.setOnClickListener(new View.OnClickListener() {

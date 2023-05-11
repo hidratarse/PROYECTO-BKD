@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="10dp">
+
+    <FrameLayout
+        android:id="@+id/tvNombre"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:layout_margin="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:background="#c8c8c8"
+        android:foregroundGravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPuesto"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:background="#c8c8c8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+
+    <TextView
+        android:id="@+id/tvPuesto2"
+        android:layout_width="350dp"
+        android:layout_height="10dp"
+        android:layout_margin="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:background="#c8c8c8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPuesto" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
