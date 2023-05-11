@@ -11,6 +11,7 @@
         android:id="@+id/id_recycler_ranking2"
         android:layout_width="329dp"
         android:layout_height="440dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
@@ -149,7 +150,6 @@
         app:layout_constraintEnd_toStartOf="@+id/bWin"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_recycler_ranking2"
         tools:ignore="TextContrastCheck" />
 
     <ImageButton
@@ -170,7 +170,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/bMaxPuntuacion"
-        app:layout_constraintTop_toBottomOf="@+id/id_recycler_ranking2"
         tools:ignore="TextContrastCheck" />
 
     <Switch
@@ -205,4 +204,48 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="18dp" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="329dp"
+        android:layout_height="440dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/id_recycler_ranking2"
+        app:shimmer_auto_start="true">
+
+        <LinearLayout
+            android:id="@+id/lCargaRanking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/id_recycler_ranking2">
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+            <include layout="@layout/cargando_ranking" />
+
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

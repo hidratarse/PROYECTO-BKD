@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.example.proyecto_bkd.Login;
@@ -28,6 +30,7 @@ public class VerPartidas extends AppCompatActivity {
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     Switch sMVerPartida;
     String email;
+    LinearLayout cargando;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class VerPartidas extends AppCompatActivity {
         bImgRanking=findViewById(R.id.bImgRanking);
         sMVerPartida= findViewById(R.id.sMVerPartida);
         recyclerView = findViewById(R.id.recyclerPartidas);
+        cargando = findViewById(R.id.linearCarga);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
@@ -83,6 +87,14 @@ public class VerPartidas extends AppCompatActivity {
             }
         });
 
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                cargando.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        },3000);
         adaptador = new VerPartidasAdapter();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
