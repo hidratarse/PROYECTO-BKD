@@ -87,14 +87,14 @@ public class VerPartidas extends AppCompatActivity {
             }
         });
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 cargando.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        },3000);
+        },1500);
+
         adaptador = new VerPartidasAdapter();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

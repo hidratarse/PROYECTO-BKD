@@ -62,6 +62,7 @@ public class ResumenTurno extends AppCompatActivity {
     PartidasViewModel vmPartidas;
     PerfilesViewModel vmPerfiles;
     public static boolean  finPartida = false;
+    int posicionFeudo,restarPuntos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +165,17 @@ public class ResumenTurno extends AppCompatActivity {
                             adapter.setResults(listaFeudos);
                             recyclerView.setAdapter(adapter);
                             break;
+                        case NuevoFeudo.ACTUALIZAR_FEUDO:
+                            Intent dataEditado = result.getData();
+                            Feudo fEditado = (Feudo) dataEditado.getSerializableExtra("enviar");
+                            posicionFeudo=dataEditado.getIntExtra("posicion",0);
+                            restarPuntos=dataEditado.getIntExtra("restar",0);
+                            SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString()) + fEditado.getPuntos()-restarPuntos);
+                            tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
+                            listaFeudos.set(posicionFeudo,fEditado);
+                            adapter.setResults(listaFeudos);
+                            recyclerView.setAdapter(adapter);
+                            break;
                     }
                 });
         //Al finalizar el turno el recyclerView se vacía y se prepara para el siguiente jugador
@@ -207,22 +219,26 @@ public class ResumenTurno extends AppCompatActivity {
                     alertDialog.dismiss();
                 });
                 alertDialog.show();
+            }
+        });
 
-                //Se inicia la actividad añadir feudo
-                tAddFeudo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
-                        activityResultLauncher.launch(intent);
-                    }
-                });
+        //Se inicia la actividad añadir feudo
+        tAddFeudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
+                activityResultLauncher.launch(intent);
+            }
+        });
 
-                adapter.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
-                    @Override
-                    public void onClick(View view, Feudo feudo) {
-                        Toast.makeText(ResumenTurno.this, feudo.getTorres() + "", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        adapter.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
+            @Override
+            public void onClick(View view, Feudo feudo, int posicion) {
+                Toast.makeText(ResumenTurno.this, feudo.getTorres() + "", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
+                intent.putExtra("editarFeudo",feudo);
+                intent.putExtra("posicion",posicion);
+                activityResultLauncher.launch(intent);
             }
         });
     }
@@ -283,7 +299,6 @@ public class ResumenTurno extends AppCompatActivity {
         posiciones();
         crearPartida();
         vmPartidas.insertarPartida(partida);
-
 
         AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
         alertFoto.setCancelable(false);

@@ -35,7 +35,7 @@
     <string name="Comenzar">Begin</string>
     <string name="Musica">Music</string>
     <string name="NuevoPerfil">New Profile</string>
-    <string name="CerrarSesion">Log out</string>
+    <string name="CerrarSesion">Log \nOut</string>
     <string name="SeleccionJugador">Select Players</string>
     <string name="Aceptar">Accept</string>
     <string name="Si">Yes</string>
