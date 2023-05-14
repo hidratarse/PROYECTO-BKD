@@ -22,7 +22,7 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
     private ArrayList<Feudo> datos;
 
     public interface ItemClickListener{
-        void onClick(View view, Feudo feudo);
+        void onClick(View view, Feudo feudo, int posicion);
     }
     private ItemClickListener clickListener;
 
@@ -63,7 +63,7 @@ public class ResumenTurnoAdapter extends RecyclerView.Adapter<ResumenTurnoAdapte
         @Override
         public void onClick(View view) {
             if (clickListener != null) {
-                clickListener.onClick(view, datos.get(getAdapterPosition()));
+                clickListener.onClick(view, datos.get(getAdapterPosition()),getAdapterPosition());
             }
         }
     }

@@ -82,7 +82,7 @@ public class ActivityPerfiles extends AppCompatActivity {
                 lCargaPerfiles.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        },3000);
+        },1500);
 
         adaptador = new PerfilesAdapter();
 

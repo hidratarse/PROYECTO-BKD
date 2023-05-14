@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
@@ -29,11 +31,15 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
     Switch sMNuevoFeudo;
     //Atributo para el ActivityResultLauncher
     public static final int ACTUALIZAR_ADAPTER=1;
+    public static final int ACTUALIZAR_FEUDO=2;
+    int posicionFeudo;
     private int puntuacionFeudo=0;
+    int restaPuntos;
     //Atributos para los recursos
     private enum Recursos{madera, pez, zanahoria,polvo, seta, plata, oro, cobre, diamante, perla};
     private int recursosCont=0;
     ArrayList<String> listaRecursos = new ArrayList<String>();
+    Feudo feudoEditado;
 
     public class Seleccionrecursos implements View.OnClickListener{
         ImageView fotoRecurso;
@@ -286,6 +292,53 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
                 contarPuntos();
             }
         });
+        try{
+            feudoEditado = (Feudo) getIntent().getSerializableExtra("editarFeudo");
+            posicionFeudo = getIntent().getIntExtra("posicion",0);
+            listaRecursos=feudoEditado.getRecursos();
+            puntuacionFeudo=feudoEditado.getPuntos();
+            restaPuntos=feudoEditado.getPuntos();
+            tPuntosFeudo.setText(String.valueOf(puntuacionFeudo));
+            torres.setText(String.valueOf(feudoEditado.getTorres()));
+
+            for (int i = 0; i < listaRecursos.size(); i++) {
+                switch (listaRecursos.get(i)){
+                    case "madera":
+                        madera.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "zanahoria":
+                        zanahoria.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "pez":
+                        pez.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "oro":
+                        oro.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "plata":
+                        plata.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "cobre":
+                        cobre.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "diamante":
+                        diamante.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "polvo":
+                        polvo.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "seta":
+                        seta.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                    case "perla":
+                        perla.setBackground(getResources().getDrawable(R.drawable.borde_recurso));
+                        break;
+                }
+            }
+        }catch (Exception ex){
+            Log.d("NO EDITADO","");
+        }
+
         //Al pulsar cancelar se llama ActivityResultLauncher
         tCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,10 +351,22 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
         tAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Feudo f = new Feudo(listaRecursos,Integer.parseInt(torres.getText().toString()),puntuacionFeudo);
                 Intent intent = new Intent();
-                intent.putExtra("enviar", f);
-                setResult(ACTUALIZAR_ADAPTER,intent);
+                if(feudoEditado!=null){
+                    feudoEditado.setPuntos(puntuacionFeudo);
+                    feudoEditado.setTorres(Integer.parseInt(torres.getText().toString()));
+                    feudoEditado.setRecursos(listaRecursos);
+                    intent.putExtra("enviar",feudoEditado);
+                    intent.putExtra("posicion",posicionFeudo);
+                    intent.putExtra("restar",restaPuntos);
+                    setResult(ACTUALIZAR_FEUDO,intent);
+                }else{
+                    Feudo f = new Feudo(listaRecursos,Integer.parseInt(torres.getText().toString()),puntuacionFeudo);
+
+                    intent.putExtra("enviar", f);
+                    setResult(ACTUALIZAR_ADAPTER,intent);
+                }
+
                 finish();
             }
         });

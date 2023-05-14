@@ -115,7 +115,7 @@ public class Ranking extends AppCompatActivity {
                 lCargaRanking.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        },3000);
+        },1500);
 
         OrdenarPorPuntos();
 
