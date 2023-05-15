@@ -6,8 +6,6 @@ import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +16,11 @@ public class PerfilesRepository {
     private final CollectionReference coleccion;
     private MutableLiveData<List<Perfil>> listaPerfilesLivedata;
     private MutableLiveData<Perfil> perfilLiveData;
+
+    public interface UploadPerfilesCallback{
+        void onSuccess(String id);
+        void onFailure(Exception exception);
+    }
 
     public PerfilesRepository() {
         listaPerfilesLivedata = new MutableLiveData<>();
@@ -58,11 +61,13 @@ public class PerfilesRepository {
         });
     }
 
-    public void insertarPerfil(Perfil perfil) {
+    public void insertarPerfil(Perfil perfil, UploadPerfilesCallback listener) {
         coleccion.add(perfil).addOnSuccessListener(documentReference -> {
             perfilLiveData.postValue(perfil);
+            listener.onSuccess(documentReference.getId());
         }).addOnFailureListener(e -> {
             perfilLiveData.postValue(null);
+            listener.onFailure(e);
         });
     }
 

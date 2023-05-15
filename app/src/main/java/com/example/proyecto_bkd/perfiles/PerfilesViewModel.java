@@ -34,21 +34,54 @@ public class PerfilesViewModel extends ViewModel {
     public void insertarPerfil(Perfil perfil, Uri pfpUri){
         if (pfpUri == null) {
             perfil.setPfpImg(DefaultPfp.getRandomDefaultPfp());
-            perfilesRepository.insertarPerfil(perfil);
+            perfilesRepository.insertarPerfil(perfil, new PerfilesRepository.UploadPerfilesCallback() {
+                @Override
+                public void onSuccess(String id) {
+                    perfil.setId(id);
+                    perfilesRepository.modificarPerfil(id, perfil);
+                }
+
+                @Override
+                public void onFailure(Exception exception) {
+
+                }
+            });
         }else {
             imageRepository.uploadImage(pfpUri, new ImageRepository.UploadImageCallback() {
 
                 @Override
                 public void onSuccess(String downloadUrl) {
                     perfil.setPfpImg(downloadUrl);
-                    perfilesRepository.insertarPerfil(perfil);
+                    perfilesRepository.insertarPerfil(perfil, new PerfilesRepository.UploadPerfilesCallback() {
+                        @Override
+                        public void onSuccess(String id) {
+                            perfil.setId(id);
+                            perfilesRepository.modificarPerfil(id, perfil);
+                        }
+
+                        @Override
+                        public void onFailure(Exception exception) {
+
+                        }
+                    });
                     getPerfiles(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 }
 
                 @Override
                 public void onFailure(Exception e) {
                     e.printStackTrace();
-                    perfilesRepository.insertarPerfil(perfil);
+                    perfilesRepository.insertarPerfil(perfil, new PerfilesRepository.UploadPerfilesCallback() {
+                        @Override
+                        public void onSuccess(String id) {
+                            perfil.setId(id);
+                            perfilesRepository.modificarPerfil(id, perfil);
+                        }
+
+                        @Override
+                        public void onFailure(Exception exception) {
+
+                        }
+                    });
                 }
             });
         }
@@ -61,6 +94,7 @@ public class PerfilesViewModel extends ViewModel {
     public void modificarPerfil(String id, Perfil nuevoPerfil, Uri pfpUri){
         if (pfpUri == null) {
             perfilesRepository.modificarPerfil(id, nuevoPerfil);
+
         }else {
             imageRepository.uploadImage(pfpUri, new ImageRepository.UploadImageCallback() {
 
