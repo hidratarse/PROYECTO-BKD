@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.proyecto_bkd.Login;
@@ -27,6 +28,7 @@ import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.Ranking;
+import com.example.proyecto_bkd.utils.Alert;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -39,6 +41,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
     private Uri pfpUri;
     private String currentPfpUrl = "";
     ActivityResultLauncher<Intent> resultLauncher;
+    boolean perfilValido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             Glide.with(this)
                     .clear(this.perfilImg);
             vm.clear();
+            nombre.requestFocus();
         }
 
         vm.getPerfilLivedata().observe(this, perfil -> {
@@ -150,25 +154,39 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         });
 
         tInsertar.setOnClickListener(view -> {
-            String newName = nombre.getText().toString();
-            Perfil nuevoPerfil = new Perfil(email,newName,"0","0","0");
-            vm.insertarPerfil(nuevoPerfil, pfpUri);
-            setResult(ActivityPerfiles.REFRESH);
-            finish();
+            perfilValido=true;
+            if(nombre.getText().length()<4 || nombre.getText().length()>10){
+                Alert.alertError(ActivityDetallePerfil.this,getResources().getString(R.string.ErrorNombre));
+                perfilValido=false;
+            }
+            if(perfilValido){
+                String newName = nombre.getText().toString();
+                Perfil nuevoPerfil = new Perfil(email,newName,"0","0","0");
+                vm.insertarPerfil(nuevoPerfil, pfpUri);
+                setResult(ActivityPerfiles.REFRESH);
+                finish();
+            }
         });
 
         tModificar.setOnClickListener(view -> {
-            String mNombre = String.valueOf(nombre.getText());
-            String mPartidas = String.valueOf(nPartidas.getText());
-            String mGanadas = String.valueOf(nGanadas.getText());
-            String mPuntos = String.valueOf(nPuntuacion.getText());
-            Perfil nPerfil = new Perfil(email, mNombre, mPartidas, mGanadas, mPuntos);
-            nPerfil.setId(idPerfil);
-            nPerfil.setPfpImg(currentPfpUrl);
-
-            vm.modificarPerfil(idPerfil,nPerfil, pfpUri);
-            setResult(ActivityPerfiles.REFRESH);
-            finish();
+            perfilValido=true;
+            Toast.makeText(ActivityDetallePerfil.this, nombre.length()+"", Toast.LENGTH_SHORT).show();
+            if(nombre.getText().length()<4 || nombre.getText().length()>10){
+                Alert.alertError(ActivityDetallePerfil.this,getResources().getString(R.string.ErrorNombre));
+                perfilValido=false;
+            }
+            if(perfilValido){
+                String mNombre = String.valueOf(nombre.getText());
+                String mPartidas = String.valueOf(nPartidas.getText());
+                String mGanadas = String.valueOf(nGanadas.getText());
+                String mPuntos = String.valueOf(nPuntuacion.getText());
+                Perfil nPerfil = new Perfil(email, mNombre, mPartidas, mGanadas, mPuntos);
+                nPerfil.setId(idPerfil);
+                nPerfil.setPfpImg(currentPfpUrl);
+                vm.modificarPerfil(idPerfil,nPerfil, pfpUri);
+                setResult(ActivityPerfiles.REFRESH);
+                finish();
+            }
         });
 
         tCancela.setOnClickListener(new View.OnClickListener() {

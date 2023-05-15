@@ -326,8 +326,8 @@
 
     <TextView
         android:id="@+id/tColor1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:fontFamily="@font/enchanted_land"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h4"
@@ -425,7 +425,7 @@
 
     <TextView
         android:id="@+id/tColor2"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/enchanted_land"
         android:textSize="24sp"
@@ -436,8 +436,8 @@
 
     <TextView
         android:id="@+id/tColor3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:fontFamily="@font/enchanted_land"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h6"
@@ -447,8 +447,8 @@
 
     <TextView
         android:id="@+id/tColor4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:fontFamily="@font/enchanted_land"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/h7"

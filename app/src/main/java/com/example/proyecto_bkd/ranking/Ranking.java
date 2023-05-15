@@ -30,7 +30,7 @@ import java.util.Comparator;
 
 public class Ranking extends AppCompatActivity {
 
-    TextView tPartida, tPerfiles, tRanking;
+    TextView tPartida, tPerfiles, tRanking,tTituloRanking;
     private RecyclerView recyclerView;
     private RankingAdapter adapter;
     private PerfilesViewModel vm;
@@ -50,7 +50,9 @@ public class Ranking extends AppCompatActivity {
         tPartida = findViewById(R.id.tPartidas);
         tPerfiles = findViewById(R.id.tPerfiles);
         tRanking = findViewById(R.id.tRanking);
+        tTituloRanking = findViewById(R.id.tTituloRanking);
         bMaxPuntuacion = findViewById(R.id.bMaxPuntuacion);
+        sMRanking= findViewById(R.id.sMRanking);
         bWin = findViewById(R.id.bWin);
         recyclerView = findViewById(R.id.id_recycler_ranking2);
         lCargaRanking = findViewById(R.id.lCargaRanking);
@@ -61,10 +63,6 @@ public class Ranking extends AppCompatActivity {
         bImgPartidas.setAnimation(animEstandarte);
         bImgPerfiles.setAnimation(animEstandarte);
         bImgRanking.setAnimation(animEstandarte);
-
-
-
-        sMRanking= findViewById(R.id.sMRanking);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
@@ -124,6 +122,7 @@ public class Ranking extends AppCompatActivity {
             public void onClick(View view) {
                 ordenPuntos =true;
                 OrdenarPorPuntos();
+                tTituloRanking.setText(getResources().getString(R.string.RankingPuntos));
             }
         });
         bWin.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +130,7 @@ public class Ranking extends AppCompatActivity {
             public void onClick(View view) {
                 ordenPuntos=false;
                 OrdenarPorVictorias();
+                tTituloRanking.setText(getResources().getString(R.string.RankingVictorias  ));
             }
         });
     }

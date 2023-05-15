@@ -3,8 +3,10 @@ package com.example.proyecto_bkd.registrarusuario;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
+import com.example.proyecto_bkd.utils.Alert;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +33,7 @@ public class RegistroMain extends AppCompatActivity {
     public static Switch sMRegistro;
     FirebaseFirestore fs;
     FirebaseAuth mAuth;
+    Vibrator vibrator;
 
     private final String MENSAJE_PASS = "COMPLETA LOS DATOS";
     @Override
@@ -42,7 +47,7 @@ public class RegistroMain extends AppCompatActivity {
         email = findViewById(R.id.regEmail);
         pass = findViewById(R.id.regPass);
         pass2 = findViewById(R.id.regPass2);
-
+        vibrator=(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         sMRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +69,14 @@ public class RegistroMain extends AppCompatActivity {
                 String passUsu = pass.getText().toString().trim();
                 String passRepe = pass2.getText().toString();
 
-                if ((passUsu.equals(passRepe)) && !emailUsu.isEmpty() && !passUsu.isEmpty()  ) {
+                if ((passUsu.equals(passRepe)) && !emailUsu.isEmpty() && !passUsu.isEmpty()) {
                     registerUser(emailUsu, passUsu);
-                }else {
-                    Toast.makeText(RegistroMain.this, MENSAJE_PASS, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistroMain.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    vibrator.vibrate(500);
+                    Alert.alertError(RegistroMain.this,getResources().getString(R.string.CompletarCampos));
                 }
             }
         });

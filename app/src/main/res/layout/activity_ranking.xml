@@ -9,12 +9,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/id_recycler_ranking2"
-        android:layout_width="329dp"
-        android:layout_height="440dp"
+        android:layout_width="340dp"
+        android:layout_height="592dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
+        app:layout_constraintTop_toTopOf="@+id/shimmerFrameLayout" />
 
     <LinearLayout
         android:id="@+id/LinEstandartes"
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Partidas"
+                    android:text="@string/Partidas"
                     android:textAlignment="viewStart"
                     android:textColor="#FF9800"
                     android:textSize="34sp" />
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Perfiles"
+                    android:text="@string/Perfiles"
                     android:textAlignment="center"
                     android:textColor="#FF9800"
                     android:textSize="34sp" />
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Ranking"
+                    android:text="@string/Ranking"
                     android:textAlignment="center"
                     android:textColor="#FF9800"
                     android:textSize="34sp" />
@@ -206,11 +206,12 @@
         app:layout_constraintGuide_begin="18dp" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:layout_width="329dp"
-        android:layout_height="440dp"
+        android:id="@+id/shimmerFrameLayout"
+        android:layout_width="342dp"
+        android:layout_height="386dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_recycler_ranking2"
+        app:layout_constraintTop_toBottomOf="@+id/tTituloRanking"
         app:shimmer_auto_start="true">
 
         <LinearLayout
@@ -247,5 +248,17 @@
 
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <TextView
+        android:id="@+id/tTituloRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/enchanted_land"
+        android:text="@string/RankingPuntos"
+        android:textColor="#FF5722"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinEstandartes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
