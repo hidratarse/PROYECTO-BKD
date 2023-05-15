@@ -66,6 +66,7 @@ public class PartidaRepository {
         coleccion.document(idPartida).delete().addOnSuccessListener(aVoid ->{
         });
     }
+
     public MutableLiveData<List<Partidas>> getListaPartidasLivedata() {
         return listaPartidasLivedata;
     }
