@@ -107,7 +107,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 }
             }else{
                 //Si no existe en la lista se añade
-                listaJugadores.add(new Jugador(perfil.getNombre(),color[contColor], contColor));
+                listaJugadores.add(new Jugador(perfil.getId(),perfil.getNombre(),color[contColor], contColor,Integer.parseInt(perfil.getMaxPuntuacion()),Integer.parseInt(perfil.getPartidasJugadas()),Integer.parseInt(perfil.getPartidasGanadas())));
             }
         });
 

@@ -28,20 +28,28 @@ import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.partida.verPartida.actividades.DetallePartida;
+import com.example.proyecto_bkd.perfiles.PerfilesAdapter;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
+import com.example.proyecto_bkd.perfiles.api.PerfilesRepository;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.utils.Alert;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.ktx.Firebase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ResumenTurno extends AppCompatActivity {
     //Atributos para las condiciones del transcurso de la partida
@@ -55,14 +63,16 @@ public class ResumenTurno extends AppCompatActivity {
     Switch sMResumenTurno;
     //Atributos para mostrar datos en el recyclerView
     public ArrayList<Feudo> listaFeudos;
+    public List<Perfil> listaPerfil;
     RecyclerView recyclerView;
-    ResumenTurnoAdapter adapter;
+    ResumenTurnoAdapter adapterResumen;
     String email;
     public static Partidas partida;
     PartidasViewModel vmPartidas;
-    PerfilesViewModel vmPerfiles;
     public static boolean  finPartida = false;
-    int posicionFeudo,restarPuntos;
+    int posicionFeudo,restarPuntos,partidasJugadas;
+    FirebaseUser currentUser;
+    FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +91,8 @@ public class ResumenTurno extends AppCompatActivity {
         tNumTurno.setText(String.valueOf(ronda));
         sMResumenTurno = findViewById(R.id.sMResumenTurno);
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        currentUser= FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
-
-        vmPartidas = new ViewModelProvider(this).get(PartidasViewModel.class);
-        vmPartidas.init();
-        vmPerfiles = new ViewModelProvider(this).get(PerfilesViewModel.class);
 
         //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
@@ -132,13 +138,16 @@ public class ResumenTurno extends AppCompatActivity {
             }
         });
 
+        vmPartidas = new ViewModelProvider(this).get(PartidasViewModel.class);
+        vmPartidas.init();
+
         //Se muestra el recyclerView
         listaFeudos = new ArrayList<>();
         recyclerView = findViewById(R.id.id_rv_resumenTurnos);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ResumenTurnoAdapter(listaFeudos);
-        recyclerView.setAdapter(adapter);
+        adapterResumen = new ResumenTurnoAdapter(listaFeudos);
+        recyclerView.setAdapter(adapterResumen);
 
         for (int i = 0; i < SeleccionPerfiles.listaJugadores.size(); i++) {
             SeleccionPerfiles.listaJugadores.get(i).setPuntos(0);
@@ -150,34 +159,35 @@ public class ResumenTurno extends AppCompatActivity {
 
         //Se crea ActivityResultLauncher para obtener los datos de los nuevos feudos
         ActivityResultLauncher activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(), result -> {
-                    int codigo = result.getResultCode();
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                int codigo = result.getResultCode();
 
-                    switch (codigo) {
-                        case RESULT_CANCELED:
-                            break;
-                        case NuevoFeudo.ACTUALIZAR_ADAPTER:
-                            Intent data = result.getData();
-                            Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
-                            SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString()) + fNuevo.getPuntos());
-                            tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
-                            listaFeudos.add(fNuevo);
-                            adapter.setResults(listaFeudos);
-                            recyclerView.setAdapter(adapter);
-                            break;
-                        case NuevoFeudo.ACTUALIZAR_FEUDO:
-                            Intent dataEditado = result.getData();
-                            Feudo fEditado = (Feudo) dataEditado.getSerializableExtra("enviar");
-                            posicionFeudo=dataEditado.getIntExtra("posicion",0);
-                            restarPuntos=dataEditado.getIntExtra("restar",0);
-                            SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString()) + fEditado.getPuntos()-restarPuntos);
-                            tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
-                            listaFeudos.set(posicionFeudo,fEditado);
-                            adapter.setResults(listaFeudos);
-                            recyclerView.setAdapter(adapter);
-                            break;
-                    }
-                });
+                switch (codigo) {
+                    case RESULT_CANCELED:
+                        break;
+                    case NuevoFeudo.ACTUALIZAR_ADAPTER:
+                        Intent data = result.getData();
+                        Feudo fNuevo = (Feudo) data.getSerializableExtra("enviar");
+                        SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString()) + fNuevo.getPuntos());
+                        tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
+                        listaFeudos.add(fNuevo);
+                        adapterResumen.setResults(listaFeudos);
+                        recyclerView.setAdapter(adapterResumen);
+                        break;
+                    case NuevoFeudo.ACTUALIZAR_FEUDO:
+                        Intent dataEditado = result.getData();
+                        Feudo fEditado = (Feudo) dataEditado.getSerializableExtra("enviar");
+                        posicionFeudo=dataEditado.getIntExtra("posicion",0);
+                        restarPuntos=dataEditado.getIntExtra("restar",0);
+                        SeleccionPerfiles.listaJugadores.get(turno).setPuntos(Integer.parseInt(tPuntosRonda.getText().toString()) + fEditado.getPuntos()-restarPuntos);
+                        tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
+                        listaFeudos.set(posicionFeudo,fEditado);
+                        adapterResumen.setResults(listaFeudos);
+                        recyclerView.setAdapter(adapterResumen);
+                        break;
+                }
+            }
+        );
         //Al finalizar el turno el recyclerView se vacía y se prepara para el siguiente jugador
         tFinTurno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,8 +206,8 @@ public class ResumenTurno extends AppCompatActivity {
                 btnConfirmar.setOnClickListener(v -> {
                     turno++;
                     listaFeudos.clear();
-                    adapter.setResults(listaFeudos);
-                    recyclerView.setAdapter(adapter);
+                    adapterResumen.setResults(listaFeudos);
+                    recyclerView.setAdapter(adapterResumen);
                     //Si ha jugado el turno el último jugador se inicia nueva ronda
                     if (turno == SeleccionPerfiles.listaJugadores.size()) {
                         ronda++;
@@ -231,7 +241,7 @@ public class ResumenTurno extends AppCompatActivity {
             }
         });
 
-        adapter.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
+        adapterResumen.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
             @Override
             public void onClick(View view, Feudo feudo, int posicion) {
                 Toast.makeText(ResumenTurno.this, feudo.getTorres() + "", Toast.LENGTH_SHORT).show();
@@ -298,6 +308,7 @@ public class ResumenTurno extends AppCompatActivity {
     private void alertHacerFoto() {
         posiciones();
         crearPartida();
+        actualizar();
         vmPartidas.insertarPartida(partida);
 
         AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
@@ -342,14 +353,14 @@ public class ResumenTurno extends AppCompatActivity {
     }
 
     private final ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK) {
-                    Intent data = result.getData();
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                }
-            });
+        new ActivityResultContracts.StartActivityForResult(),result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                Intent data = result.getData();
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+            }
+        }
+    );
 
     @Override
     protected void onPause() {
@@ -385,6 +396,23 @@ public class ResumenTurno extends AppCompatActivity {
             case 4:
                 partida =new Partidas(email, fecha,SeleccionPerfiles.listaJugadores.get(0),SeleccionPerfiles.listaJugadores.get(1),SeleccionPerfiles.listaJugadores.get(2),SeleccionPerfiles.listaJugadores.get(3));
                 break;
+        }
+    }
+    private void actualizar(){
+        Map <String, Object> map = new HashMap<>();
+        for (int i = 0; i < SeleccionPerfiles.listaJugadores.size(); i++) {
+            map.clear();
+            partidasJugadas = SeleccionPerfiles.listaJugadores.get(i).getPartidasJugadas()+1;
+            map.put("partidasJugadas",String.valueOf(partidasJugadas));
+
+            if(SeleccionPerfiles.listaJugadores.get(i).getPuntos()>SeleccionPerfiles.listaJugadores.get(i).getMaxPuntuacion()){
+                map.put("maxPuntuacion",String.valueOf(SeleccionPerfiles.listaJugadores.get(i).getPuntos()));
+            }
+            if(SeleccionPerfiles.listaJugadores.get(i).getPosicion()==1){
+                map.put("partidasGanadas",String.valueOf(SeleccionPerfiles.listaJugadores.get(i).getPartidasGanadas()+1));
+            }
+            mFirestore = FirebaseFirestore.getInstance();
+            mFirestore.collection("perfiles").document(SeleccionPerfiles.listaJugadores.get(i).getIdJugador()).update(map);
         }
     }
 

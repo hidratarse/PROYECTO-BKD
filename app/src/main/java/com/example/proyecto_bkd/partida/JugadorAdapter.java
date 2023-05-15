@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 
@@ -98,35 +99,42 @@ public class JugadorAdapter extends RecyclerView.Adapter<JugadorAdapter.ViewHold
     public void onBindViewHolder(@NonNull JugadorAdapter.ViewHolder holder, int position) {
         Perfil p = datos.get(position);
 
-        if (position == 0) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo11);
-        }
-        if (position == 1) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo2);
-        }
-        if (position == 2) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo3);
-        }
-        if (position == 3) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo4);
-        }
-        if (position == 4) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo5);
-        }
-        if (position == 5) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo6);
-        }
-        if (position == 6) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo7);
-        }
-        if (position == 7) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo8);
-        }
-        if (position == 8) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo10);
-        }
-        if (position == 9) {
-            holder.imagen_perfil.setImageResource(R.drawable.conejo1);
+        if (p.getPfpImg() != null) {
+            String imgUrl = p.getPfpImg();
+            Glide.with(holder.itemView)
+                    .load(imgUrl)
+                    .into(holder.imagen_perfil);
+        } else {
+            if (position == 0) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo11);
+            }
+            if (position == 1) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo2);
+            }
+            if (position == 2) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo3);
+            }
+            if (position == 3) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo4);
+            }
+            if (position == 4) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo5);
+            }
+            if (position == 5) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo6);
+            }
+            if (position == 6) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo7);
+            }
+            if (position == 7) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo8);
+            }
+            if (position == 8) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo10);
+            }
+            if (position == 9) {
+                holder.imagen_perfil.setImageResource(R.drawable.conejo1);
+            }
         }
         holder.getNombre().setText(p.getNombre());
     }

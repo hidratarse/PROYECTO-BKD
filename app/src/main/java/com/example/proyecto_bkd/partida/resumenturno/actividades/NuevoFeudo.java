@@ -362,7 +362,6 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
                     setResult(ACTUALIZAR_FEUDO,intent);
                 }else{
                     Feudo f = new Feudo(listaRecursos,Integer.parseInt(torres.getText().toString()),puntuacionFeudo);
-
                     intent.putExtra("enviar", f);
                     setResult(ACTUALIZAR_ADAPTER,intent);
                 }
