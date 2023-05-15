@@ -56,4 +56,7 @@
     <string name="TerminarTurnoJugador">¿Quieres terminar el turno?</string>
     <string name="RegistrarUsuario">Registrar Usuario</string>
     <string name="Turno">Turno</string>
+    <string name="ErrorNombre">Tiene que tener entre 4 y 10 caracteres</string>
+    <string name="RankingPuntos">Ranking puntuación</string>
+    <string name="RankingVictorias">Ranking Victorias</string>
 </resources>

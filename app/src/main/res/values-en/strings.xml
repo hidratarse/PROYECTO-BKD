@@ -40,7 +40,7 @@
     <string name="Aceptar">Accept</string>
     <string name="Si">Yes</string>
     <string name="No">No</string>
-    <string name="Foto">Do you want to take a photo?</string>
+    <string name="Foto">Take a picture?</string>
     <string name="CompletarCampos">Complete all fields</string>
     <string name="ErrorInicio">Login Error</string>
     <string name="Bienvenido">Welcome</string>
@@ -54,7 +54,10 @@
     <string name="ErrorEmail">No es un email valido </string>
     <string name="RestaurarContraseña">Reset Password</string>
     <string name="SeguroEliminar">Are you sure?</string>
-    <string name="TerminarTurnoJugador">Do you want to end the turn?</string>
+    <string name="TerminarTurnoJugador">End turn?</string>
     <string name="RegistrarUsuario">Sign In</string>
     <string name="Turno">Turn</string>
+    <string name="ErrorNombre">Must be between \n4 and 10 characters</string>
+    <string name="RankingPuntos">Score Ranking</string>
+    <string name="RankingVictorias">Victory Ranking </string>
 </resources>

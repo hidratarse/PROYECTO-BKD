@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,6 +33,8 @@ public class DetallePartida extends AppCompatActivity {
     ImageView imgFoto;
     PartidasViewModel vm;
     String idPartida;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +95,6 @@ public class DetallePartida extends AppCompatActivity {
             Toast.makeText(this, "NO EXISTE LA FOTO", Toast.LENGTH_SHORT).show();
         }
         */
-
-
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,24 +181,78 @@ public class DetallePartida extends AppCompatActivity {
         tFechaP.setText(partidas.getFecha()+"");
         tJug1.setText(partidas.getJ1().getNomJugador());
         tJug2.setText(partidas.getJ2().getNomJugador());
-        tColor1.setText(partidas.getJ1().getColor());
-        tColor2.setText(partidas.getJ2().getColor());
+        switch (partidas.getJ1().getColor()){
+            case "Negro":
+                tColor1.setBackgroundColor(Color.parseColor("#000000"));
+                break;
+            case "Rojo":
+                tColor1.setBackgroundColor(Color.parseColor("#e02c00"));
+                break;
+            case "Amarillo":
+                tColor1.setBackgroundColor(Color.parseColor("#ffeb40"));
+                break;
+            case "Rosa":
+                tColor1.setBackgroundColor(Color.parseColor("#e98df5"));
+                break;
+        }
+        switch (partidas.getJ2().getColor()){
+            case "Negro":
+                tColor2.setBackgroundColor(Color.parseColor("#000000"));
+                break;
+            case "Rojo":
+                tColor2.setBackgroundColor(Color.parseColor("#e02c00"));
+                break;
+            case "Amarillo":
+                tColor2.setBackgroundColor(Color.parseColor("#ffeb40"));
+                break;
+            case "Rosa":
+                tColor2.setBackgroundColor(Color.parseColor("#e98df5"));
+                break;
+        }
+
         tPtos1.setText(String.valueOf(partidas.getJ1().getPuntos()));
         tPtos2.setText(String.valueOf(partidas.getJ2().getPuntos()));
         tPosicion1.setText(String.valueOf(partidas.getJ1().getPosicion()));
         tPosicion2.setText((String.valueOf(partidas.getJ2().getPosicion())));
         if(partidas.getJ3()!=null) {
+            switch (partidas.getJ3().getColor()){
+                case "Negro":
+                    tColor3.setBackgroundColor(Color.parseColor("#000000"));
+                    break;
+                case "Rojo":
+                    tColor3.setBackgroundColor(Color.parseColor("#e02c00"));
+                    break;
+                case "Amarillo":
+                    tColor3.setBackgroundColor(Color.parseColor("#ffeb40"));
+                    break;
+                case "Rosa":
+                    tColor3.setBackgroundColor(Color.parseColor("#e98df5"));
+                    break;
+            }
             tJug3.setText(partidas.getJ3().getNomJugador());
-            tColor3.setText(partidas.getJ3().getColor());
             tPtos3.setText(String.valueOf(partidas.getJ3().getPuntos()));
             tPosicion3.setText((String.valueOf(partidas.getJ3().getPosicion())));
         }
         if(partidas.getJ4()!=null) {
+            switch (partidas.getJ4().getColor()){
+                case "Negro":
+                    tColor4.setBackgroundColor(Color.parseColor("#000000"));
+                    break;
+                case "Rojo":
+                    tColor4.setBackgroundColor(Color.parseColor("#e02c00"));
+                    break;
+                case "Amarillo":
+                    tColor4.setBackgroundColor(Color.parseColor("#ffeb40"));
+                    break;
+                case "Rosa":
+                    tColor4.setBackgroundColor(Color.parseColor("#e98df5"));
+                    break;
+            }
             tJug4.setText(partidas.getJ4().getNomJugador());
-            tColor4.setText(partidas.getJ4().getColor());
             tPtos4.setText(String.valueOf(partidas.getJ4().getPuntos()));
             tPosicion4.setText((String.valueOf(partidas.getJ4().getPosicion())));
         }
+
     }
 
     @Override

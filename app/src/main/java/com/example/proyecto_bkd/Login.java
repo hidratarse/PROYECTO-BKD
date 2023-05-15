@@ -29,6 +29,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -135,6 +137,8 @@ public class Login extends AppCompatActivity {
         tAceptarDato = dialogView.findViewById(R.id.tAceptarDato);
         tTituloAlert.setText(getResources().getString(R.string.RestaurarContraseña));
         eEmail.setHint(getResources().getString(R.string.IntroduceEmail));
+        eEmail.setInputType(EditText.AUTOFILL_TYPE_TEXT);
+        eEmail.requestFocus();
         alertRestaurar.show();
         alertRestaurar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 

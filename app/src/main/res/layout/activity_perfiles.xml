@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Partidas"
+                    android:text="@string/Partidas"
                     android:textAlignment="viewStart"
                     android:textColor="#FF9800"
                     android:textSize="34sp" />
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Perfiles"
+                    android:text="@string/Perfiles"
                     android:textAlignment="center"
                     android:textColor="#FF9800"
                     android:textSize="34sp" />
@@ -177,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/enchanted_land"
-                    android:text="Ranking"
+                    android:text="@string/Ranking"
                     android:textAlignment="center"
                     android:textColor="#FF9800"
                     android:textSize="34sp" />

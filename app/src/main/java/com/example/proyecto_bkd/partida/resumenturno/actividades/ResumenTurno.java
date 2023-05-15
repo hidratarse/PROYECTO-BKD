@@ -266,6 +266,7 @@ public class ResumenTurno extends AppCompatActivity {
         bPuntosPerga = dialogView.findViewById(R.id.bAceptarDato);
         tTituloAlert.setText(getResources().getString(R.string.AlertPergamino));
         puntosPergamino.setHint(getResources().getString(R.string.IntroducePuntos)+" "+ SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador());
+        puntosPergamino.requestFocus();
         alertPergaminos.show();
         alertPergaminos.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         bPuntosPerga.setOnClickListener(new View.OnClickListener() {
