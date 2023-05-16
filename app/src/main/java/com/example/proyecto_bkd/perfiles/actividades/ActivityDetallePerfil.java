@@ -1,15 +1,9 @@
 package com.example.proyecto_bkd.perfiles.actividades;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,6 +15,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.bumptech.glide.Glide;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
@@ -29,33 +30,37 @@ import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.utils.Alert;
+import com.example.proyecto_bkd.utils.GallerySaver;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking, perfilImg;
+    ImageButton bImgPartidas, bImgPerfiles, bImgRanking, perfilImg;
     TextView tCancela, tModificar, tInsertar, nPartidas, nGanadas, nPuntuacion, tBorrar;
     Switch sMPerfilDetalle;
     PerfilesViewModel vm;
     private Uri pfpUri;
     private String currentPfpUrl = "";
-    ActivityResultLauncher<Intent> resultLauncher;
+    ActivityResultLauncher<Intent> galleryResult;
+    ActivityResultLauncher<String> galleryLauncher;
+    ActivityResultLauncher<String> camaraLauncher;
+    ActivityResultLauncher<Intent> camaraResult;
     boolean perfilValido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_detalle);
-        bImgPartidas=findViewById(R.id.bImgPartidas);
-        bImgPerfiles=findViewById(R.id.bImgPerfiles);
-        bImgRanking=findViewById(R.id.bImgRanking);
+        bImgPartidas = findViewById(R.id.bImgPartidas);
+        bImgPerfiles = findViewById(R.id.bImgPerfiles);
+        bImgRanking = findViewById(R.id.bImgRanking);
         nombre = findViewById(R.id.eNombre);
-        tCancela=findViewById(R.id.tCancela);
-        tModificar=findViewById(R.id.tModificar);
+        tCancela = findViewById(R.id.tCancela);
+        tModificar = findViewById(R.id.tModificar);
         tInsertar = findViewById(R.id.tInsertar);
         tBorrar = findViewById(R.id.tBorrar);
-        sMPerfilDetalle= findViewById(R.id.sMPerfilDetalle);
+        sMPerfilDetalle = findViewById(R.id.sMPerfilDetalle);
         nPartidas = findViewById(R.id.NumPartidasJugadas);
         nGanadas = findViewById(R.id.NumPartidasGanadas);
         nPuntuacion = findViewById(R.id.NumMaxPuntuacion);
@@ -67,16 +72,24 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
         vm.init();
 
-        ActivityResultLauncher<String> request = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted ->{
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             if (isGranted) {
-                seleccionarImagen();
-            } else{
+                iniciarGaleria();
+            } else {
                 // explicar por que se necesita
             }
         });
 
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            switch (result.getResultCode()){
+        camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                iniciarCamara();
+            } else {
+                // explicar por que se necesita
+            }
+        });
+
+        galleryResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            switch (result.getResultCode()) {
                 case RESULT_CANCELED:
                     break;
                 case RESULT_OK:
@@ -87,16 +100,31 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             }
         });
 
+        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            switch (result.getResultCode()) {
+                case RESULT_CANCELED:
+                    break;
+                case RESULT_OK:
+                    Intent data = result.getData();
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    pfpUri = GallerySaver.saveImageToGallery(imageBitmap);
+                    perfilImg.setImageURI(pfpUri);
+                    break;
+            }
+        });
+
+
         boolean editando = getIntent().getBooleanExtra("EDITANDO", false);
         String idPerfil = getIntent().getStringExtra("ID");
 
         Log.d("KEK", idPerfil);
 
-        if (editando){
+        if (editando) {
             tModificar.setVisibility(View.VISIBLE);
             tInsertar.setVisibility(View.INVISIBLE);
             vm.getPerfil(idPerfil);
-        }else {
+        } else {
             tModificar.setVisibility(View.INVISIBLE);
             tInsertar.setVisibility(View.VISIBLE);
             Glide.with(this)
@@ -119,13 +147,17 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         });
 
         perfilImg.setOnClickListener(view -> {
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                seleccionarImagen();
-            } else if (false) {
-                // dialog explicando porque necesitamos su imagen
-            } else {
-                request.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
-            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Seleccionar imagen")
+                    .setItems(new CharSequence[]{"Galería", "Cámara"}, (dialog, which) -> {
+                        if (which == 0) {
+                            checkGaleria();
+                        } else if (which == 1) {
+                            checkCamara();
+                        }
+                    })
+                    .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
 
         tBorrar.setOnClickListener(view -> {
@@ -154,14 +186,14 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         });
 
         tInsertar.setOnClickListener(view -> {
-            perfilValido=true;
-            if(nombre.getText().length()<4 || nombre.getText().length()>10){
-                Alert.alertError(ActivityDetallePerfil.this,getResources().getString(R.string.ErrorNombre));
-                perfilValido=false;
+            perfilValido = true;
+            if (nombre.getText().length() < 4 || nombre.getText().length() > 10) {
+                Alert.alertError(ActivityDetallePerfil.this, getResources().getString(R.string.ErrorNombre));
+                perfilValido = false;
             }
-            if(perfilValido){
+            if (perfilValido) {
                 String newName = nombre.getText().toString();
-                Perfil nuevoPerfil = new Perfil(email,newName,"0","0","0");
+                Perfil nuevoPerfil = new Perfil(email, newName, "0", "0", "0");
                 vm.insertarPerfil(nuevoPerfil, pfpUri);
                 setResult(ActivityPerfiles.REFRESH);
                 finish();
@@ -169,13 +201,13 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         });
 
         tModificar.setOnClickListener(view -> {
-            perfilValido=true;
-            Toast.makeText(ActivityDetallePerfil.this, nombre.length()+"", Toast.LENGTH_SHORT).show();
-            if(nombre.getText().length()<4 || nombre.getText().length()>10){
-                Alert.alertError(ActivityDetallePerfil.this,getResources().getString(R.string.ErrorNombre));
-                perfilValido=false;
+            perfilValido = true;
+            Toast.makeText(ActivityDetallePerfil.this, nombre.length() + "", Toast.LENGTH_SHORT).show();
+            if (nombre.getText().length() < 4 || nombre.getText().length() > 10) {
+                Alert.alertError(ActivityDetallePerfil.this, getResources().getString(R.string.ErrorNombre));
+                perfilValido = false;
             }
-            if(perfilValido){
+            if (perfilValido) {
                 String mNombre = String.valueOf(nombre.getText());
                 String mPartidas = String.valueOf(nPartidas.getText());
                 String mGanadas = String.valueOf(nGanadas.getText());
@@ -183,7 +215,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
                 Perfil nPerfil = new Perfil(email, mNombre, mPartidas, mGanadas, mPuntos);
                 nPerfil.setId(idPerfil);
                 nPerfil.setPfpImg(currentPfpUrl);
-                vm.modificarPerfil(idPerfil,nPerfil, pfpUri);
+                vm.modificarPerfil(idPerfil, nPerfil, pfpUri);
                 setResult(ActivityPerfiles.REFRESH);
                 finish();
             }
@@ -228,10 +260,10 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         sMPerfilDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sMPerfilDetalle.isChecked()){
+                if (sMPerfilDetalle.isChecked()) {
                     Login.mp.start();
-                    Login.music =true;
-                }else {
+                    Login.music = true;
+                } else {
                     Login.mp.pause();
                     Login.music = false;
                 }
@@ -239,10 +271,37 @@ public class ActivityDetallePerfil extends AppCompatActivity {
         });
     }
 
-    private void seleccionarImagen() {
-        Intent i =new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+    private void checkCamara() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED) {
+            iniciarCamara();
+        } else if (false) {
+            // dialog explicando porque necesitamos la camara
+        } else {
+            camaraLauncher.launch(Manifest.permission.CAMERA);
+        }
+    }
+
+    private void iniciarCamara() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        camaraResult.launch(intent);
+    }
+
+    private void checkGaleria() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_GRANTED) {
+            iniciarGaleria();
+        } else if (false) {
+            // dialog explicando porque necesitamos su imagen
+        } else {
+            galleryLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+    }
+
+    private void iniciarGaleria() {
+        Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         i.putExtra(MediaStore.EXTRA_OUTPUT, pfpUri);
-        resultLauncher.launch(i);
+        galleryResult.launch(i);
     }
 
     @Override
@@ -254,9 +313,9 @@ public class ActivityDetallePerfil extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(Login.music){
+        if (Login.music) {
             Login.mp.start();
-        }else{
+        } else {
             Login.mp.pause();
             sMPerfilDetalle.setChecked(false);
         }
