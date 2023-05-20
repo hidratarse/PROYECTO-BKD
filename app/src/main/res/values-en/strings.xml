@@ -60,4 +60,6 @@
     <string name="ErrorNombre">Must be between \n4 and 10 characters</string>
     <string name="RankingPuntos">Score Ranking</string>
     <string name="RankingVictorias">Victory Ranking </string>
+    <string name="pulsaMarco">Tap the gamer to pick color </string>
+    <string name="salirPartida">Quit game? </string>
 </resources>
