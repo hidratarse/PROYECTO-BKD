@@ -84,7 +84,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
         vm.getPerfilesLivedata().observe(this, (dato) -> {
             adaptador.setResults(dato);
         });
-
+        alertError(getResources().getString(R.string.pulsaMarco));
         adaptador.setClickListener((view, perfil) -> {
             //Atributo para validar la selección
             boolean valido=false;

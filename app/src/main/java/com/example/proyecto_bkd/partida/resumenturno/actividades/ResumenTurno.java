@@ -58,12 +58,11 @@ public class ResumenTurno extends AppCompatActivity {
     int turno=0;
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tTituloAlert;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tTituloAlert, tAlert;
     EditText puntosPergamino;
     Switch sMResumenTurno;
     //Atributos para mostrar datos en el recyclerView
     public ArrayList<Feudo> listaFeudos;
-    public List<Perfil> listaPerfil;
     RecyclerView recyclerView;
     ResumenTurnoAdapter adapterResumen;
     String email;
@@ -113,8 +112,7 @@ public class ResumenTurno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, Ranking.class);
-                startActivity(intent);
-                finish();
+               controlPartida(intent);
             }
         });
 
@@ -123,8 +121,7 @@ public class ResumenTurno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, PrincipalPartida.class);
-                startActivity(intent);
-                finish();
+                controlPartida(intent);
             }
         });
 
@@ -133,8 +130,7 @@ public class ResumenTurno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, ActivityPerfiles.class);
-                startActivity(intent);
-                finish();
+                controlPartida(intent);
             }
         });
 
@@ -429,5 +425,38 @@ public class ResumenTurno extends AppCompatActivity {
             posicion = puntuaciones.indexOf(SeleccionPerfiles.listaJugadores.get(i).getPuntos()) ;
             SeleccionPerfiles.listaJugadores.get(i).setPosicion(posicion+1);
         }
+    }
+
+    private void controlPartida(Intent intent){
+        AlertDialog salirPartida= new AlertDialog.Builder(ResumenTurno.this).create();
+        salirPartida.setCancelable(false);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.confirm_dialog,null);
+        salirPartida.setView(dialogView);
+        tAlert = dialogView.findViewById(R.id.dialog_title);
+        tSi = dialogView.findViewById(R.id.tEliminarDialog);
+        tNo = dialogView.findViewById(R.id.tCancelarDialog);
+        tAlert.setText(getResources().getString(R.string.salirPartida));
+        tSi.setText(getResources().getString(R.string.Si));
+        tNo.setText(getResources().getString(R.string.No));
+        tSi.setTextSize(34);
+        tNo.setTextSize(34);
+        salirPartida.show();
+        salirPartida.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                salirPartida.dismiss();
+                startActivity(intent);
+                finish();
+            }
+        });
+        tNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                salirPartida.dismiss();
+
+            }
+        });
     }
 }
