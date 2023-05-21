@@ -1,7 +1,7 @@
 package com.example.proyecto_bkd.partida.data;
 
 public class Partidas {
-    private String idPartida, email, fecha;
+    private String idPartida, email, fecha, fotoPartida;
     private Jugador j1, j2, j3,j4;
 
     public Partidas(){}
@@ -83,5 +83,13 @@ public class Partidas {
 
     public void setJ4(Jugador j4) {
         this.j4 = j4;
+    }
+
+    public String getFotoPartida() {
+        return fotoPartida;
+    }
+
+    public void setFotoPartida(String fotoPartida) {
+        this.fotoPartida = fotoPartida;
     }
 }

@@ -95,7 +95,7 @@ public class DetallePartida extends AppCompatActivity {
             Toast.makeText(this, "NO EXISTE LA FOTO", Toast.LENGTH_SHORT).show();
         }
         */
-
+        
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

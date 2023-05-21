@@ -17,6 +17,11 @@ public class PartidaRepository {
     private MutableLiveData<List<Partidas>> listaPartidasLivedata;
     private MutableLiveData<Partidas> partidasLiveData;
 
+    public interface UploadPartidasCallback{
+        void onSuccess(String id);
+        void onFailure(Exception exception);
+    }
+
     public PartidaRepository() {
         listaPartidasLivedata = new MutableLiveData<>();
         partidasLiveData = new MutableLiveData<>();
@@ -55,13 +60,22 @@ public class PartidaRepository {
         });
     }
 
-    public void insertarPartida(Partidas partida) {
+    public void insertarPartida(Partidas partida, UploadPartidasCallback listener) {
         coleccion.add(partida).addOnSuccessListener(documentReference -> {
             partidasLiveData.postValue(partida);
+            listener.onSuccess(documentReference.getId());
         }).addOnFailureListener(e -> {
             partidasLiveData.postValue(null);
+            listener.onFailure(e);
         });
     }
+
+    public void modificarPartida(String idPartida, Partidas partidas){
+        coleccion.document(idPartida).set(partidas).addOnSuccessListener(aVoid ->{
+            partidasLiveData.postValue(partidas);
+        });
+    }
+
     public void  eliminarPartida(String idPartida){
         coleccion.document(idPartida).delete().addOnSuccessListener(aVoid ->{
         });

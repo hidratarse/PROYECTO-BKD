@@ -4,12 +4,17 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.MediaStore;
@@ -37,6 +42,7 @@ import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.utils.Alert;
+import com.example.proyecto_bkd.utils.GallerySaver;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -72,6 +78,9 @@ public class ResumenTurno extends AppCompatActivity {
     int posicionFeudo,restarPuntos,partidasJugadas, partidasGanadas,percent;
     FirebaseUser currentUser;
     FirebaseFirestore mFirestore;
+    private Uri fotoUri;
+    ActivityResultLauncher<String> camaraLauncher;
+    ActivityResultLauncher<Intent> camaraResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +101,27 @@ public class ResumenTurno extends AppCompatActivity {
 
         currentUser= FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
+
+        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            switch (result.getResultCode()) {
+                case RESULT_CANCELED:
+                    break;
+                case RESULT_OK:
+                    Intent data = result.getData();
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
+                    break;
+            }
+        });
+
+        camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                iniciarCamara();
+            } else {
+                // explicar por que se necesita
+            }
+        });
 
         //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
@@ -310,7 +340,6 @@ public class ResumenTurno extends AppCompatActivity {
         posiciones();
         crearPartida();
         actualizar();
-        vmPartidas.insertarPartida(partida);
 
         AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
         alertFoto.setCancelable(false);
@@ -326,6 +355,8 @@ public class ResumenTurno extends AppCompatActivity {
         tSi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                checkCamara();
+                vmPartidas.insertarPartida(partida, fotoUri);
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 finPartida=true;
                 intent.putExtra("partida",partida.getIdPartida());
@@ -338,6 +369,7 @@ public class ResumenTurno extends AppCompatActivity {
         tNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vmPartidas.insertarPartida(partida, fotoUri);
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 finPartida=true;
                 startActivity(intent);
@@ -363,6 +395,22 @@ public class ResumenTurno extends AppCompatActivity {
             }
         }
     );
+
+    private void checkCamara() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED) {
+            iniciarCamara();
+        } else if (false) {
+            // dialog explicando porque necesitamos la camara
+        } else {
+            camaraLauncher.launch(Manifest.permission.CAMERA);
+        }
+    }
+
+    private void iniciarCamara() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        camaraResult.launch(intent);
+    }
 
     @Override
     protected void onPause() {
