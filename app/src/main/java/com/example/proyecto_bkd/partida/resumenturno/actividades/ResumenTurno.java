@@ -328,6 +328,7 @@ public class ResumenTurno extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 finPartida=true;
+                intent.putExtra("partida",partida.getIdPartida());
                 startActivity(intent);
                 alertFoto.dismiss();
                 finish();
