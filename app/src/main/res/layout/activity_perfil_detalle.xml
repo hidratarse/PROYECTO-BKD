@@ -134,8 +134,8 @@
 
     <ImageButton
         android:id="@+id/imgPerfil"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
+        android:layout_width="146dp"
+        android:layout_height="136dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/iMarco"
         app:layout_constraintEnd_toEndOf="@+id/iMarco"
