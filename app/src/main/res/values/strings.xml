@@ -59,7 +59,11 @@
     <string name="ErrorNombre">Tiene que tener entre 4 y 10 caracteres</string>
     <string name="RankingPuntos">Ranking puntuación</string>
     <string name="RankingVictorias">Ranking Victorias</string>
+    <string name="RankingPorcentaje">Porcentaje de victorias Ranking </string>
     <string name="pulsaMarco">Pulsa sobre un jugador para elegir el color </string>
     <string name="salirPartida">¿Quieres salir? </string>
+    <string name="Ronda">Ronda </string>
+
+
 
 </resources>

@@ -34,11 +34,11 @@ public class Ranking extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RankingAdapter adapter;
     private PerfilesViewModel vm;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bMaxPuntuacion, bWin;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bMaxPuntuacion, bPorcentaje, bWin;
     Switch sMRanking;
     String email;
     LinearLayout lCargaRanking;
-    public static boolean ordenPuntos =true;
+    static int ordenPuntos =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,7 @@ public class Ranking extends AppCompatActivity {
         tTituloRanking = findViewById(R.id.tTituloRanking);
         bMaxPuntuacion = findViewById(R.id.bMaxPuntuacion);
         sMRanking= findViewById(R.id.sMRanking);
+        bPorcentaje = findViewById(R.id.bPorcentaje);
         bWin = findViewById(R.id.bWin);
         recyclerView = findViewById(R.id.id_recycler_ranking2);
         lCargaRanking = findViewById(R.id.lCargaRanking);
@@ -120,7 +121,7 @@ public class Ranking extends AppCompatActivity {
         bMaxPuntuacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ordenPuntos =true;
+                ordenPuntos =0;
                 OrdenarPorPuntos();
                 tTituloRanking.setText(getResources().getString(R.string.RankingPuntos));
             }
@@ -128,9 +129,18 @@ public class Ranking extends AppCompatActivity {
         bWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ordenPuntos=false;
+                ordenPuntos=1;
                 OrdenarPorVictorias();
-                tTituloRanking.setText(getResources().getString(R.string.RankingVictorias  ));
+                tTituloRanking.setText(getResources().getString(R.string.RankingVictorias));
+            }
+        });
+
+        bPorcentaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ordenPuntos=2;
+                OrdenarPorPorcentaje();
+                tTituloRanking.setText(getResources().getString(R.string.RankingPorcentaje));
             }
         });
     }
@@ -166,6 +176,22 @@ public class Ranking extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    public void OrdenarPorPorcentaje(){
+        adapter = new RankingAdapter();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        vm = new ViewModelProvider(this).get(PerfilesViewModel.class);
+        vm.init();
+        vm.getPerfiles(email);
+        vm.getPerfilesLivedata().observe(this, perfiles -> {
+            Collections.sort(perfiles, new PorcentajeComparator()); // ordenar la lista según el criterio de puntuación
+            adapter.setResults(perfiles);
+        });
+        adapter.notifyDataSetChanged();
+    }
+
     public class PuntuacionComparator implements Comparator<Perfil> {
         @Override
         public int compare(Perfil p1, Perfil p2) {
@@ -176,6 +202,12 @@ public class Ranking extends AppCompatActivity {
         @Override
         public int compare(Perfil p1, Perfil p2) {
             return Integer.compare(Integer.parseInt(p2.getPartidasGanadas()), Integer.parseInt(p1.getPartidasGanadas())); // ordena de mayor a menor
+        }
+    }
+    public class PorcentajeComparator implements Comparator<Perfil> {
+        @Override
+        public int compare(Perfil p1, Perfil p2) {
+            return Integer.compare(Integer.parseInt(p2.getPorcentajeGanadas()), Integer.parseInt(p1.getPorcentajeGanadas())); // ordena de mayor a menor
         }
     }
 

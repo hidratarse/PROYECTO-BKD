@@ -18,6 +18,8 @@ public class Perfil implements Serializable {
 
     private String partidasGanadas;
 
+    private String porcentajeGanadas;
+
     public Perfil() {
     }
 
@@ -71,6 +73,14 @@ public class Perfil implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getPorcentajeGanadas() {
+        return porcentajeGanadas;
+    }
+
+    public void setPorcentajeGanadas(String porcentajeGanadas) {
+        this.porcentajeGanadas = porcentajeGanadas;
     }
 
     public void setPartidasJugadas(String partidasJugadas) {
