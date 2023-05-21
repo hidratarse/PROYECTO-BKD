@@ -74,17 +74,23 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
             case 2 :
                 holder.getPrimero().setImageResource(R.drawable.crownbronce2);
                 break;
-
         }
         Perfil p =datos.get(position);
         String nombre = p.getNombre();
         int puntuacion = Integer.parseInt(p.getMaxPuntuacion());
         String victorias = p.getPartidasGanadas();
+        String porcentaje = p.getPorcentajeGanadas();
         holder.getNombre().setText(nombre);
-        if(Ranking.ordenPuntos){
-            holder.getPuntuacion().setText(String.valueOf(puntuacion));
-        }else{
-            holder.getPuntuacion().setText(victorias);
+        switch (Ranking.ordenPuntos){
+            case 0:
+                holder.getPuntuacion().setText(String.valueOf(puntuacion));
+                break;
+            case 1:
+                holder.getPuntuacion().setText(victorias);
+                break;
+            case 2:
+                holder.getPuntuacion().setText(porcentaje+"%");
+                break;
         }
         holder.getPosicion().setText(String.valueOf(position+1));
     }

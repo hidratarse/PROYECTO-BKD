@@ -69,7 +69,7 @@ public class ResumenTurno extends AppCompatActivity {
     public static Partidas partida;
     PartidasViewModel vmPartidas;
     public static boolean  finPartida = false;
-    int posicionFeudo,restarPuntos,partidasJugadas;
+    int posicionFeudo,restarPuntos,partidasJugadas, partidasGanadas,percent;
     FirebaseUser currentUser;
     FirebaseFirestore mFirestore;
 
@@ -148,7 +148,7 @@ public class ResumenTurno extends AppCompatActivity {
         for (int i = 0; i < SeleccionPerfiles.listaJugadores.size(); i++) {
             SeleccionPerfiles.listaJugadores.get(i).setPuntos(0);
         }
-
+        Alert.alertError(ResumenTurno.this,getResources().getString(R.string.Ronda)+" "+ronda);
         tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
         //Se modifica la puntuación dependiendo del jugador
         tPuntosRonda.setText(String.valueOf(SeleccionPerfiles.listaJugadores.get(turno).getPuntos()));
@@ -200,6 +200,7 @@ public class ResumenTurno extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 btnConfirmar.setOnClickListener(v -> {
+                    //Alert.alertError(ResumenTurno.this,SeleccionPerfiles.listaJugadores.get(turno).getNomJugador()+": "+SeleccionPerfiles.listaJugadores.get(turno).getPuntos()+ getResources().getString(R.string.Puntos));
                     turno++;
                     listaFeudos.clear();
                     adapterResumen.setResults(listaFeudos);
@@ -208,6 +209,9 @@ public class ResumenTurno extends AppCompatActivity {
                     if (turno == SeleccionPerfiles.listaJugadores.size()) {
                         ronda++;
                         turno = 0;
+                        if(ronda<5){
+                            Alert.alertError(ResumenTurno.this,getResources().getString(R.string.Ronda)+" "+ronda);
+                        }
                     }
                     tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
                     tNumTurno.setText(ronda + "");
@@ -400,14 +404,24 @@ public class ResumenTurno extends AppCompatActivity {
         for (int i = 0; i < SeleccionPerfiles.listaJugadores.size(); i++) {
             map.clear();
             partidasJugadas = SeleccionPerfiles.listaJugadores.get(i).getPartidasJugadas()+1;
+            partidasGanadas =SeleccionPerfiles.listaJugadores.get(i).getPartidasGanadas();
             map.put("partidasJugadas",String.valueOf(partidasJugadas));
 
             if(SeleccionPerfiles.listaJugadores.get(i).getPuntos()>SeleccionPerfiles.listaJugadores.get(i).getMaxPuntuacion()){
                 map.put("maxPuntuacion",String.valueOf(SeleccionPerfiles.listaJugadores.get(i).getPuntos()));
             }
             if(SeleccionPerfiles.listaJugadores.get(i).getPosicion()==1){
-                map.put("partidasGanadas",String.valueOf(SeleccionPerfiles.listaJugadores.get(i).getPartidasGanadas()+1));
+                partidasGanadas=partidasGanadas+1;
+                percent=(int)(partidasGanadas*100.0)/partidasJugadas;
+                Toast.makeText(this,String.valueOf(percent), Toast.LENGTH_SHORT);
+                map.put("partidasGanadas",String.valueOf(partidasGanadas));
+                map.put("porcentajeGanadas",String.valueOf(percent));
+            }else {
+                percent=(int)(partidasGanadas*100.0)/partidasJugadas;
+                map.put("porcentajeGanadas",String.valueOf(percent));
+                Toast.makeText(this,String.valueOf(percent), Toast.LENGTH_SHORT);
             }
+
             mFirestore = FirebaseFirestore.getInstance();
             mFirestore.collection("perfiles").document(SeleccionPerfiles.listaJugadores.get(i).getIdJugador()).update(map);
         }

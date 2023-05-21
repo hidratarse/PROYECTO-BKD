@@ -147,9 +147,29 @@
         app:cornerRadius="50dp"
         app:iconTint="#00FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
-        app:layout_constraintEnd_toStartOf="@+id/bWin"
+        app:layout_constraintEnd_toStartOf="@+id/bPorcentaje"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/bPorcentaje"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
+        android:background="@drawable/circulo"
+        android:backgroundTint="#E35311"
+        android:fontFamily="@font/enchanted_land"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/porcentaje"
+        android:text="@string/Registrarse"
+        android:textSize="25sp"
+        app:cornerRadius="50dp"
+        app:iconTint="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+        app:layout_constraintEnd_toStartOf="@+id/bWin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bMaxPuntuacion"
         tools:ignore="TextContrastCheck" />
 
     <ImageButton
@@ -169,7 +189,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bMaxPuntuacion"
+        app:layout_constraintStart_toEndOf="@+id/bPorcentaje"
         tools:ignore="TextContrastCheck" />
 
     <Switch
