@@ -1,6 +1,7 @@
 package com.example.proyecto_bkd.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -16,6 +17,8 @@ public class GallerySaver {
     public static Uri saveImageToGallery(Bitmap bitmap) {
         OutputStream fos = null;
         Uri imageUri = null;
+        int nuevaAnchura = 456;
+        int nuevaAltura = 494;
         try {
             File imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
@@ -25,7 +28,8 @@ public class GallerySaver {
             File imageFile = new File(imagesDir, imageFileName);
 
             fos = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            Bitmap imagenRedimensionada = Bitmap.createScaledBitmap(bitmap, nuevaAnchura, nuevaAltura, true);
+            imagenRedimensionada.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 
             imageUri = Uri.fromFile(imageFile);
         } catch (IOException e) {

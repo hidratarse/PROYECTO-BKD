@@ -1,11 +1,14 @@
 package com.example.proyecto_bkd.perfiles.actividades;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +37,10 @@ import com.example.proyecto_bkd.utils.GallerySaver;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Random;
+
 public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
     ImageButton bImgPartidas, bImgPerfiles, bImgRanking, perfilImg;
@@ -47,6 +54,8 @@ public class ActivityDetallePerfil extends AppCompatActivity {
     ActivityResultLauncher<String> camaraLauncher;
     ActivityResultLauncher<Intent> camaraResult;
     boolean perfilValido;
+    int nuevaAnchura = 456;
+    int nuevaAltura = 494;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +104,34 @@ public class ActivityDetallePerfil extends AppCompatActivity {
                 case RESULT_OK:
                     Intent data = result.getData();
                     pfpUri = data.getData();
-                    perfilImg.setImageURI(pfpUri);
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), pfpUri);
+                        Bitmap imagenRedimensionada = Bitmap.createScaledBitmap(bitmap, nuevaAnchura, nuevaAltura, true);
+                        String nombre ="";
+
+                        for (int i = 0; i < 8; i++) {
+                            nombre+= (int)(Math.random()*10);
+                        }
+                        String nombreArchivo = nombre+".jpg";
+                        nombre ="";
+                        ContentValues valores = new ContentValues();
+                        valores.put(MediaStore.Images.Media.DISPLAY_NAME, nombreArchivo);
+                        valores.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            valores.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
+                        }
+
+                        Uri uriImagenRedimensionada = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, valores);
+
+                        // Comprime y guarda la imagen redimensionada en la URI obtenida
+                        OutputStream outputStream = getContentResolver().openOutputStream(uriImagenRedimensionada);
+                        imagenRedimensionada.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                        outputStream.close();
+
+                        perfilImg.setImageURI(uriImagenRedimensionada);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
             }
         });
@@ -194,6 +230,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             if (perfilValido) {
                 String newName = nombre.getText().toString();
                 Perfil nuevoPerfil = new Perfil(email, newName, "0", "0", "0");
+                nuevoPerfil.setPorcentajeGanadas("0");
                 vm.insertarPerfil(nuevoPerfil, pfpUri);
                 setResult(ActivityPerfiles.REFRESH);
                 finish();
