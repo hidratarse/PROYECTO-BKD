@@ -17,7 +17,7 @@
     <string name="Color">Color</string>
     <string name="Puntos">Points</string>
     <string name="Puntuacion">Score</string>
-    <string name="Puesto">Rank</string>
+    <string name="Puesto">Position</string>
     <string name="NuevaPartida">New Game</string>
     <string name="VerPartidas">See Game</string>
     <string name="Salir">Leave</string>
@@ -41,17 +41,17 @@
     <string name="Si">Yes</string>
     <string name="No">No</string>
     <string name="Foto">Take a picture?</string>
-    <string name="CompletarCampos">Complete all fields</string>
+    <string name="CompletarCampos">Fill all fields</string>
     <string name="ErrorInicio">Login Error</string>
     <string name="Bienvenido">Welcome</string>
     <string name="ErrorNumJugadores">Select 2 to 4 players</string>
     <string name="ErrorColorJugadores">There cannot be 2 players \nwith the same colour</string>
     <string name="NoNum">It isn\'t a number</string>
     <string name="save">Save</string>
-    <string name="IntroducePuntos">Points of</string>
+    <string name="IntroducePuntos">Insert points for</string>
     <string name="AlertPergamino">Parchment points </string>
     <string name="IntroduceEmail">"Enter email "</string>
-    <string name="ErrorEmail">No es un email valido </string>
+    <string name="ErrorEmail">Not a valid email</string>
     <string name="RestaurarContraseña">Reset Password</string>
     <string name="SeguroEliminar">Are you sure?</string>
     <string name="TerminarTurnoJugador">End turn?</string>
@@ -61,7 +61,7 @@
     <string name="RankingPuntos">Score Ranking</string>
     <string name="RankingVictorias">Victory Ranking </string>
     <string name="RankingPorcentaje">Victory Percent Ranking </string>
-    <string name="pulsaMarco">Tap the gamer to pick color </string>
+    <string name="pulsaMarco">"Tap the player to pick a color "</string>
     <string name="salirPartida">Quit game? </string>
     <string name="Ronda">Round </string>
 
