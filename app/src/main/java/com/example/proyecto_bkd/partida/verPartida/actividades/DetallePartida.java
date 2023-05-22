@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
@@ -33,8 +34,6 @@ public class DetallePartida extends AppCompatActivity {
     ImageView imgFoto;
     PartidasViewModel vm;
     String idPartida;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class DetallePartida extends AppCompatActivity {
 
         vm = new ViewModelProvider(this).get(PartidasViewModel.class);
         vm.init();
+
         if (ResumenTurno.finPartida) {
             colocarDatos(ResumenTurno.partida);
             tEliminar.setVisibility(View.INVISIBLE);
@@ -84,18 +84,16 @@ public class DetallePartida extends AppCompatActivity {
         }
         ResumenTurno.finPartida=false;
 
-        /*
-        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "image.jpg");
 
-        if (file.exists()) {
-            Toast.makeText(this, " EXISTE", Toast.LENGTH_SHORT).show();
-            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            imgFoto.setImageBitmap(bitmap);
-        } else {
-            Toast.makeText(this, "NO EXISTE LA FOTO", Toast.LENGTH_SHORT).show();
-        }
-        */
-        
+        idPartida = getIntent().getStringExtra("partida");
+
+        vm.getPartidaLivedata().observe(this, partidas -> {
+            colocarDatos(partidas);
+            Glide.with(this).load(partidas.getFotoPartida()).into(this.imgFoto);
+        });
+
+        vm.getPartida(idPartida);
+
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
