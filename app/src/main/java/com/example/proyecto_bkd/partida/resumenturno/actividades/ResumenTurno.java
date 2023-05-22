@@ -102,19 +102,6 @@ public class ResumenTurno extends AppCompatActivity {
         currentUser= FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
 
-        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            switch (result.getResultCode()) {
-                case RESULT_CANCELED:
-                    break;
-                case RESULT_OK:
-                    Intent data = result.getData();
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
-                    break;
-            }
-        });
-
         camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             if (isGranted) {
                 iniciarCamara();
@@ -281,6 +268,77 @@ public class ResumenTurno extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
+
+        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            Log.d("paso", result.getResultCode()+" ");
+            switch (result.getResultCode()) {
+                case RESULT_CANCELED:
+                    Log.d("paso", "paso cancelado");
+                    break;
+                case RESULT_OK:
+                    Log.d("paso", "result ok");
+                    Intent data = result.getData();
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
+                    break;
+            }
+        });
+
+    }
+
+    private void alertHacerFoto() {
+        posiciones();
+        crearPartida();
+        actualizar();
+
+        AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
+        alertFoto.setCancelable(false);
+        LayoutInflater inflater =this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.hacer_foto,null);
+        alertFoto.setView(dialogView);
+        tSi = dialogView.findViewById(R.id.tSi);
+        tNo = dialogView.findViewById(R.id.tNo);
+        tSi.setTextSize(34);
+        tNo.setTextSize(34);
+        alertFoto.show();
+        alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkCamara();
+                vmPartidas.insertarPartida(partida, fotoUri);
+                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
+                finPartida=true;
+                intent.putExtra("partida",partida.getIdPartida());
+                startActivity(intent);
+                alertFoto.dismiss();
+                finish();
+                //hacerFoto(view);
+            }
+        });
+        tNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vmPartidas.insertarPartida(partida, fotoUri);
+                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
+                finPartida=true;
+                intent.putExtra("partida",partida.getIdPartida());
+                startActivity(intent);
+                alertFoto.dismiss();
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Alert.alertError != null && Alert.alertError.isShowing()) {
+            // Mostrar el diálogo si aún no se ha mostrado
+            Alert.alertError.show();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     //Se crea ventana AlertDialog para solicitar los puntos conseguidos por los pergaminos del jugador
@@ -322,59 +380,6 @@ public class ResumenTurno extends AppCompatActivity {
                         alertHacerFoto();
                     }
                 }
-            }
-        });
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (Alert.alertError != null && Alert.alertError.isShowing()) {
-            // Mostrar el diálogo si aún no se ha mostrado
-            Alert.alertError.show();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    private void alertHacerFoto() {
-        posiciones();
-        crearPartida();
-        actualizar();
-
-        AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
-        alertFoto.setCancelable(false);
-        LayoutInflater inflater =this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.hacer_foto,null);
-        alertFoto.setView(dialogView);
-        tSi = dialogView.findViewById(R.id.tSi);
-        tNo = dialogView.findViewById(R.id.tNo);
-        tSi.setTextSize(34);
-        tNo.setTextSize(34);
-        alertFoto.show();
-        alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tSi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkCamara();
-                vmPartidas.insertarPartida(partida, fotoUri);
-                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
-                finPartida=true;
-                intent.putExtra("partida",partida.getIdPartida());
-                startActivity(intent);
-                alertFoto.dismiss();
-                finish();
-                //hacerFoto(view);
-            }
-        });
-        tNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vmPartidas.insertarPartida(partida, fotoUri);
-                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
-                finPartida=true;
-                startActivity(intent);
-                alertFoto.dismiss();
-                finish();
             }
         });
     }
