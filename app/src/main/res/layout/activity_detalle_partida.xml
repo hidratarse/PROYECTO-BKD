@@ -33,16 +33,6 @@
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/h8"
-        app:srcCompat="@drawable/sello1" />
-
-    <ImageButton
-        android:id="@+id/imgEliminarPartida"
-        android:layout_width="154dp"
-        android:layout_height="101dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/h8"
         app:srcCompat="@drawable/sello1" />
@@ -176,20 +166,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imgCerrar"
         app:layout_constraintStart_toStartOf="@+id/imgCerrar"
         app:layout_constraintTop_toTopOf="@+id/imgCerrar" />
-
-    <TextView
-        android:id="@+id/tEliminarFeudo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:fontFamily="@font/enchanted_land"
-        android:text="@string/Eliminar"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgEliminarPartida"
-        app:layout_constraintEnd_toEndOf="@+id/imgCerrar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgEliminarPartida" />
 
     <TextView
         android:id="@+id/tFechaP"

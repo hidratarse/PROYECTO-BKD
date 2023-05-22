@@ -27,10 +27,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class DetallePartida extends AppCompatActivity {
-    TextView tCerrar,tFechaP,tJug1,tJug2,tJug3,tJug4,tColor1,tColor2,tColor3,tColor4, tEliminar;
+    TextView tCerrar,tFechaP,tJug1,tJug2,tJug3,tJug4,tColor1,tColor2,tColor3,tColor4;
     TextView tPtos1, tPtos2,tPtos3,tPtos4,tPosicion1,tPosicion2,tPosicion3,tPosicion4;
     Switch sMDetallePartida;
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking, imgEliminarPartida;
+    ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
     ImageView imgFoto;
     PartidasViewModel vm;
     String idPartida;
@@ -61,8 +61,6 @@ public class DetallePartida extends AppCompatActivity {
         tPosicion2 = findViewById(R.id.tPoscion2);
         tPosicion3 = findViewById(R.id.tPoscion3);
         tPosicion4 = findViewById(R.id.tPoscion4);
-        tEliminar = findViewById(R.id.tEliminarFeudo);
-        imgEliminarPartida  = findViewById(R.id.imgEliminarPartida);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = currentUser.getEmail();
 
@@ -71,16 +69,12 @@ public class DetallePartida extends AppCompatActivity {
 
         if (ResumenTurno.finPartida) {
             colocarDatos(ResumenTurno.partida);
-            tEliminar.setVisibility(View.INVISIBLE);
-            imgEliminarPartida.setVisibility(View.INVISIBLE);
         }else{
             idPartida = getIntent().getStringExtra("ID");
             vm.getPartida(idPartida);
             vm.getPartidaLivedata().observe(this, partidas -> {
                 colocarDatos(partidas);
             });
-            tEliminar.setVisibility(View.VISIBLE);
-            imgEliminarPartida.setVisibility(View.VISIBLE);
         }
         ResumenTurno.finPartida=false;
 
@@ -140,37 +134,6 @@ public class DetallePartida extends AppCompatActivity {
                 Intent intent = new Intent(DetallePartida.this, VerPartidas.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-        tEliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(DetallePartida.this);
-
-                    View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
-                    builder.setView(confirmDialogView);
-
-                    TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
-                    TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                    btnConfirmar.setOnClickListener(v -> {
-                        vm.eliminarPartida(idPartida);
-                        alertDialog.dismiss();
-                        Intent intent = new Intent(DetallePartida.this, VerPartidas.class);
-                        startActivity(intent);
-                        finish();
-                    });
-
-                    btnCancelar.setOnClickListener(v -> {
-                        // cancelar
-                        alertDialog.dismiss();
-                    });
-                    alertDialog.show();
-                }catch (Exception e){
-
-                }
             }
         });
     }

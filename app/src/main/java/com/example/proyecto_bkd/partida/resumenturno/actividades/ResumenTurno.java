@@ -237,6 +237,7 @@ public class ResumenTurno extends AppCompatActivity {
                     if (ronda > MAX_RONDAS) {
                         tNumTurno.setText(String.valueOf(MAX_RONDAS));
                         mostrarAlertDialog(turno);
+
                     }
                     alertDialog.dismiss();
                 });
@@ -284,7 +285,6 @@ public class ResumenTurno extends AppCompatActivity {
                     break;
             }
         });
-
     }
 
     private void alertHacerFoto() {
@@ -297,6 +297,11 @@ public class ResumenTurno extends AppCompatActivity {
         LayoutInflater inflater =this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.hacer_foto,null);
         alertFoto.setView(dialogView);
+        /*
+        Establece un id en firebase
+        partida.setIdPartida("12");
+        FirebaseFirestore.getInstance().collection("partidas").document("12").set(partida);
+        */
         tSi = dialogView.findViewById(R.id.tSi);
         tNo = dialogView.findViewById(R.id.tNo);
         tSi.setTextSize(34);
@@ -392,13 +397,13 @@ public class ResumenTurno extends AppCompatActivity {
     }
 
     private final ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
-        new ActivityResultContracts.StartActivityForResult(),result -> {
-            if (result.getResultCode() == RESULT_OK) {
-                Intent data = result.getData();
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
+            new ActivityResultContracts.StartActivityForResult(),result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent data = result.getData();
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                }
             }
-        }
     );
 
     private void checkCamara() {
@@ -452,6 +457,7 @@ public class ResumenTurno extends AppCompatActivity {
                 partida =new Partidas(email, fecha,SeleccionPerfiles.listaJugadores.get(0),SeleccionPerfiles.listaJugadores.get(1),SeleccionPerfiles.listaJugadores.get(2),SeleccionPerfiles.listaJugadores.get(3));
                 break;
         }
+
     }
     private void actualizar(){
         Map <String, Object> map = new HashMap<>();
