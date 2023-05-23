@@ -9,14 +9,13 @@
     <string name="Partidas">Games</string>
     <string name="Perfiles">Profiles</string>
     <string name="Ranking">Ranking</string>
-    <string name="Usuario">User</string>
     <string name="Contraseña">Password</string>
     <string name="Olvidado">Forgot your password?</string>
     <string name="Entrar">Enter</string>
     <string name="Registrarse">Sign in</string>
     <string name="Color">Color</string>
     <string name="Puntos">Points</string>
-    <string name="Puntuacion">Score</string>
+    <string name="Puntos2">Points:</string>
     <string name="Puesto">Position</string>
     <string name="NuevaPartida">New Game</string>
     <string name="VerPartidas">See Game</string>
@@ -30,7 +29,6 @@
     <string name="Cerrar">Close</string>
     <string name="Email">Email</string>
     <string name="RepPass">Repeat Password</string>
-    <string name="Modificar">Modify</string>
     <string name="Eliminar">Delete</string>
     <string name="Comenzar">Begin</string>
     <string name="Musica">Music</string>
@@ -48,7 +46,7 @@
     <string name="ErrorColorJugadores">There cannot be 2 players \nwith the same colour</string>
     <string name="NoNum">It isn\'t a number</string>
     <string name="save">Save</string>
-    <string name="IntroducePuntos">Insert points for</string>
+    <string name="IntroducePuntos">Points for</string>
     <string name="AlertPergamino">Parchment points </string>
     <string name="IntroduceEmail">"Enter email "</string>
     <string name="ErrorEmail">Not a valid email</string>
@@ -56,13 +54,13 @@
     <string name="SeguroEliminar">Are you sure?</string>
     <string name="TerminarTurnoJugador">End turn?</string>
     <string name="RegistrarUsuario">Sign In</string>
-    <string name="Turno">Turn</string>
+    <string name="Turno">Turn:</string>
     <string name="ErrorNombre">Must be between \n4 and 10 characters</string>
     <string name="RankingPuntos">Score Ranking</string>
     <string name="RankingVictorias">Victory Ranking </string>
-    <string name="RankingPorcentaje">Victory Percent Ranking </string>
-    <string name="pulsaMarco">"Tap the player to pick a color "</string>
+    <string name="RankingPorcentaje">Victory Percent</string>
+    <string name="pulsaMarco">"Tap the player \nto pick a color "</string>
     <string name="salirPartida">Quit game? </string>
     <string name="Ronda">Round </string>
-
+    <string name="Final">End Game </string>
 </resources>

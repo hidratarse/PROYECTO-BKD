@@ -58,7 +58,7 @@ public class ResumenTurno extends AppCompatActivity {
     int turno=0;
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tTituloAlert, tAlert;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tFinal,tTituloAlert,tSi,tNo, tAlert,tMensajeFinal;
     EditText puntosPergamino;
     Switch sMResumenTurno;
     //Atributos para mostrar datos en el recyclerView
@@ -72,9 +72,7 @@ public class ResumenTurno extends AppCompatActivity {
     int posicionFeudo,restarPuntos,partidasJugadas, partidasGanadas,percent;
     FirebaseUser currentUser;
     FirebaseFirestore mFirestore;
-    private Uri fotoUri;
-    ActivityResultLauncher<String> camaraLauncher;
-    ActivityResultLauncher<Intent> camaraResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +93,6 @@ public class ResumenTurno extends AppCompatActivity {
 
         currentUser= FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
-
-        camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-            if (isGranted) {
-                iniciarCamara();
-            } else {
-                // explicar por que se necesita
-            }
-        });
 
         //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +221,6 @@ public class ResumenTurno extends AppCompatActivity {
                     if (ronda > MAX_RONDAS) {
                         tNumTurno.setText(String.valueOf(MAX_RONDAS));
                         mostrarAlertDialog(turno);
-
                     }
                     alertDialog.dismiss();
                 });
@@ -263,49 +252,29 @@ public class ResumenTurno extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
-
-        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            Log.d("paso", result.getResultCode()+" ");
-            switch (result.getResultCode()) {
-                case RESULT_CANCELED:
-                    Log.d("paso", "paso cancelado");
-                    break;
-                case RESULT_OK:
-                    Log.d("paso", "result ok");
-                    Intent data = result.getData();
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
-                    break;
-            }
-        });
     }
 
     private void terminarPartida() {
-        AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
-        alertFoto.setCancelable(false);
+        AlertDialog alertFinal= new AlertDialog.Builder(ResumenTurno.this).create();
+        alertFinal.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.hacer_foto,null);
-        alertFoto.setView(dialogView);
-        /*
-        Establece un id en firebase
-        partida.setIdPartida("12");
-        FirebaseFirestore.getInstance().collection("partidas").document("12").set(partida);
-        */
-        tSi = dialogView.findViewById(R.id.tSi);
-        tSi.setTextSize(34);
-        alertFoto.show();
-        alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tSi.setOnClickListener(new View.OnClickListener() {
+        View dialogView = inflater.inflate(R.layout.mensaje_error,null);
+        alertFinal.setView(dialogView);
+        tMensajeFinal = dialogView.findViewById(R.id.tMensajeError);
+        tFinal = dialogView.findViewById(R.id.tAceptarError);
+        tMensajeFinal.setText(getResources().getString(R.string.Final));
+        tFinal.setTextSize(34);
+        alertFinal.show();
+        alertFinal.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tFinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 finPartida=true;
                 intent.putExtra("partida",partida.getIdPartida());
                 startActivity(intent);
-                alertFoto.dismiss();
+                alertFinal.dismiss();
                 finish();
-                //hacerFoto(view);
             }
         });
     }
@@ -364,39 +333,6 @@ public class ResumenTurno extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void hacerFoto(View v){
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult.launch(takePictureIntent);
-        }
-    }
-
-    private final ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),result -> {
-                if (result.getResultCode() == RESULT_OK) {
-                    Intent data = result.getData();
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                }
-            }
-    );
-
-    private void checkCamara() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
-                PackageManager.PERMISSION_GRANTED) {
-            iniciarCamara();
-        } else if (false) {
-            // dialog explicando porque necesitamos la camara
-        } else {
-            camaraLauncher.launch(Manifest.permission.CAMERA);
-        }
-    }
-
-    private void iniciarCamara() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        camaraResult.launch(intent);
     }
 
     @Override
@@ -503,7 +439,6 @@ public class ResumenTurno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 salirPartida.dismiss();
-
             }
         });
     }
