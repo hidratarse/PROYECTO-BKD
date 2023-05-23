@@ -161,7 +161,7 @@
         android:fontFamily="@font/enchanted_land"
         android:text="@string/Cerrar"
         android:textColor="#FFC107"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgCerrar"
         app:layout_constraintEnd_toEndOf="@+id/imgCerrar"
         app:layout_constraintStart_toStartOf="@+id/imgCerrar"
@@ -232,14 +232,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="135dp" />
+        app:layout_constraintGuide_begin="143dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/v3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="228dp" />
+        app:layout_constraintGuide_begin="206dp" />
 
     <TextView
         android:id="@+id/tJug1"
@@ -472,21 +472,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="37dp" />
+        app:layout_constraintGuide_begin="53dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/v4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="305dp" />
+        app:layout_constraintGuide_begin="283dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/v5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="356dp" />
+        app:layout_constraintGuide_begin="343dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/h2"
