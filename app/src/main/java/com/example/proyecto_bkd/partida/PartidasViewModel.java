@@ -57,6 +57,31 @@ public class PartidasViewModel extends ViewModel {
        });
     }
 
+    public void SubirFotoPartida(Partidas partida, Uri uri){
+        imageRepository.uploadImage(uri, new ImageRepository.UploadImageCallback() {
+            @Override
+            public void onSuccess(String downloadUrl) {
+                partida.setFotoPartida(downloadUrl);
+                partidaRepository.modificarPartida(partida.getIdPartida(),partida ,new PartidaRepository.EditPartidasCallback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onFailure() {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+
+            }
+        });
+    }
+
     public void getPartida(String idPartida){
         partidaRepository.getPartida(idPartida);
     }

@@ -1,12 +1,20 @@
 package com.example.proyecto_bkd.partida.verPartida.actividades;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,6 +31,7 @@ import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.partida.resumenturno.actividades.ResumenTurno;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
 import com.example.proyecto_bkd.ranking.Ranking;
+import com.example.proyecto_bkd.utils.GallerySaver;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -34,6 +43,10 @@ public class DetallePartida extends AppCompatActivity {
     ImageView imgFoto;
     PartidasViewModel vm;
     String idPartida;
+    private Uri fotoUri;
+    private Partidas partidaActual;
+    ActivityResultLauncher<String> camaraLauncher;
+    ActivityResultLauncher<Intent> camaraResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +87,7 @@ public class DetallePartida extends AppCompatActivity {
             vm.getPartida(idPartida);
             vm.getPartidaLivedata().observe(this, partidas -> {
                 colocarDatos(partidas);
+                partidaActual = ResumenTurno.partida;
             });
         }
         ResumenTurno.finPartida=false;
@@ -83,10 +97,46 @@ public class DetallePartida extends AppCompatActivity {
 
         vm.getPartidaLivedata().observe(this, partidas -> {
             colocarDatos(partidas);
-            Glide.with(this).load(partidas.getFotoPartida()).into(this.imgFoto);
+            if (partidas.getFotoPartida() != null) {
+                Glide.with(this).load(partidas.getFotoPartida()).into(this.imgFoto);
+            } else {
+                Glide.with(this).load(R.drawable.camera).into(this.imgFoto);
+            }
+        });
+
+        imgFoto.setOnClickListener(view -> {
+            checkCamara();
         });
 
         vm.getPartida(idPartida);
+
+        camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                iniciarCamara();
+            } else {
+                // explicar por que se necesita
+            }
+        });
+
+        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            Log.d("paso", result.getResultCode()+" ");
+            switch (result.getResultCode()) {
+                case RESULT_CANCELED:
+                    Log.d("paso", "paso cancelado");
+                    break;
+                case RESULT_OK:
+                    Log.d("paso", "result ok");
+                    Intent data = result.getData();
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
+                    if (partidaActual != null) {
+                        vm.SubirFotoPartida(partidaActual, fotoUri);
+                    } else
+                        vm.SubirFotoPartida(ResumenTurno.partida, fotoUri);
+                    break;
+            }
+        });
 
         bImgRanking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +187,23 @@ public class DetallePartida extends AppCompatActivity {
             }
         });
     }
+
+    private void checkCamara() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED) {
+            iniciarCamara();
+        } else if (false) {
+            // dialog explicando porque necesitamos la camara
+        } else {
+            camaraLauncher.launch(Manifest.permission.CAMERA);
+        }
+    }
+
+    private void iniciarCamara() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        camaraResult.launch(intent);
+    }
+
     public void colocarDatos(Partidas partidas){
 
         tFechaP.setText(partidas.getFecha()+"");
