@@ -82,6 +82,15 @@ public class DetallePartida extends AppCompatActivity {
 
         if (ResumenTurno.finPartida) {
             colocarDatos(ResumenTurno.partida);
+            idPartida = getIntent().getStringExtra("partida");
+            vm.getPartidaLivedata().observe(this, partidas -> {
+                colocarDatos(partidas);
+                if (partidas.getFotoPartida() != null) {
+                    Glide.with(this).load(partidas.getFotoPartida()).into(this.imgFoto);
+                } else {
+                    Glide.with(this).load(R.drawable.camera).into(this.imgFoto);
+                }
+            });
         }else{
             idPartida = getIntent().getStringExtra("ID");
             vm.getPartida(idPartida);
@@ -91,18 +100,6 @@ public class DetallePartida extends AppCompatActivity {
             });
         }
         ResumenTurno.finPartida=false;
-
-
-        idPartida = getIntent().getStringExtra("partida");
-
-        vm.getPartidaLivedata().observe(this, partidas -> {
-            colocarDatos(partidas);
-            if (partidas.getFotoPartida() != null) {
-                Glide.with(this).load(partidas.getFotoPartida()).into(this.imgFoto);
-            } else {
-                Glide.with(this).load(R.drawable.camera).into(this.imgFoto);
-            }
-        });
 
         imgFoto.setOnClickListener(view -> {
             checkCamara();

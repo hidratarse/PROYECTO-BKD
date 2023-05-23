@@ -8,14 +8,13 @@
     <string name="Partidas">Partidas</string>
     <string name="Perfiles">Perfiles</string>
     <string name="Ranking">Ranking</string>
-    <string name="Usuario">Usuario</string>
     <string name="Contraseña">Contraseña</string>
     <string name="Olvidado">¿Has olvidado la contraseña?</string>
     <string name="Entrar">Entrar</string>
     <string name="Registrarse">Registrarse</string>
     <string name="Color">Color</string>
     <string name="Puntos">Puntos</string>
-    <string name="Puntuacion">Score</string>
+    <string name="Puntos2">Puntos:</string>
     <string name="Puesto">Puesto</string>
     <string name="NuevaPartida">Nueva Partida</string>
     <string name="VerPartidas">Ver Partidas</string>
@@ -29,7 +28,6 @@
     <string name="Cerrar">Cerrar</string>
     <string name="Email">Email</string>
     <string name="RepPass">Repite Contraseña</string>
-    <string name="Modificar">Modificar</string>
     <string name="Eliminar">Eliminar</string>
     <string name="Comenzar">Comenzar</string>
     <string name="Musica">Música</string>
@@ -47,7 +45,7 @@
     <string name="ErrorColorJugadores">No puede haber 2 jugadores \ncon el mismo color</string>
     <string name="NoNum">No has introducido un número</string>
     <string name="save">Guardar</string>
-    <string name="IntroducePuntos">Introduce puntos \nde </string>
+    <string name="IntroducePuntos">Puntos de </string>
     <string name="AlertPergamino">Puntos de pergaminos </string>
     <string name="IntroduceEmail">Introduce email </string>
     <string name="ErrorEmail">No es un email valido </string>
@@ -55,15 +53,13 @@
     <string name="SeguroEliminar">¿Estás seguro?</string>
     <string name="TerminarTurnoJugador">¿Quieres terminar el turno?</string>
     <string name="RegistrarUsuario">Registrar Usuario</string>
-    <string name="Turno">Turno</string>
+    <string name="Turno">Turno:</string>
     <string name="ErrorNombre">Tiene que tener entre 4 y 10 caracteres</string>
     <string name="RankingPuntos">Ranking puntuación</string>
     <string name="RankingVictorias">Ranking Victorias</string>
     <string name="RankingPorcentaje">Porcentaje de victorias Ranking </string>
-    <string name="pulsaMarco">Pulsa sobre un jugador para elegir el color </string>
+    <string name="pulsaMarco">Pulsa sobre un jugador \npara elegir el color </string>
     <string name="salirPartida">¿Quieres salir? </string>
     <string name="Ronda">Ronda </string>
-
-
-
+    <string name="Final">Fin de la partida </string>
 </resources>
