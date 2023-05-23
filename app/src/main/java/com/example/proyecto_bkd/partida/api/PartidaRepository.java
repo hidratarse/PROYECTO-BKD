@@ -22,6 +22,11 @@ public class PartidaRepository {
         void onFailure(Exception exception);
     }
 
+    public interface EditPartidasCallback{
+        void onSuccess();
+        void onFailure();
+    }
+
     public PartidaRepository() {
         listaPartidasLivedata = new MutableLiveData<>();
         partidasLiveData = new MutableLiveData<>();
@@ -70,9 +75,10 @@ public class PartidaRepository {
         });
     }
 
-    public void modificarPartida(String idPartida, Partidas partidas){
+    public void modificarPartida(String idPartida, Partidas partidas, EditPartidasCallback listener){
         coleccion.document(idPartida).set(partidas).addOnSuccessListener(aVoid ->{
             partidasLiveData.postValue(partidas);
+            listener.onSuccess();
         });
     }
 
