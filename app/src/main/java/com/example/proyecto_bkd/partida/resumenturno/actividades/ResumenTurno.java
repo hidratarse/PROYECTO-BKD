@@ -54,11 +54,11 @@ import java.util.Map;
 public class ResumenTurno extends AppCompatActivity {
     //Atributos para las condiciones del transcurso de la partida
     private final int MAX_RONDAS=4;
-    int ronda=1;
+    int ronda=4;
     int turno=0;
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
-    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tTituloAlert, tAlert;
+    TextView tFinTurno,tAddFeudo,tNumTurno,tNomJugador,tPuntosRonda,tSi, tNo,tTituloAlert, tAlert,tMensajeFinal,tFinal;
     EditText puntosPergamino;
     Switch sMResumenTurno;
     //Atributos para mostrar datos en el recyclerView
@@ -255,30 +255,26 @@ public class ResumenTurno extends AppCompatActivity {
     }
 
     private void terminarPartida() {
-        AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
-        alertFoto.setCancelable(false);
+        AlertDialog alertFinal= new AlertDialog.Builder(ResumenTurno.this).create();
+        alertFinal.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.hacer_foto,null);
-        alertFoto.setView(dialogView);
-        /*
-        Establece un id en firebase
-        partida.setIdPartida("12");
-        FirebaseFirestore.getInstance().collection("partidas").document("12").set(partida);
-        */
-        tSi = dialogView.findViewById(R.id.tSi);
-        tSi.setTextSize(34);
-        alertFoto.show();
-        alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tSi.setOnClickListener(new View.OnClickListener() {
+        View dialogView = inflater.inflate(R.layout.mensaje_error,null);
+        alertFinal.setView(dialogView);
+        tMensajeFinal = dialogView.findViewById(R.id.tMensajeError);
+        tFinal = dialogView.findViewById(R.id.tAceptarError);
+        tMensajeFinal.setText(getResources().getString(R.string.Final));
+        tFinal.setTextSize(34);
+        alertFinal.show();
+        alertFinal.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tFinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 finPartida=true;
                 intent.putExtra("partida",partida.getIdPartida());
                 startActivity(intent);
-                alertFoto.dismiss();
+                alertFinal.dismiss();
                 finish();
-                //hacerFoto(view);
             }
         });
     }
