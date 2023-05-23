@@ -33,11 +33,7 @@ import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.partida.verPartida.actividades.DetallePartida;
-import com.example.proyecto_bkd.perfiles.PerfilesAdapter;
-import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.perfiles.api.PerfilesRepository;
-import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.resumenturno.ResumenTurnoAdapter;
@@ -46,7 +42,6 @@ import com.example.proyecto_bkd.utils.GallerySaver;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.ktx.Firebase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -54,7 +49,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ResumenTurno extends AppCompatActivity {
@@ -287,11 +281,7 @@ public class ResumenTurno extends AppCompatActivity {
         });
     }
 
-    private void alertHacerFoto() {
-        posiciones();
-        crearPartida();
-        actualizar();
-
+    private void terminarPartida() {
         AlertDialog alertFoto= new AlertDialog.Builder(ResumenTurno.this).create();
         alertFoto.setCancelable(false);
         LayoutInflater inflater =this.getLayoutInflater();
@@ -303,16 +293,12 @@ public class ResumenTurno extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("partidas").document("12").set(partida);
         */
         tSi = dialogView.findViewById(R.id.tSi);
-        tNo = dialogView.findViewById(R.id.tNo);
         tSi.setTextSize(34);
-        tNo.setTextSize(34);
         alertFoto.show();
         alertFoto.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tSi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkCamara();
-                vmPartidas.insertarPartida(partida, fotoUri);
                 Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
                 finPartida=true;
                 intent.putExtra("partida",partida.getIdPartida());
@@ -320,18 +306,6 @@ public class ResumenTurno extends AppCompatActivity {
                 alertFoto.dismiss();
                 finish();
                 //hacerFoto(view);
-            }
-        });
-        tNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vmPartidas.insertarPartida(partida, fotoUri);
-                Intent intent = new Intent(ResumenTurno.this, DetallePartida.class);
-                finPartida=true;
-                intent.putExtra("partida",partida.getIdPartida());
-                startActivity(intent);
-                alertFoto.dismiss();
-                finish();
             }
         });
     }
@@ -382,7 +356,10 @@ public class ResumenTurno extends AppCompatActivity {
                         tNomJugador.setText(SeleccionPerfiles.listaJugadores.get(turno).getNomJugador());
                         mostrarAlertDialog(turno);
                     }else{
-                        alertHacerFoto();
+                        posiciones();
+                        crearPartida();
+                        actualizar();
+                        vmPartidas.insertarPartida(partida, () -> terminarPartida());
                     }
                 }
             }
@@ -517,13 +494,10 @@ public class ResumenTurno extends AppCompatActivity {
         tNo.setTextSize(34);
         salirPartida.show();
         salirPartida.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tSi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                salirPartida.dismiss();
-                startActivity(intent);
-                finish();
-            }
+        tSi.setOnClickListener(view -> {
+            salirPartida.dismiss();
+            startActivity(intent);
+            finish();
         });
         tNo.setOnClickListener(new View.OnClickListener() {
             @Override
