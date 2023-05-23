@@ -130,7 +130,10 @@ public class DetallePartida extends AppCompatActivity {
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
-                    vm.SubirFotoPartida(partidaActual, fotoUri);
+                    if (partidaActual != null) {
+                        vm.SubirFotoPartida(partidaActual, fotoUri);
+                    } else
+                        vm.SubirFotoPartida(ResumenTurno.partida, fotoUri);
                     break;
             }
         });
