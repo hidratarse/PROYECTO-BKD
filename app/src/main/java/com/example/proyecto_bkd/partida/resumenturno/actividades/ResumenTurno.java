@@ -72,9 +72,6 @@ public class ResumenTurno extends AppCompatActivity {
     int posicionFeudo,restarPuntos,partidasJugadas, partidasGanadas,percent;
     FirebaseUser currentUser;
     FirebaseFirestore mFirestore;
-    private Uri fotoUri;
-    ActivityResultLauncher<String> camaraLauncher;
-    ActivityResultLauncher<Intent> camaraResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +92,6 @@ public class ResumenTurno extends AppCompatActivity {
 
         currentUser= FirebaseAuth.getInstance().getCurrentUser();
         email = currentUser.getEmail();
-
-        camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-            if (isGranted) {
-                iniciarCamara();
-            } else {
-                // explicar por que se necesita
-            }
-        });
 
         //Método para controlar la música
         sMResumenTurno.setOnClickListener(new View.OnClickListener() {
@@ -263,22 +252,6 @@ public class ResumenTurno extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
-
-        camaraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            Log.d("paso", result.getResultCode()+" ");
-            switch (result.getResultCode()) {
-                case RESULT_CANCELED:
-                    Log.d("paso", "paso cancelado");
-                    break;
-                case RESULT_OK:
-                    Log.d("paso", "result ok");
-                    Intent data = result.getData();
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    fotoUri = GallerySaver.saveImageToGallery(imageBitmap);
-                    break;
-            }
-        });
     }
 
     private void terminarPartida() {
@@ -366,13 +339,6 @@ public class ResumenTurno extends AppCompatActivity {
         });
     }
 
-    private void hacerFoto(View v){
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult.launch(takePictureIntent);
-        }
-    }
-
     private final ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),result -> {
                 if (result.getResultCode() == RESULT_OK) {
@@ -382,22 +348,6 @@ public class ResumenTurno extends AppCompatActivity {
                 }
             }
     );
-
-    private void checkCamara() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
-                PackageManager.PERMISSION_GRANTED) {
-            iniciarCamara();
-        } else if (false) {
-            // dialog explicando porque necesitamos la camara
-        } else {
-            camaraLauncher.launch(Manifest.permission.CAMERA);
-        }
-    }
-
-    private void iniciarCamara() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        camaraResult.launch(intent);
-    }
 
     @Override
     protected void onPause() {
@@ -434,7 +384,6 @@ public class ResumenTurno extends AppCompatActivity {
                 partida =new Partidas(email, fecha,SeleccionPerfiles.listaJugadores.get(0),SeleccionPerfiles.listaJugadores.get(1),SeleccionPerfiles.listaJugadores.get(2),SeleccionPerfiles.listaJugadores.get(3));
                 break;
         }
-
     }
     private void actualizar(){
         Map <String, Object> map = new HashMap<>();
