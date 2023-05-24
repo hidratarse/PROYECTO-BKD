@@ -81,6 +81,7 @@ public class DetallePartida extends AppCompatActivity {
         vm.init();
 
         if (ResumenTurno.finPartida) {
+            imgFoto.setClickable(true);
             colocarDatos(ResumenTurno.partida);
             idPartida = getIntent().getStringExtra("partida");
             vm.getPartidaLivedata().observe(this, partidas -> {
@@ -97,6 +98,8 @@ public class DetallePartida extends AppCompatActivity {
             vm.getPartidaLivedata().observe(this, partidas -> {
                 colocarDatos(partidas);
                 partidaActual = ResumenTurno.partida;
+                Glide.with(this).load(partidas.getFotoPartida()).into(this.imgFoto);
+                imgFoto.setClickable(false);
             });
         }
         ResumenTurno.finPartida=false;
