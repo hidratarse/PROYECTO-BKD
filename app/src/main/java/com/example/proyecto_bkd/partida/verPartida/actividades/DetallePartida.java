@@ -92,6 +92,9 @@ public class DetallePartida extends AppCompatActivity {
                     Glide.with(this).load(R.drawable.camera).into(this.imgFoto);
                 }
             });
+            imgFoto.setOnClickListener(view -> {
+                checkCamara();
+            });
         }else{
             idPartida = getIntent().getStringExtra("ID");
             vm.getPartida(idPartida);
@@ -104,9 +107,7 @@ public class DetallePartida extends AppCompatActivity {
         }
         ResumenTurno.finPartida=false;
 
-        imgFoto.setOnClickListener(view -> {
-            checkCamara();
-        });
+
 
         vm.getPartida(idPartida);
 
