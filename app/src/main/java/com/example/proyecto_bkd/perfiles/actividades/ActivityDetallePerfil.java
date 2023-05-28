@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -239,7 +238,6 @@ public class ActivityDetallePerfil extends AppCompatActivity {
 
         tModificar.setOnClickListener(view -> {
             perfilValido = true;
-            Toast.makeText(ActivityDetallePerfil.this, nombre.length() + "", Toast.LENGTH_SHORT).show();
             if (nombre.getText().length() < 4 || nombre.getText().length() > 10) {
                 Alert.alertError(ActivityDetallePerfil.this, getResources().getString(R.string.ErrorNombre));
                 perfilValido = false;

@@ -4,20 +4,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
@@ -38,7 +32,6 @@ import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.resumenturno.ResumenTurnoAdapter;
 import com.example.proyecto_bkd.utils.Alert;
-import com.example.proyecto_bkd.utils.GallerySaver;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -245,7 +238,6 @@ public class ResumenTurno extends AppCompatActivity {
         adapterResumen.setClickListener(new ResumenTurnoAdapter.ItemClickListener() {
             @Override
             public void onClick(View view, Feudo feudo, int posicion) {
-                Toast.makeText(ResumenTurno.this, feudo.getTorres() + "", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ResumenTurno.this, NuevoFeudo.class);
                 intent.putExtra("editarFeudo",feudo);
                 intent.putExtra("posicion",posicion);
@@ -395,13 +387,11 @@ public class ResumenTurno extends AppCompatActivity {
             if(SeleccionPerfiles.listaJugadores.get(i).getPosicion()==1){
                 partidasGanadas=partidasGanadas+1;
                 percent=(int)(partidasGanadas*100.0)/partidasJugadas;
-                Toast.makeText(this,String.valueOf(percent), Toast.LENGTH_SHORT);
                 map.put("partidasGanadas",String.valueOf(partidasGanadas));
                 map.put("porcentajeGanadas",String.valueOf(percent));
             }else {
                 percent=(int)(partidasGanadas*100.0)/partidasJugadas;
                 map.put("porcentajeGanadas",String.valueOf(percent));
-                Toast.makeText(this,String.valueOf(percent), Toast.LENGTH_SHORT);
             }
 
             mFirestore = FirebaseFirestore.getInstance();

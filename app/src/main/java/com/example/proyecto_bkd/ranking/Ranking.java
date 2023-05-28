@@ -82,15 +82,6 @@ public class Ranking extends AppCompatActivity {
             }
         });
 
-        bImgRanking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Ranking.this, Ranking.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         bImgPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

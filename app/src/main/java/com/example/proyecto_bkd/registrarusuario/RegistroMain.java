@@ -1,6 +1,5 @@
 package com.example.proyecto_bkd.registrarusuario;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -11,21 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.utils.Alert;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegistroMain extends AppCompatActivity {
     Button bRegistrarse, bCancelar;
@@ -113,14 +103,13 @@ public class RegistroMain extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // El registro fue exitoso
-                        Toast.makeText(RegistroMain.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegistroMain.this, Login.class);
                         startActivity(intent);
                         finish();
                     } else {
                         // Si el registro falla, se mostrará un mensaje de error al usuario
                         String errorMsg = "Error al registrar el usuario: " + task.getException().getLocalizedMessage();
-                        Toast.makeText(RegistroMain.this, errorMsg, Toast.LENGTH_SHORT).show();
+                        Alert.alertError(this,errorMsg);
                     }
                 });
     }
