@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -116,7 +115,6 @@ public class ActivityPerfiles extends AppCompatActivity {
 
         adaptador.setClickListener((view, perfil) -> {
             editando=true;
-            Toast.makeText(ActivityPerfiles.this, "Pulsado " + perfil.getNombre(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ActivityDetallePerfil.class);
             intent.putExtra("ID",perfil.getId());
             intent.putExtra("EDITANDO",editando);
@@ -149,11 +147,6 @@ public class ActivityPerfiles extends AppCompatActivity {
 
         bImgPartidas.setOnClickListener(view -> {
             Intent intent = new Intent(ActivityPerfiles.this, PrincipalPartida.class);
-            startActivity(intent);
-            finish();
-        });
-        bImgPerfiles.setOnClickListener(view -> {
-            Intent intent = new Intent(ActivityPerfiles.this, ActivityPerfiles.class);
             startActivity(intent);
             finish();
         });

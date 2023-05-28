@@ -1,20 +1,16 @@
 package com.example.proyecto_bkd.partida.resumenturno;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.partida.data.Feudo;
-import com.example.proyecto_bkd.partida.resumenturno.actividades.ResumenTurno;
 
 import java.util.ArrayList;
 

@@ -82,14 +82,6 @@ public class PrincipalPartida extends AppCompatActivity {
             }
         });
 
-        bImgPartidas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PrincipalPartida.this, PrincipalPartida.class);
-                startActivity(intent);
-                finish();
-            }
-        });
         bImgPerfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
