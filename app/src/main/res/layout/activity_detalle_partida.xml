@@ -75,7 +75,7 @@
                     android:fontFamily="@font/enchanted_land"
                     android:text="Partidas"
                     android:textAlignment="viewStart"
-                    android:textColor="#FF9800"
+                    android:textColor="#FFC107"
                     android:textSize="34sp" />
             </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:fontFamily="@font/enchanted_land"
                     android:text="Perfiles"
                     android:textAlignment="center"
-                    android:textColor="#FF9800"
+                    android:textColor="#FFC107"
                     android:textSize="34sp" />
 
             </LinearLayout>
@@ -146,7 +146,7 @@
                     android:fontFamily="@font/enchanted_land"
                     android:text="Ranking"
                     android:textAlignment="center"
-                    android:textColor="#FF9800"
+                    android:textColor="#FFC107"
                     android:textSize="34sp" />
             </LinearLayout>
 
