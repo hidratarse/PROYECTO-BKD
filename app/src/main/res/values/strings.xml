@@ -62,4 +62,5 @@
     <string name="salirPartida">¿Quieres salir? </string>
     <string name="Ronda">Ronda </string>
     <string name="Final">Fin de la partida </string>
+    <string name="salir">Salir</string>
 </resources>

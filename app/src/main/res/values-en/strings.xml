@@ -63,4 +63,5 @@
     <string name="salirPartida">Quit game? </string>
     <string name="Ronda">Round </string>
     <string name="Final">End Game </string>
+    <string name="salir">Exit</string>
 </resources>

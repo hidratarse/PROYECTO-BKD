@@ -38,7 +38,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Random;
 
 public class ActivityDetallePerfil extends AppCompatActivity {
     EditText nombre;
@@ -201,8 +200,8 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
             builder.setView(confirmDialogView);
 
-            TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
-            TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
+            TextView btnConfirmar = confirmDialogView.findViewById(R.id.tSalirDialog);
+            TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog2);
             AlertDialog alertDialog = builder.create();
             alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 

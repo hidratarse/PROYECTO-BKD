@@ -1,7 +1,5 @@
 package com.example.proyecto_bkd.partida.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,17 +10,21 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
-import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
-import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.resumenturno.actividades.SeleccionPerfiles;
 import com.example.proyecto_bkd.partida.verPartida.actividades.VerPartidas;
+import com.example.proyecto_bkd.perfiles.actividades.ActivityDetallePerfil;
+import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
+import com.example.proyecto_bkd.ranking.Ranking;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PrincipalPartida extends AppCompatActivity {
-    ImageButton bImgPartidas,bImgPerfiles,bImgRanking;
+    ImageButton bImgPartidas, bImgPerfiles, bImgRanking;
     TextView verPartida, newGame, salir, cerrarSesion, tPartida, tPerfiles, tRanking;
     public static Switch sMPartida;
 
@@ -33,13 +35,13 @@ public class PrincipalPartida extends AppCompatActivity {
         tPartida = findViewById(R.id.tPartidas);
         tPerfiles = findViewById(R.id.tPerfiles);
         tRanking = findViewById(R.id.tRanking);
-        bImgPartidas=findViewById(R.id.bImgPartidas);
-        bImgPerfiles=findViewById(R.id.bImgPerfiles);
-        bImgRanking=findViewById(R.id.bImgRanking);
-        verPartida=findViewById(R.id.tVerPartidas);
-        newGame=findViewById(R.id.tNewGame);
-        salir=findViewById(R.id.tSalir);
-        sMPartida= findViewById(R.id.sMPartida);
+        bImgPartidas = findViewById(R.id.bImgPartidas);
+        bImgPerfiles = findViewById(R.id.bImgPerfiles);
+        bImgRanking = findViewById(R.id.bImgRanking);
+        verPartida = findViewById(R.id.tVerPartidas);
+        newGame = findViewById(R.id.tNewGame);
+        salir = findViewById(R.id.tSalir);
+        sMPartida = findViewById(R.id.sMPartida);
         cerrarSesion = findViewById(R.id.tCerrarSesion);
 
         Animation animEstandarte = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_estandarte);
@@ -59,16 +61,16 @@ public class PrincipalPartida extends AppCompatActivity {
             // El usuario no está autenticado, debes enviarlo a la actividad de inicio de sesión
         }
 
-        Log.d("SONANDO PARTIDA",Login.mp.isPlaying()+"");
+        Log.d("SONANDO PARTIDA", Login.mp.isPlaying() + "");
         sMPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sMPartida.isChecked()){
+                if (sMPartida.isChecked()) {
                     Login.mp.start();
-                    Login.music=true;
-                }else{
+                    Login.music = true;
+                } else {
                     Login.mp.pause();
-                    Login.music=false;
+                    Login.music = false;
                 }
             }
         });
@@ -124,6 +126,7 @@ public class PrincipalPartida extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -133,11 +136,34 @@ public class PrincipalPartida extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(Login.music){
+        if (Login.music) {
             Login.mp.start();
-        }else{
+        } else {
             Login.mp.pause();
             sMPartida.setChecked(false);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PrincipalPartida.this);
+
+        View confirmDialogView = getLayoutInflater().inflate(R.layout.alert_salir, null);
+        builder.setView(confirmDialogView);
+
+        TextView btnConfirmar = confirmDialogView.findViewById(R.id.tSalirDialog);
+        TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog2);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        btnConfirmar.setOnClickListener(v -> {
+            finish();
+        });
+
+        btnCancelar.setOnClickListener(v -> {
+            // cancelar
+            alertDialog.dismiss();
+        });
+        alertDialog.show();
     }
 }
