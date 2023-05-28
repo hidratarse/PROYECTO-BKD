@@ -66,6 +66,12 @@ public class Login extends AppCompatActivity {
             mp.start();
         }
 
+        if (mAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(Login.this, PrincipalPartida.class);
+            startActivity(intent);
+            finish();
+        }
+
         sMLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
