@@ -184,9 +184,9 @@ public class ResumenTurno extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ResumenTurno.this);
                 View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
                 builder.setView(confirmDialogView);
-                TextView btnConfirmar = confirmDialogView.findViewById(R.id.tSalirDialog);
-                TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog2);
-                TextView dialog_title = confirmDialogView.findViewById(R.id.dialog_title2);
+                TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
+                TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
+                TextView dialog_title = confirmDialogView.findViewById(R.id.dialog_title);
                 btnConfirmar.setText(getResources().getString(R.string.Si));
                 btnCancelar.setText(getResources().getString(R.string.No));
                 dialog_title.setText(getResources().getString(R.string.TerminarTurnoJugador));
@@ -419,9 +419,9 @@ public class ResumenTurno extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.confirm_dialog,null);
         salirPartida.setView(dialogView);
-        tAlert = dialogView.findViewById(R.id.dialog_title2);
-        tSi = dialogView.findViewById(R.id.tSalirDialog);
-        tNo = dialogView.findViewById(R.id.tCancelarDialog2);
+        tAlert = dialogView.findViewById(R.id.dialog_title);
+        tSi = dialogView.findViewById(R.id.tEliminarDialog);
+        tNo = dialogView.findViewById(R.id.tCancelarDialog);
         tAlert.setText(getResources().getString(R.string.salirPartida));
         tSi.setText(getResources().getString(R.string.Si));
         tNo.setText(getResources().getString(R.string.No));
