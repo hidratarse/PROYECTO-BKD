@@ -148,7 +148,6 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             }
         });
 
-
         boolean editando = getIntent().getBooleanExtra("EDITANDO", false);
         String idPerfil = getIntent().getStringExtra("ID");
 
@@ -200,8 +199,8 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             View confirmDialogView = getLayoutInflater().inflate(R.layout.confirm_dialog, null);
             builder.setView(confirmDialogView);
 
-            TextView btnConfirmar = confirmDialogView.findViewById(R.id.tSalirDialog);
-            TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog2);
+            TextView btnConfirmar = confirmDialogView.findViewById(R.id.tEliminarDialog);
+            TextView btnCancelar = confirmDialogView.findViewById(R.id.tCancelarDialog);
             AlertDialog alertDialog = builder.create();
             alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
