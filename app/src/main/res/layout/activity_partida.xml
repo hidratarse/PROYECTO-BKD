@@ -126,7 +126,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#00FFFFFF"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/estandarte" />
+                app:srcCompat="@drawable/estandarte_naranja" />
 
             <LinearLayout
                 android:id="@+id/LinTxtPartidas"
