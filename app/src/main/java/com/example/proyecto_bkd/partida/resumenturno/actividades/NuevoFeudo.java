@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
@@ -232,11 +233,11 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 if(sMNuevoFeudo.isChecked()){
-                    Login.mp.start();
-                    Login.music =true;
+                    SplashScreen.mp.start();
+                    SplashScreen.music =true;
                 }else {
-                    Login.mp.pause();
-                    Login.music = false;
+                    SplashScreen.mp.pause();
+                    SplashScreen.music = false;
                 }
             }
         });
@@ -374,17 +375,17 @@ public class NuevoFeudo extends AppCompatActivity implements Serializable {
     @Override
     protected void onPause() {
         super.onPause();
-        Login.mp.pause();
+        SplashScreen.mp.pause();
     }
 
     //Se reanuda la música
     @Override
     protected void onResume() {
         super.onResume();
-        if(Login.music){
-            Login.mp.start();
+        if(SplashScreen.music){
+            SplashScreen.mp.start();
         }else{
-            Login.mp.pause();
+            SplashScreen.mp.pause();
             sMNuevoFeudo.setChecked(false);
         }
     }

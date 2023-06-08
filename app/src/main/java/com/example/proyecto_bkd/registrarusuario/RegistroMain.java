@@ -13,6 +13,7 @@ import android.widget.Switch;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.utils.Alert;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,11 +44,11 @@ public class RegistroMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(sMRegistro.isChecked()){
-                    Login.mp.start();
-                    Login.music =true;
+                    SplashScreen.mp.start();
+                    SplashScreen.music =true;
                 }else{
-                    Login.mp.pause();
-                    Login.music = false;
+                    SplashScreen.mp.pause();
+                    SplashScreen.music = false;
                 }
             }
         });
@@ -84,16 +85,16 @@ public class RegistroMain extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Login.mp.pause();
+        SplashScreen.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(Login.music){
-            Login.mp.start();
+        if(SplashScreen.music){
+            SplashScreen.mp.start();
         }else{
-            Login.mp.pause();
+            SplashScreen.mp.pause();
             sMRegistro.setChecked(false);
         }
     }

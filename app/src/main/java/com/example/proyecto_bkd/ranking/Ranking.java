@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
@@ -72,11 +73,11 @@ public class Ranking extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(sMRanking.isChecked()){
-                    Login.mp.start();
-                    Login.music =true;
+                    SplashScreen.mp.start();
+                    SplashScreen.music =true;
                 }else{
-                    Login.mp.pause();
-                    Login.music =false;
+                    SplashScreen.mp.pause();
+                    SplashScreen.music =false;
 
                 }
             }
@@ -205,17 +206,17 @@ public class Ranking extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Login.mp.pause();
+        SplashScreen.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(!Login.music){
+        if(!SplashScreen.music){
             sMRanking.setChecked(false);
-            Login.mp.pause();
+            SplashScreen.mp.pause();
         }else{
-            Login.mp.start();
+            SplashScreen.mp.start();
         }
     }
 }

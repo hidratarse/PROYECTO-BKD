@@ -3,6 +3,7 @@ package com.example.proyecto_bkd;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -15,7 +16,8 @@ public class SplashScreen extends AppCompatActivity {
 
     TextView tTituloSplas;
     ImageView iIcono;
-
+    public static MediaPlayer mp;
+    public static boolean music=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,11 @@ public class SplashScreen extends AppCompatActivity {
 
         tTituloSplas.setAnimation(animacionAbajo);
         iIcono.setAnimation(animacionArriba);
+
+        mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
+
+        mp.setLooping(true);
+        mp.start();
 
         new Handler().postDelayed(new Runnable() {
             @Override
