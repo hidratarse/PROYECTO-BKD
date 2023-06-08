@@ -23,19 +23,21 @@ public class Perfil implements Serializable {
     public Perfil() {
     }
 
-    public Perfil(String email, String nombre, String partidasJugadas, String maxPuntuacion, String partidasGanadas) {
+    public Perfil(String email, String nombre, String partidasJugadas, String maxPuntuacion, String partidasGanadas, String porcentajeGanadas) {
         this.email = email;
         this.nombre = nombre;
         this.partidasJugadas = partidasJugadas;
         this.maxPuntuacion = maxPuntuacion;
         this.partidasGanadas = partidasGanadas;
+        this.porcentajeGanadas = porcentajeGanadas;
     }
 
-    public Perfil(String nombre, String partidasJugadas, String maxPuntuacion, String partidasGanadas) {
+    public Perfil(String nombre, String partidasJugadas, String maxPuntuacion, String partidasGanadas, String porcentajeGanadas) {
         this.nombre = nombre;
         this.partidasJugadas = partidasJugadas;
         this.maxPuntuacion = maxPuntuacion;
         this.partidasGanadas = partidasGanadas;
+        this.porcentajeGanadas = porcentajeGanadas;
     }
     public String getId() {
         return id;

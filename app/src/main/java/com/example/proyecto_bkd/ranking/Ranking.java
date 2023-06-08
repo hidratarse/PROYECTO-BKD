@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
@@ -108,13 +107,13 @@ public class Ranking extends AppCompatActivity {
             }
         },1500);
 
-        OrdenarPorPuntos();
+        ordenarPorPuntos();
 
         bMaxPuntuacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ordenPuntos =0;
-                OrdenarPorPuntos();
+                ordenarPorPuntos();
                 tTituloRanking.setText(getResources().getString(R.string.RankingPuntos));
             }
         });
@@ -122,7 +121,7 @@ public class Ranking extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ordenPuntos=1;
-                OrdenarPorVictorias();
+                ordenarPorVictorias();
                 tTituloRanking.setText(getResources().getString(R.string.RankingVictorias));
             }
         });
@@ -131,13 +130,13 @@ public class Ranking extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ordenPuntos=2;
-                OrdenarPorPorcentaje();
+                ordenarPorPorcentaje();
                 tTituloRanking.setText(getResources().getString(R.string.RankingPorcentaje));
             }
         });
     }
 
-    public void OrdenarPorPuntos(){
+    public void ordenarPorPuntos(){
         adapter = new RankingAdapter();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -152,7 +151,7 @@ public class Ranking extends AppCompatActivity {
         });
         adapter.notifyDataSetChanged();
     }
-    public void OrdenarPorVictorias(){
+    public void ordenarPorVictorias(){
         adapter = new RankingAdapter();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -168,7 +167,7 @@ public class Ranking extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public void OrdenarPorPorcentaje(){
+    public void ordenarPorPorcentaje(){
         adapter = new RankingAdapter();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

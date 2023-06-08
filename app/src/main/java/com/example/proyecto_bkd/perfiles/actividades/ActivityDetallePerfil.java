@@ -52,6 +52,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
     ActivityResultLauncher<String> galleryLauncher;
     ActivityResultLauncher<String> camaraLauncher;
     ActivityResultLauncher<Intent> camaraResult;
+    private Perfil perfilActual;
     boolean perfilValido;
     int nuevaAnchura = 456;
     int nuevaAltura = 494;
@@ -172,6 +173,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             nPartidas.setText(perfil.getPartidasJugadas());
             nGanadas.setText(perfil.getPartidasGanadas());
             nPuntuacion.setText(perfil.getMaxPuntuacion());
+            perfilActual = perfil;
             if (editando) {
                 currentPfpUrl = perfil.getPfpImg();
                 Glide.with(this)
@@ -246,7 +248,8 @@ public class ActivityDetallePerfil extends AppCompatActivity {
                 String mPartidas = String.valueOf(nPartidas.getText());
                 String mGanadas = String.valueOf(nGanadas.getText());
                 String mPuntos = String.valueOf(nPuntuacion.getText());
-                Perfil nPerfil = new Perfil(email, mNombre, mPartidas, mGanadas, mPuntos);
+                String mPorcentaje = perfilActual.getPorcentajeGanadas();
+                Perfil nPerfil = new Perfil(email, mNombre, mPartidas, mGanadas, mPuntos, mPorcentaje);
                 nPerfil.setId(idPerfil);
                 nPerfil.setPfpImg(currentPfpUrl);
                 vm.modificarPerfil(idPerfil, nPerfil, pfpUri);

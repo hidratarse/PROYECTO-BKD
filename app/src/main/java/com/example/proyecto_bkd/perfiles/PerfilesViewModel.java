@@ -119,7 +119,7 @@ public class PerfilesViewModel extends ViewModel {
     }
 
     public void clear(){
-        perfilLivedata.postValue(new Perfil(" ", "0","0","0"));
+        perfilLivedata.postValue(new Perfil(" ", "0","0","0","0"));
     }
 
     public LiveData<List<Perfil>> getPerfilesLivedata() {
