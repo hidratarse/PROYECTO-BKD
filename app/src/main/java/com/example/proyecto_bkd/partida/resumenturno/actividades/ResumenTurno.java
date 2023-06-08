@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.partida.data.Feudo;
 import com.example.proyecto_bkd.partida.data.Partidas;
@@ -91,11 +92,11 @@ public class ResumenTurno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (sMResumenTurno.isChecked()) {
-                    Login.mp.start();
-                    Login.music = true;
+                    SplashScreen.mp.start();
+                    SplashScreen.music = true;
                 } else {
-                    Login.mp.pause();
-                    Login.music = false;
+                    SplashScreen.mp.pause();
+                    SplashScreen.music = false;
                 }
             }
         });
@@ -341,17 +342,17 @@ public class ResumenTurno extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //Se para la música
-        Login.mp.pause();
+        SplashScreen.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //Se reanuda la música
-        if(Login.music){
-            Login.mp.start();
+        if(SplashScreen.music){
+            SplashScreen.mp.start();
         }else{
-            Login.mp.pause();
+            SplashScreen.mp.pause();
             sMResumenTurno.setChecked(false);
         }
     }

@@ -32,13 +32,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
-    public static MediaPlayer mp, puerta;
+    public static MediaPlayer puerta;
     EditText campoUsu, campoPass,eEmail;
     Button bLogin,bRegistrarse;
     public static Switch sMLogin;
     FirebaseAuth mAuth;
     TextView tRegistrar, tOlvidado,tTituloAlert,tAceptarDato;
-    public static boolean music=true;
     String recuperarContrasena;
     Vibrator vibrator;
 
@@ -58,13 +57,7 @@ public class Login extends AppCompatActivity {
         vibrator=(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         mAuth = FirebaseAuth.getInstance();
         tRegistrar.setAnimation(animacionAbajo);
-        mp=MediaPlayer.create(this, R.raw.alexandernakaradagatesofglory);
         puerta=MediaPlayer.create(this,R.raw.puerta);
-
-        if(!mp.isPlaying()){
-            mp.setLooping(true);
-            mp.start();
-        }
 
         if (mAuth.getCurrentUser() != null) {
             Intent intent = new Intent(Login.this, PrincipalPartida.class);
@@ -76,11 +69,11 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(sMLogin.isChecked()){
-                    mp.start();
-                    music=true;
+                    SplashScreen.mp.start();
+                    SplashScreen.music=true;
                 }else {
-                    mp.pause();
-                    music=false;
+                    SplashScreen.mp.pause();
+                    SplashScreen.music=false;
                 }
             }
         });
@@ -165,12 +158,17 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mp.pause();
+        SplashScreen.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-            mp.start();
+        if (SplashScreen.music) {
+            SplashScreen.mp.start();
+        } else {
+            SplashScreen.mp.pause();
+            sMLogin.setChecked(false);
+        }
     }
 }

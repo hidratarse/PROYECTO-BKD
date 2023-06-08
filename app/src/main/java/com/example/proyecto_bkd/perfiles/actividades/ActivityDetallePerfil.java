@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
+import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
 import com.example.proyecto_bkd.perfiles.PerfilesViewModel;
 import com.example.proyecto_bkd.perfiles.data.Perfil;
@@ -294,11 +295,11 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (sMPerfilDetalle.isChecked()) {
-                    Login.mp.start();
-                    Login.music = true;
+                    SplashScreen.mp.start();
+                    SplashScreen.music = true;
                 } else {
-                    Login.mp.pause();
-                    Login.music = false;
+                    SplashScreen.mp.pause();
+                    SplashScreen.music = false;
                 }
             }
         });
@@ -340,16 +341,16 @@ public class ActivityDetallePerfil extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Login.mp.pause();
+        SplashScreen.mp.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (Login.music) {
-            Login.mp.start();
+        if (SplashScreen.music) {
+            SplashScreen.mp.start();
         } else {
-            Login.mp.pause();
+            SplashScreen.mp.pause();
             sMPerfilDetalle.setChecked(false);
         }
     }
