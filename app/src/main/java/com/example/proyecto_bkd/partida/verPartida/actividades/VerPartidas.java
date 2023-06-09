@@ -17,12 +17,20 @@ import com.example.proyecto_bkd.Login;
 import com.example.proyecto_bkd.R;
 import com.example.proyecto_bkd.SplashScreen;
 import com.example.proyecto_bkd.partida.actividades.PrincipalPartida;
+import com.example.proyecto_bkd.partida.data.Partidas;
 import com.example.proyecto_bkd.perfiles.actividades.ActivityPerfiles;
+import com.example.proyecto_bkd.perfiles.data.Perfil;
 import com.example.proyecto_bkd.ranking.Ranking;
 import com.example.proyecto_bkd.partida.PartidasViewModel;
 import com.example.proyecto_bkd.partida.verPartida.VerPartidasAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class VerPartidas extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -32,6 +40,7 @@ public class VerPartidas extends AppCompatActivity {
     Switch sMVerPartida;
     String email;
     LinearLayout cargando;
+    int delay = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +103,7 @@ public class VerPartidas extends AppCompatActivity {
                 cargando.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        },1500);
+        },delay);
 
         adaptador = new VerPartidasAdapter();
         recyclerView.setHasFixedSize(true);
@@ -109,6 +118,8 @@ public class VerPartidas extends AppCompatActivity {
         vm.getPartidasLivedata().observe(this, (dato)-> {
             adaptador.setResults(dato);
         });
+        adaptador.notifyDataSetChanged();
+
 
         adaptador.setClickListener((view, partidas) -> {
             Intent intent = new Intent(VerPartidas.this, DetallePartida.class);
@@ -117,6 +128,7 @@ public class VerPartidas extends AppCompatActivity {
             finish();
         });
     }
+
     @Override
     protected void onPause() {
         super.onPause();

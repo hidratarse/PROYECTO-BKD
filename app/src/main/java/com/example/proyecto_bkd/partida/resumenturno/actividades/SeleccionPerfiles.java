@@ -42,7 +42,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
     private RecyclerView recyclerView;
     private JugadorAdapter adaptador;
     private PerfilesViewModel vm;
-
+    int duracionVibracion = 500;
     //Atributos para el constructor Jugador
     int contColor =0;
     String[] color = {"Rojo","Negro","Amarillo","Rosa"};
@@ -163,7 +163,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 //Si no hay entre 2 y 4 jugadores seleccionados no comienza la partida
                 if(listaJugadores.size()<2||listaJugadores.size()>4){
                     valido=false;
-                    vibrator.vibrate(500);
+                    vibrator.vibrate(duracionVibracion);
                     alertError(getResources().getString(R.string.ErrorNumJugadores));
                 }
                 int validacionColores[]={0,0,0,0};
@@ -188,7 +188,7 @@ public class SeleccionPerfiles extends AppCompatActivity implements Serializable
                 for (int i = 0; i < validacionColores.length; i++) {
                     if(validacionColores[i]>=2){
                         valido=false;
-                        vibrator.vibrate(500);
+                        vibrator.vibrate(duracionVibracion);
                         alertError(getResources().getString(R.string.ErrorColorJugadores));
                     }
                 }

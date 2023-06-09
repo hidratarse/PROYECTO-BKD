@@ -39,6 +39,10 @@ public class Ranking extends AppCompatActivity {
     String email;
     LinearLayout lCargaRanking;
     static int ordenPuntos =0;
+    int ordenPuntuacion = 0;
+    int ordenVictorias = 1;
+    int ordenPorcentaje = 2;
+    int delay  = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,14 +109,14 @@ public class Ranking extends AppCompatActivity {
                 lCargaRanking.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        },1500);
+        },delay);
 
         ordenarPorPuntos();
 
         bMaxPuntuacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ordenPuntos =0;
+                ordenPuntos =ordenPuntuacion;
                 ordenarPorPuntos();
                 tTituloRanking.setText(getResources().getString(R.string.RankingPuntos));
             }
@@ -120,7 +124,7 @@ public class Ranking extends AppCompatActivity {
         bWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ordenPuntos=1;
+                ordenPuntos=ordenVictorias;
                 ordenarPorVictorias();
                 tTituloRanking.setText(getResources().getString(R.string.RankingVictorias));
             }
@@ -129,7 +133,7 @@ public class Ranking extends AppCompatActivity {
         bPorcentaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ordenPuntos=2;
+                ordenPuntos= ordenPorcentaje;
                 ordenarPorPorcentaje();
                 tTituloRanking.setText(getResources().getString(R.string.RankingPorcentaje));
             }

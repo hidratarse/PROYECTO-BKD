@@ -45,14 +45,12 @@ public class PartidasViewModel extends ViewModel {
 
                    @Override
                    public void onFailure() {
-
                    }
                });
            }
 
            @Override
            public void onFailure(Exception exception) {
-
            }
        });
     }
@@ -65,19 +63,16 @@ public class PartidasViewModel extends ViewModel {
                 partidaRepository.modificarPartida(partida.getIdPartida(),partida ,new PartidaRepository.EditPartidasCallback() {
                     @Override
                     public void onSuccess() {
-
                     }
 
                     @Override
                     public void onFailure() {
-
                     }
                 });
             }
 
             @Override
             public void onFailure(Exception exception) {
-
             }
         });
     }

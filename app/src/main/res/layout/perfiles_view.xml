@@ -14,8 +14,9 @@
 
         <ImageView
             android:id="@+id/imgProfile"
-            android:layout_width="93dp"
-            android:layout_height="96dp"
+            android:layout_width="111dp"
+            android:layout_height="104dp"
+            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="@+id/id_marco"
             app:layout_constraintEnd_toEndOf="@+id/id_marco"
             app:layout_constraintStart_toStartOf="@+id/id_marco"

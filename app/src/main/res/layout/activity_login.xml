@@ -104,7 +104,6 @@
         android:hint="@string/Email"
         android:inputType="textPersonName"
         android:singleLine="false"
-        android:text="bunnykingdomdeluxe@gmail.com"
         android:textColor="#ED5C2E"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/bLogin"
@@ -149,7 +148,6 @@
         android:hint="@string/Contraseña"
         android:inputType="textPassword"
         android:singleLine="false"
-        android:text="Admin2023"
         android:textColor="#ED5C2E"
 
         android:textSize="30sp"

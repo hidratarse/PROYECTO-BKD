@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
     TextView tRegistrar, tOlvidado,tTituloAlert,tAceptarDato;
     String recuperarContrasena;
     Vibrator vibrator;
+    int duracion = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +97,13 @@ public class Login extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        vibrator.vibrate(500);
+                                        vibrator.vibrate(duracion);
                                         Alert.alertError(Login.this,getResources().getString(R.string.ErrorInicio));
                                     }
                                 }
                             });
                 } else {
-                    vibrator.vibrate(500);
+                    vibrator.vibrate(duracion);
                     Alert.alertError(Login.this,getResources().getString(R.string.CompletarCampos));
                 }
             }
@@ -148,7 +149,7 @@ public class Login extends AppCompatActivity {
                     FirebaseAuth.getInstance().sendPasswordResetEmail(recuperarContrasena);
                     alertRestaurar.dismiss();
                 }else{
-                    vibrator.vibrate(500);
+                    vibrator.vibrate(duracion);
                     Alert.alertError(Login.this,getResources().getString(R.string.ErrorEmail));
                 }
             }

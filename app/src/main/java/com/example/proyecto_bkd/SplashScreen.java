@@ -18,6 +18,7 @@ public class SplashScreen extends AppCompatActivity {
     ImageView iIcono;
     public static MediaPlayer mp;
     public static boolean music=true;
+    int delay = 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },4000);
+        },delay);
     }
 }

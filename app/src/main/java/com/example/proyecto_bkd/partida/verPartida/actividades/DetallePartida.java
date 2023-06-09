@@ -108,8 +108,6 @@ public class DetallePartida extends AppCompatActivity {
         }
         ResumenTurno.finPartida=false;
 
-
-
         vm.getPartida(idPartida);
 
         camaraLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -211,6 +209,10 @@ public class DetallePartida extends AppCompatActivity {
         tFechaP.setText(partidas.getFecha()+"");
         tJug1.setText(partidas.getJ1().getNomJugador());
         tJug2.setText(partidas.getJ2().getNomJugador());
+        tJug3.setText("");
+        tJug4.setText("");
+        tColor3.setVisibility(View.INVISIBLE);
+        tColor4.setVisibility(View.INVISIBLE);
         switch (partidas.getJ1().getColor()){
             case "Negro":
                 tColor1.setBackgroundColor(Color.parseColor("#000000"));
@@ -242,9 +244,14 @@ public class DetallePartida extends AppCompatActivity {
 
         tPtos1.setText(String.valueOf(partidas.getJ1().getPuntos()));
         tPtos2.setText(String.valueOf(partidas.getJ2().getPuntos()));
+        tPtos3.setText("");
+        tPtos4.setText("");
         tPosicion1.setText(String.valueOf(partidas.getJ1().getPosicion()));
         tPosicion2.setText((String.valueOf(partidas.getJ2().getPosicion())));
+        tPosicion3.setText("");
+        tPosicion4.setText("");
         if(partidas.getJ3()!=null) {
+            tColor3.setVisibility(View.VISIBLE);
             switch (partidas.getJ3().getColor()){
                 case "Negro":
                     tColor3.setBackgroundColor(Color.parseColor("#000000"));
@@ -264,6 +271,7 @@ public class DetallePartida extends AppCompatActivity {
             tPosicion3.setText((String.valueOf(partidas.getJ3().getPosicion())));
         }
         if(partidas.getJ4()!=null) {
+            tColor4.setVisibility(View.VISIBLE);
             switch (partidas.getJ4().getColor()){
                 case "Negro":
                     tColor4.setBackgroundColor(Color.parseColor("#000000"));
@@ -282,7 +290,6 @@ public class DetallePartida extends AppCompatActivity {
             tPtos4.setText(String.valueOf(partidas.getJ4().getPuntos()));
             tPosicion4.setText((String.valueOf(partidas.getJ4().getPosicion())));
         }
-
     }
 
     @Override

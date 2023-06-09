@@ -42,7 +42,6 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         private final TextView ptos3;
         private final TextView ptos4;
 
-
         public ViewHolder(View view) {
             super(view);
             fechaPart = view.findViewById(R.id.tFecha);
@@ -92,7 +91,6 @@ public class VerPartidasAdapter extends RecyclerView.Adapter<VerPartidasAdapter.
         public void onClick(View view) {
             if (clickListener != null)
                 clickListener.onClick(view, datos.get(getAdapterPosition()));
-
         }
     }
 

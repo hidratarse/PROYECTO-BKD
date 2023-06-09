@@ -40,7 +40,7 @@ public class ActivityPerfiles extends AppCompatActivity {
     Button nuevoPerfil;
     Switch sMPerfiles;
     LinearLayout lCargaPerfiles;
-
+    int delay = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +82,7 @@ public class ActivityPerfiles extends AppCompatActivity {
                 lCargaPerfiles.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        },1500);
+        },delay);
 
         adaptador = new PerfilesAdapter();
 

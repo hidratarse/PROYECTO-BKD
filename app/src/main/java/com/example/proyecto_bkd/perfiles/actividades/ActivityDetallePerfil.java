@@ -229,8 +229,7 @@ public class ActivityDetallePerfil extends AppCompatActivity {
             }
             if (perfilValido) {
                 String newName = nombre.getText().toString();
-                Perfil nuevoPerfil = new Perfil(email, newName, "0", "0", "0");
-                nuevoPerfil.setPorcentajeGanadas("0");
+                Perfil nuevoPerfil = new Perfil(email, newName,"0","0","0","0");
                 vm.insertarPerfil(nuevoPerfil, pfpUri);
                 setResult(ActivityPerfiles.REFRESH);
                 finish();

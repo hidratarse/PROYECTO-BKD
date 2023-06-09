@@ -48,7 +48,7 @@ import java.util.Map;
 public class ResumenTurno extends AppCompatActivity {
     //Atributos para las condiciones del transcurso de la partida
     private final int MAX_RONDAS=4;
-    int ronda=4;
+    int ronda=1;
     int turno=0;
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
@@ -66,6 +66,7 @@ public class ResumenTurno extends AppCompatActivity {
     int posicionFeudo,restarPuntos,partidasJugadas, partidasGanadas,percent;
     FirebaseUser currentUser;
     FirebaseFirestore mFirestore;
+    int duracionVibracion = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -306,7 +307,7 @@ public class ResumenTurno extends AppCompatActivity {
                         SeleccionPerfiles.listaJugadores.get(idJugador).setPuntos(SeleccionPerfiles.listaJugadores.get(idJugador).getPuntos()+Integer.parseInt(puntosPergamino.getText().toString()));
                         Log.d("PUNTOS PERGA",SeleccionPerfiles.listaJugadores.get(idJugador).getNomJugador()+" "+puntosPergamino.getText().toString()+" "+String.valueOf(SeleccionPerfiles.listaJugadores.get(idJugador).getPuntos()));
                     }catch (NumberFormatException e){
-                        vibrator.vibrate(500);
+                        vibrator.vibrate(duracionVibracion);
                         Alert.alertError(ResumenTurno.this,getResources().getString(R.string.NoNum));
                         valido = false;
                     }
