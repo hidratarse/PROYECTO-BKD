@@ -48,7 +48,7 @@ import java.util.Map;
 public class ResumenTurno extends AppCompatActivity {
     //Atributos para las condiciones del transcurso de la partida
     private final int MAX_RONDAS=4;
-    int ronda=1;
+    int ronda=3;
     int turno=0;
     //Atributos de elementos del layout
     ImageButton bImgPartidas,bImgPerfiles,bImgRanking,bAdd,bPuntosPerga;
